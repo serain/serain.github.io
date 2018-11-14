@@ -40,10 +40,14 @@ layout: default
               <ul class="post-list">{% for post in paginator.posts %}
                 <li class="titlepost">
                   <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                </li>
-                <li class="datepost">
-                  <span class="post-meta">{{ post.date | date: "%-d %b %Y" }}</span>
+                  <div class="datepost">
+                    <span class="post-meta">{{ post.date | date: "%-d %b %Y" }}</span>
+                  </div>
                 </li>{% endfor %}
+                <!-- <li class="datepost">
+                  <span class="post-meta">{{ post.date | date: "%-d %b %Y" }}</span>
+                </li> -->
+                
               </ul>
           </div>
         </div>{% if paginator.previous_page %}
