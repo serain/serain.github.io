@@ -240,7 +240,7 @@
 }
 
 .post-meta {
-    font-size: $small-font-size;
+    font-size: $small-font-size / 1.2;
     color: $date-color;
 }
 
@@ -248,6 +248,7 @@
     display: block;
     font-size: 17px;
     font-family: $vt323;
+    float: left;
 }
 
 .titlepost {
@@ -263,8 +264,9 @@
     font-family: $vt323;
     width: 100px;
     float: left;
-    border-bottom: 1px dashed #E1E2E3;
-    padding-top: $spacing-unit / 6;
+    // border-bottom: 1px dashed #E1E2E3;
+    padding-top: $spacing-unit / 12;
+    padding-left: $spacing-unit / 4;
     text-align: left;
 }
 
