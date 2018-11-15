@@ -47,6 +47,14 @@ img.displayed {
     height: 25px;
 }
 
+img.avatar {
+    border: 1px solid #E5E5E5;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    transform: translateY(40px)
+}
+
 /**
  * Figures
  */
