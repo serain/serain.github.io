@@ -163,7 +163,7 @@
  * All about of content
  */
 .page-content {
-    padding: $spacing-unit 0 0;
+    padding: ($spacing-unit + 40) 0 0;
 }
 
 @include media-query($on-laptop) {
