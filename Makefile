@@ -2,8 +2,6 @@ SHELL = /bin/sh
 
 .DEFAULT_GOAL:publish
 
-BUILDS:=publish
-
 publish:
 	export MEDIUM_USER_ID=$(shell pass social/medium_id) \
 	export MEDIUM_INTEGRATION_TOKEN=$(shell pass social/medium_token) \
