@@ -65,9 +65,9 @@ With these measures in place, an attacker would have up to four minutes of JavaS
 
 ## ## Situational Awareness
 
-The _dref_ tool includes the _(netmap.js)[https://github.com/serain/netmap.js]_ browser-based TCP port scanning module. With it, the framework can be used to determine the local IP address of the browsers, infer a subnet, and proceed to scan the network for TCP services. This could be a viable path for lateral movement.
+The _dref_ tool includes the _[netmap.js](https://github.com/serain/netmap.js)_ browser-based TCP port scanning module. With it, the framework can be used to determine the local IP address of the browsers, infer a subnet, and proceed to scan the network for TCP services. This could be a viable path for lateral movement.
 
-However, as the headless browsers that connected to the attacker-controlled site were found to be running somewhere on AWS, a more direct approach would be to interact with the (AWS metadata endpoint)[https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-metadata-endpoint.html] accessible to the AWS instance that runs the headless browsers (always located at 169.254.169.254 on port 80). This endpoint provides a lot of information about the instance and is often a security issue when combined with SSRF vulnerabilities.
+However, as the headless browsers that connected to the attacker-controlled site were found to be running somewhere on AWS, a more direct approach would be to interact with the [AWS metadata endpoint](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-metadata-endpoint.html) accessible to the AWS instance that runs the headless browsers (always located at 169.254.169.254 on port 80). This endpoint provides a lot of information about the instance and is often a security issue when combined with SSRF vulnerabilities.
 
 The following _dref_ payload was written to verify the service was accessible from the browser:
 
