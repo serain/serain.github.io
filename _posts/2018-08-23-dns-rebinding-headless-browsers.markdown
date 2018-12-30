@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DNS Rebinding Headless Browsers"
-date: 2018-12-30T18:18:55+00:00
+date: 2018-08-23T18:18:55+00:00
 author: alxk
 sitemap: false
 keywords: ""
