@@ -10,11 +10,11 @@ description: ""
 
 # # Minikube RCE & VM Escape
 
-In October 2018 I found a critical vulnerability enabling remote code execution in Minikube. `CVE-2018-1002103` was assigned to the issue.
+In October 2018 I found that the Kubernetes dashboard service on Minikube was vulnerable to DNS rebinding attacks that could lead to remote code execution on the host. `CVE-2018-1002103` was assigned to the issue.
 
-## ## Disclaimer
+## ## Note
 
-I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/advisories/minikube-rce/). It is provided here as a mirror.
+I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/advisories/minikube-rce/).
 
 ## ## Description
 
