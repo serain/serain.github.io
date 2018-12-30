@@ -51,7 +51,7 @@ The Kubernetes dashboard service on a Minikube installation is vulnerable to DNS
 
 The VirtualBox, VMWare Fusion and Xhyve drivers will mount the host user's home directory by default. An attacker may configure a deployment to mount the home directory from the Minikube VM into a container. This essentially allows the attacker to break out of the Minikube VM. The image below illustrates the chain of mounts on a MacOS host:
 
-![chain of mounts](https://alex.kaskaso.li/images/posts/minikube_mount_chain.png "chain of mounts")
+![chain of mounts](https://alex.kaskaso.li/images/posts/minikube_mount_chain.png "chain of mounts"){: .center-image }
 
 The attacker may then, for example, backdoor the user's .bash_profile, or retrieve private keys to gain access to other systems.
 
