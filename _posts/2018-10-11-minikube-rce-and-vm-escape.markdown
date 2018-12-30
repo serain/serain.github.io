@@ -214,7 +214,7 @@ async function main () {
   })
 }
 
-// this function funs in rebinding iframes
+// this function runs in rebinding iframes
 function rebind () {
   // after this, the Origin maps to the Kubernetes dashboard host:port
   session.triggerRebind().then(() => {
