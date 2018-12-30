@@ -4,8 +4,8 @@ title: "DNS Rebinding Headless Browsers"
 date: 2018-08-23T18:18:55+00:00
 author: alxk
 sitemap: false
-keywords: ""
-description: "dns rebinding headless browsers with dref"
+keywords: "dns rebinding headless browsers dref"
+description: "DNS rebinding headless browsers with dref"
 ---
 
 # # DNS Rebinding Headless Browsers
