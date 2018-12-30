@@ -17,6 +17,7 @@ sass:
   style: compressed
 markdown: kramdown
 highlighter: rouge
+auto_ids: true
 encoding: "utf-8"
 paginate: 5
 permalink: /post/:title

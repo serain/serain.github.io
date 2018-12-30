@@ -5,7 +5,7 @@ date: 2018-10-11T16:02:48+00:00
 author: alxk
 sitemap: false
 keywords: "minikube rce dns rebinding"
-description: "minikube rce and vm escape through dns rebinding"
+description: "CVE-2018-1002103 - Minikube RCE and VMS escape through DNS Rebinding"
 ---
 
 # # Minikube RCE & VM Escape
