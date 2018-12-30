@@ -10,7 +10,7 @@ description: ""
 
 # # Minikube RCE & VM Escape
 
-The Kubernetes dashboard service on Minikube is vulnerable to DNS rebinding attacks that can lead to remote code execution on the host.
+In October 2018 I found a critical vulnerability enabling remote code execution in Minikube. CVE-2018-1002103 was assigned to this issue.
 
 ## ## Disclaimer
 
