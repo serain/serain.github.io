@@ -14,7 +14,7 @@ dl, dd, ol, ul, figure {
  * Basic styling :#
  */
 body {
-    font-family: $inconsolata;
+    font-family: $cutive;
     font-size: $base-font-size;
     line-height: $base-line-height;
     color: $dark-color-aap;
@@ -22,6 +22,10 @@ body {
     margin: 0;
     padding: 0;
     -webkit-text-size-adjust: 100%;
+}
+
+p, li, table {
+    font-family: $inconsolata;
 }
 
 /**
