@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 a {
     color: $link-color;
-    text-decoration: underline;
+    text-decoration: none;
 
     &:visited {
         color: $link-color;
@@ -102,6 +102,10 @@ a {
         color: $link-hover-color;
         text-decoration: none;
     }
+}
+
+p a {
+    text-decoration: underline;
 }
 
 hr {
