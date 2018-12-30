@@ -10,7 +10,7 @@ description: ""
 
 # # Minikube RCE & VM Escape
 
-In October 2018 I found a critical vulnerability enabling remote code execution in Minikube. CVE-2018-1002103 was assigned to this issue.
+In October 2018 I found a critical vulnerability enabling remote code execution in Minikube. `CVE-2018-1002103` was assigned to the issue.
 
 ## ## Disclaimer
 
