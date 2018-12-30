@@ -4,8 +4,8 @@ title: "Minikube RCE & VM Escape"
 date: 2018-10-11T16:02:48+00:00
 author: alxk
 sitemap: false
-keywords: ""
-description: ""
+keywords: "minikube rce dns rebinding"
+description: "minikube rce and vm escape through dns rebinding"
 ---
 
 # # Minikube RCE & VM Escape
