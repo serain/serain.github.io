@@ -26,3 +26,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
