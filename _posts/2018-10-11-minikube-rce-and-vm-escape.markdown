@@ -2,7 +2,7 @@
 layout: post
 title: "Minikube RCE & VM Escape"
 date: 2018-10-11T16:02:48+00:00
-author: serain
+author: alxk
 sitemap: false
 keywords: ""
 description: ""
