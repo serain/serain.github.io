@@ -14,7 +14,7 @@ The Kubernetes dashboard service on Minikube is vulnerable to DNS rebinding atta
 
 ## ## Disclaimer
 
-This article was originally posted on the [MWR Labs blog](https://labs.mwrinfosecurity.com/advisories/minikube-rce/). It is provided here as a mirror.
+I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/advisories/minikube-rce/). It is provided here as a mirror.
 
 ## ## Description
 
