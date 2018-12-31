@@ -67,7 +67,7 @@ Minimalist and security-conscious base images, such as Amazon Linux or Alpine Li
 
 * Remove unnecessary or `setuid` binaries
 
-If your image ships with `curl` or `nc` chances are your application doesn't need them, but an attacker would find them handy. Similarly, unnecessary `setuid` binaries could offer paths to privilege escalation. As much as possible, ensure developers are removing unnecessary binaries by the end of the Dockerfile.
+If your image ships with `curl` or `nc`, chances are your application doesn't need them, but an attacker would find them handy. Similarly, unnecessary `setuid` binaries could offer paths to privilege escalation. As much as possible, ensure developers are removing unnecessary binaries by the end of the Dockerfile.
 
 * Enforce hash checks on `curl` and `wget`
 
@@ -75,13 +75,19 @@ Developers will occasionally directly download external dependencies in the Dock
 
 ## Dependency Checks
 
-## Static Vulnerability Scanning
+Modern package managers, such as [`Pipenv`](https://pipenv.readthedocs.io/en/latest/) for Python or `npm` for Node.js, maintain up-to-date lists of vulnerabilities in their packages and provide command-line utilities to quickly check for these.
+
+A simple `pipenv check` or `npm audit` in the pipeline will fail if any known vulnerabilities are present in the packages used by the application.
+
+It is important to note that it may not be practical to enforce a zero tolerance policy on all potential security issues. Naturally any issue that presents a risk should be removed; however developers may be left with issues that present minimal or unproven risks, or an issue that can only be exploited in peculiar scenarios unlikely to be present in the application. Such issues may be explicitely ignored through command-line arguments, provided they have been reviewed and understood.
+
+## Static Analysis
 
 ## Secure Builds with Docker
 
-## Scan Images
+## Image Scanning
 
-## Dynamic Vulnerability Scanning
+## Dynamic Analysis
 
 ## Auto-Update Dependencies
 
