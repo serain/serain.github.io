@@ -1,4 +1,5 @@
 ---
+crosspost_to_medium: true
 layout: post
 title: "Effective Security Pipeline"
 date: 2018-12-30T23:03:25+00:00

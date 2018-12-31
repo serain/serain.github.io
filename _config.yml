@@ -28,3 +28,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+
+# Gems ...
+gems:
+  - jekyll-crosspost-to-medium
