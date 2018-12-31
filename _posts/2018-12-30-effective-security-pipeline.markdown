@@ -53,23 +53,23 @@ To provide coverage in these cases, "cron jobs" should be configured to ensure t
 
 Dockerfiles essentially define the environment a dockerized application will be running in. A combination of `Dockerfile` linting tools (such as [`hadolint`](https://github.com/hadolint/hadolint)) and custom scripts can be used to ensure the Dockerfile passes a series of security checks:
 
-* Don't use `:latest`
+* **Don't use `:latest`**
 
 The `:latest` tag tells Docker to use the latest version of a base image to build an application image. While this may sound like good practice, it runs the risk of including any recent developments in the base image (new dependencies or binaries) that could present a risk to our application. It is safer to ensure developers pin against a specific version that has been reviewed and considered secure.
 
-* Don't run as `root`
+* **Don't run as `root`**
 
 The principle of least privileges: we'll assume that the application will get breached, and when it does we want to ensure attackers are left with the low privileges inside the container. We therefor want to ensure developers are dropping privileges by the end of Dockerfile.
 
-* Enforce select base images
+* **Enforce select base images**
 
 Minimalist and security-conscious base images, such as Amazon Linux or Alpine Linux, should be favored. Larger distributions like Ubuntu are not necessarily insecure, but provide an unnecessarily large attack surface and are not generally thought of as security-focussed distributions.
 
-* Remove unnecessary or `setuid` binaries
+* **Remove unnecessary or `setuid` binaries**
 
 If your image ships with `curl` or `nc`, chances are your application doesn't need them, but an attacker would find them handy. Similarly, unnecessary `setuid` binaries could offer paths to privilege escalation. As much as possible, ensure developers are removing unnecessary binaries by the end of the Dockerfile.
 
-* Enforce hash checks on `curl` and `wget`
+* **Enforce hash checks on `curl` and `wget`**
 
 Developers will occasionally directly download external dependencies in the Dockerfile. If doing so you want to ensure that the checksums are validated to prevent supply-chain or man-in-the-middle attacks on your dependencies.
 
@@ -82,6 +82,14 @@ A simple `pipenv check` or `npm audit` in the pipeline will fail if any known vu
 It is important to note that it may not be practical to enforce a zero tolerance policy on all potential security issues. Naturally any issue that presents a risk should be removed; however developers may be left with issues that present minimal or unproven risks, or an issue that can only be exploited in peculiar scenarios unlikely to be present in the application. Such issues may be explicitely ignored through command-line arguments, provided they have been reviewed and understood.
 
 ## Static Analysis
+
+FOSS static analysis tools are a mixed bag. In general they won't be useful, but if they ever are, we'll be really grateful. These tools parse application code looking for textbook cases of bad coding practices, such as passing user input directly to a shell or using a common library with a blatantly bad configuration.
+
+As the cost of integrating one of these tools into the pipeline is fairly low, it is a worthwhile time investment.
+
+You are likely to come across a number of false positives when using these tools; any noise causing the build process to fail may be whitelisted.
+
+The [Awesome Static Analysis](https://github.com/mre/awesome-static-analysis) repository has a curated list of static analysis tools for most languages.
 
 ## Secure Builds with Docker
 
