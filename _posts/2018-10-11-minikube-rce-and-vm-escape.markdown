@@ -26,7 +26,7 @@ This issue would typically be exploited via a malicious web page, for example th
 
 ## ## Impact
 
-An attacker can obtain containerized remote code execution in the Minikube VM by posting a deployment to the Kubernetes dashboard. When using VirtualBox, VMWare Fusion or Xhyve, the attacker may also break out of the Minikube VM by mounting the host user's home directory
+An attacker can obtain containerized remote code execution in the Minikube VM by posting a deployment to the Kubernetes dashboard. When using VirtualBox, VMWare Fusion or Xhyve, the attacker may also break out of the Minikube VM by mounting the host user's home directory.
 
 This attack can lead to persistent access to the host operating system.
 
