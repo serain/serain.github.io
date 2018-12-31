@@ -93,7 +93,21 @@ The [Awesome Static Analysis](https://github.com/mre/awesome-static-analysis) re
 
 ## Secure Builds with Docker
 
+There are additional security checks that can be integrated into the pipeline, but these will have to be run using a built image. Before that, there is a Docker flag we can use during the build process to ensure the build is done in the safest way possible.
+
+* **Use Docker Content Trust**
+
+Docker Content Trust (DCT) allows Docker clients to verify the integrity and the publisher of image tags. This essentailly guarantees that the base images have been pushed by trusted publishers and mitigates supply-chain or man-in-the-middle type attacks during the build process. DCT can be enabled by setting the `DOCKER_CONTENT_TRUST` environment variable with:
+
+```
+$ export DOCKER_CONTENT_TRUST=1
+```
+
 ## Image Scanning
+
+There are several solutions that will scan an image for security issues, such as vulnerable binaries and libraries. Among the free and open source ones, [Clair](https://github.com/coreos/clair) is currently the front-runner, although integration into a CI pipeline requires a certain amount of effort.
+
+Clair feeds on various sources, such as NIST and various Linux distribution bug trackers, to maintain an up to date list of vulnerabilities. When new issues are added to the database it can send out alerts if any images previously scanned will be affected.
 
 ## Dynamic Analysis
 
