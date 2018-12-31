@@ -25,7 +25,9 @@ Pentests against specific applications can't yet be fully automated. Logic flaws
 
 Readers will recognize that some of these issues were the source of several recent high profile breaches. These issues also typically account for up to half of the findings on an average pentest report.
 
-By extending a traditional Continuous Integration (CI) pipeline, we can catch these issues as they arise in an application and provide a form of continuous assurance against new vulnerabilities, even when the application is not under active development. Combined with developer education, these measures can limit the reliance on regular pentests to keep an application secure, offering more cost-effective security.
+By extending a traditional Continuous Integration (CI) pipeline, we can catch these issues as they arise in an application and provide a form of continuous assurance against new vulnerabilities, even when the application is not under a ctive development. Combined with developer education, these measures can limit the reliance on regular pentests to keep an application secure, offering more cost-effective security.
+
+The post will also cover services that can automatically manage security updates in your third-party dependencies.
 
 Rather than dive into configuration details, this post will provide an overview of the steps you may wish to integrate into a DevSecOps pipeline, regardless of the CI stack you are using. We assume we are dealing with a pretty standard dockerized web application, although the principles apply more broadly.
 
@@ -47,7 +49,7 @@ But let's assume that an application has reached a stable production state and i
 
 Let's imagine that a month after this last build a critical issue was released for one of the dependencies. This issue may go undiscovered until a developer pushes another change or a pentester comes along and looks at the application.
 
-To provide coverage in these cases, "cron jobs" should be configured to ensure the pipelines run on a daily basis. With this setup, the development team will be alerted to new vulnerabilities in third-party dependencies as they arise.
+To provide coverage in these cases, "cron jobs" should be configured to ensure the pipelines run on at least on a daily basis. With this setup, the development team will be alerted to new vulnerabilities in third-party dependencies as they arise.
 
 ## Dockerfile Linting
 
@@ -115,6 +117,7 @@ As a last security check in our pipeline, we want to consider running an automat
 
 It is important to understand what we can hope to achieve by including an automated web application scan. We are not looking for logic issues or any convoluted chain of attack; for those we are better off relying on qualified security consultants. Rather, we want to catch trivial but recurrent issues such as:
 
+* Default passwords
 * Missing CSRF tokens
 * Misconfigured cookies
 * Missing or misconfigured headers
@@ -124,4 +127,12 @@ Mozilla published a [blog post](https://blog.mozilla.org/security/2017/01/25/set
 
 ## Auto-Update Dependencies
 
+There are services that can monitor your codebase and automatically update your third-party dependencies as security issues are released. [Greenkeeper](https://greenkeeper.io/) provides this service for Node.js repositories.
+
+These services work by parsing your codebase for third-party dependencies. When a security update is available, they create a new branch in your repository, update the dependencies to the latest stable and secure version, and open a merge request. Assuming that your test pipeline succeeds, hopefully indicating that the update does not break your application, a developer can simply approve the merge request.
+
 ## Conclusion
+
+By integrating simple security checks into the CI pipeline we can eliminate several categories of issues, taking the brunt work away from pentesters and providing more cost-effective security.
+
+This not only prevents some security hiccups during development, it also allows developers to effortlessly keep dependencies up to date across a large estate of applications.
