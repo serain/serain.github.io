@@ -1,9 +1,9 @@
 # Site settings ...
-uri: domain.com
-url: https://domain.com
+uri: alex.kaskaso.li
+url: https://alex.kaskaso.li
 name: Alex Kaskasoli
 title: alxk's blog
-email: example@domain.com
+email: alex@kaskaso.li
 author: alxk
 baseurl: ""
 keywords: "hacking, security, devops, devsecops, kubernetes"
@@ -11,6 +11,7 @@ description: "alxk is a Security Consultant with MWR InfoSecurity. He's into Dev
 social_username: serain
 github_username: serain
 twitter_username: _alxk
+linkedin_username: alexkaskasoli
 
 # Build settings ...
 sass:
@@ -28,7 +29,4 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
-
-# Gems ...
-gems:
   - jekyll-crosspost-to-medium
