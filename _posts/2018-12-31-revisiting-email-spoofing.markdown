@@ -5,16 +5,16 @@ date: 2018-12-31T18:58:35+00:00
 author: alxk
 sitemap: false
 keywords: "redteam email spf dkim dmarc pentest"
-description: ""
+description: "Quick overview of email anti-spoofing measures for red teamers, along with common misconfigurations and a "
 ---
 
 # Revisiting Email Spoofing
 
-Email spoofing is still a thing, and some organisations are likely at risk of receiving legitimate-looking phishing emails from spoofed domains.
+Email spoofing is still a thing and some organisations are at risk of receiving legitimate-looking phishing emails from spoofed domains.
 
 This post will give a cursory overview of the methods used to prevent email spoofing and introduce a tool to remotely identify domains with misconfigured anti-spoofing measures.
 
-I will also outline an interesting way I was able to bypass an organisation's "EXTERNAL" email filter to phish employees with trusted internal emails.
+I will also outline an interesting way I was able to bypass an organisation's "EXTERNAL" email filter to phish employees with internal emails.
 
 ## SPF, DKIM and DMARC
 
@@ -71,9 +71,32 @@ $ dig +short txt _dmarc.contoso.com
 
 The policy value `p` tells recipients how to treat emails that fail SPF and DKIM validation. A policy of `reject`, as you guessed it, instructs recipients to discard such emails. The `rua` and `ruf` values specify emails to send two different typos of diagnostic reports to.
 
+## The Good
+
+Regardless of SPF and DMARC configurations you are unlikely to be able to spoof emails from popular domains to a recipient at a robust email provider, such as `@gmail.com`.
+
+Google has the big data and the heuristics to provide anti-phishing measures that don't rely on SPF and DMARC. I briefly tried spoofing domains with lax SPF and no DMARC records to a Gmail address: all emails landed in the spam box.
+
 ## The Bad
 
-Why people use soft fails, why many organisations have poor SPF and DMARC (marketing).
+If you start checking the SPF and DMARC records for a lot of organisations you'll notice weak configurations are plentiful. SPF soft fails are widespread and DMARC policies other than `reject` are quite common.
+
+Even `github.com` has an SPF soft fail and a `none` DMARC policy:
+
+```
+$ dig +short txt github.com
+"v=spf1 ip4:192.30.252.0/22 ip4:208.74.204.0/22 ip4:46.19.168.0/23 include:_spf.google.com include:esp.github.com include:_spf.createsend.com include:mail.zendesk.com include:servers.mcsv.net ~all"
+$ dig +short txt _dmarc.github.com
+"v=DMARC1; p=none; rua=mailto:dmarc@github.com"
+```
+
+The likely reason as far as I can tell: many companies rely on third-parties to send emails on their behalf.
+
+SPF records can be hard to maintain when third parties can't provide an extensive list IP addresses. With the ephemeral nature of many modern services these addresses may also change on a regular basis.
+
+Rather than risk legitimate emails getting blocked, it appears many organisations favor lax email validation rules.
+
+_Note that you will likely not be able to send emails as `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured._
 
 ## The Ugly
 
@@ -87,16 +110,21 @@ I was able to use this to send emails to an organisation by impersonating any so
 
 ## `mailspoof`
 
-Tool.
+[`mailspoof`](https://github.com/serain/mailspoof) is a tool I wrote to quickly scan a large list of domains for misconfigured SPF and DMARC records.
 
-## Recommendations
+## Conclusion
+
+If you're a Red Team:
+
+* Enumerate your target's parent and subsidiary companies and their domains, as well as any third-party SAAS they may use
+* Identify domains with weak SPF and DMARC configurations
+* You may be able to bypass "EXTERNAL" filters by spoofing parent and subsidiary companies
+* You may be able to spoof trusted SAAS
+
+_Note that you may face legal hurdles attempting to impersonate companies not within your scope. You will want to clear this with your point of contact beforehand to ensure that any incidents are not escalated beyond the target organisation._
 
 If you're an organisation:
 
 * Review your email filter: ensure SPF, DKIM and DMARC validation are enabled. Emails that fail validation should be quarantined.
-
-* If you need to whitelist external domains, or treat them as internal domains, check that their SPF and DMARC records are well configured.
-
+* If you need to whitelist external domains, or treat them as internal domains, check that the domains' SPF and DMARC records are well configured.
 * Review your own SPF and DMARC records. You want SPF to _hard_ fail and DMARC to have a `reject` policy.
-
-* Monitor your DMARC reports to gain insights into attempts to misuse your domain.
