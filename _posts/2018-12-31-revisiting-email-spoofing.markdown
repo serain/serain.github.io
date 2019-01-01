@@ -5,7 +5,7 @@ date: 2018-12-31T18:58:35+00:00
 author: alxk
 sitemap: false
 keywords: "redteam email spf dkim dmarc pentest"
-description: "Quick overview of email anti-spoofing measures for red teamers, along with common misconfigurations and a "
+description: "Quick overview of email anti-spoofing measures for red teamers, along with common misconfigurations and potential external filter bypasses"
 ---
 
 # Revisiting Email Spoofing
@@ -14,7 +14,7 @@ Email spoofing is still a thing and some organisations are at risk of receiving 
 
 This post will give a cursory overview of the methods used to prevent email spoofing and introduce a tool to remotely identify domains with misconfigured anti-spoofing measures.
 
-I will also outline an interesting way I was able to bypass an organisation's "EXTERNAL" email filter to phish employees with internal emails.
+I will also outline an interesting way I was able to bypass an organisation's external email filter to phish employees with internal emails.
 
 ## SPF, DKIM and DMARC
 
@@ -36,7 +36,7 @@ This record indicates that the owners of `contoso.com` expect emails from `@cont
 The qualifier of the last argument `all` is important:
 
 * `-all` is a _hard fail_: if the email fails SPF validation, the `contoso.com` owners want the email to be discarded
-* `~all` would be a _soft fail_; if the email fails SPF validation, the `contoso.com` owners wish the email to be allowed through, but treated as slightly suspcious (by, for example, raising a spam score).
+* `~all` would be a _soft fail_; if the email fails SPF validation, the `contoso.com` owners wish the email to be allowed through, but perhaps be treated as slightly suspcious (by, for example, raising a spam score).
 
 ### DomainKeys Identified Mail (DKIM)
 
@@ -60,7 +60,7 @@ $ dig +short txt news._domainkey.example.com
 "k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChK0RIGEj4ahkPXIhENbmXC6Cu2Q1eVNDM6nZdrJGR2p4jWYNVGQ/EYQRC35Qu+rBcvNvayv8igvCou1A9Y6xso1ls6MCMpT3LjatFo+U+qfMI9Uh6P0sQ+NNS7NAGc0GGl8bAxi+mbG0AHgbgrB6DTJwAz7uGd0IzjPtPdn5EuQIDAQAB"
 ```
 
-### Domain Message Authentication Reporting & Conformance
+### Domain Message Authentication Reporting & Conformance (DMARC)
 
 DMARC is simply a way to tell recipients how to treat emails that fail SPF and DKIM validation, and where to send reports to help domain owners identifiy dubious activity and debug issues. DMARC is also configured via a DNS TXT record:
 
@@ -100,13 +100,28 @@ _Note that you will likely not be able to send emails as `@contoso.com` to anoth
 
 ## The Ugly
 
-A lot of people have SPF, DKIM and DMARC validation turned off. I can't give precise numbers because I've not reviewed a large sample of systems, but I've seen these explicitely disabled often enough to know that it is a possibility and something red teams and attackers can abuse to spoof emails from trusted domains on the internet.
+A number of organisations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems. I can't give any meaningful metric as I've only sampled a small number in the grand scheme of things, but I've seen it enough to know that the option should not be discarded by red teams and pentesters.
 
-## Bypassing "EXTERNAL" Filters
+As far as I can tell, reasons for having inbound validation disabled range from the good old default configuration to an explicit desire to have email "just work".
 
-Map an organisation's parent and subsidiary companies. Some of these may have poor SPF, DMARC. Some of these may be whitelisted so that emails from them are treated as internal.
+Naturally, this leaves the door wide open to some clever phishing attacks.
 
-I was able to use this to send emails to an organisation by impersonating any source. For example "sysadmin@parent_company.com".
+## Bypassing External Filters (Sometimes)
+
+Phishing-aware organisations will configure their inbound mail filter to tag external emails with some kind of warning to their employees. This can take the form a subject line prefix (`Subject: "EXTERNAL: Hello World"`) or of a message added to the body of the email (`THIS MESSAGE ORIGINATES FROM OUTSIDE YOUR ORGANISATION. BE CAREFUL.`). External emails may also undergo some additional checks or limitations on attachments.
+
+Let's assume that the fictional company ACME (`acme.org`) is a subsidiary of Contoso (`contoso.com`). Given the relationship, the Sys Admins at Contoso have decided to not enforce the external filter for `acme.org`, and vice-versa. As a result emails between ACME and Contoso essentially appear as internal communications, whereas emails from other sources are tagged as external.
+
+Unfortunately `acme.org` is configured with a DMARC policy of `none`:
+
+```
+$ dig +short txt _dmarc.acme.org
+"v=DMARC1; p=none; rua=mailto:dmarc@acme.org"
+```
+
+The above DMARC configuration means recipients will not enforce SPF and DKIM validation on inbound emails that claim to be from `acme.org`.
+
+At this point, you've probably guessed it: on a recent engagement I was able to send emails to `@contoso.com` impersonating any source from `@acme.org`, _bypassing the external filter and blending in as internal communication_. This opens the door to all kinds of phishing attacks such as impersonating Sys Admins, management, HR or an automated internal system.
 
 ## `mailspoof`
 
@@ -119,12 +134,12 @@ If you're a Red Team:
 * Enumerate your target's parent and subsidiary companies and their domains, as well as any third-party SAAS they may use
 * Identify domains with weak SPF and DMARC configurations
 * You may be able to bypass "EXTERNAL" filters by spoofing parent and subsidiary companies
-* You may be able to spoof trusted SAAS
+* You may be able to spoof a trusted SAAS to harvest credentials or entice a download
 
-_Note that you may face legal hurdles attempting to impersonate companies not within your scope. You will want to clear this with your point of contact beforehand to ensure that any incidents are not escalated beyond the target organisation._
+_Note that you may face legal hurdles attempting to impersonate companies not within your scope. You will want to clear this with your point of contact beforehand to ensure that any incidents are not escalated beyond your target organisation._
 
 If you're an organisation:
 
-* Review your email filter: ensure SPF, DKIM and DMARC validation are enabled. Emails that fail validation should be quarantined.
-* If you need to whitelist external domains, or treat them as internal domains, check that the domains' SPF and DMARC records are well configured.
+* Review your inbound email filtering solution: ensure SPF, DKIM and DMARC validation are enabled. Emails that fail validation should be quarantined.
+* If you need to whitelist external domains, or treat them as internal domains, check that the domains' SPF and DMARC records are well configured so that they cannot be spoofed.
 * Review your own SPF and DMARC records. You want SPF to _hard_ fail and DMARC to have a `reject` policy.
