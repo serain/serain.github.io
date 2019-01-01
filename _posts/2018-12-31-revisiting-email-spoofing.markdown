@@ -70,7 +70,7 @@ $ dig +short txt _dmarc.contoso.com
 "v=DMARC1; p=reject; rua=mailto:report@contoso.com; ruf=mailto:d@contoso.com;"
 ```
 
-The policy value `p` tells recipients how to treat emails that fail SPF and DKIM validation. A policy of `reject`, as you guessed it, instructs recipients to discard such emails. The `rua` and `ruf` values specify emails to send two different typos of diagnostic reports to.
+The policy value `p` tells recipients how to treat emails that fail SPF and DKIM validation. A policy of `reject`, as you guessed it, instructs recipients to discard such emails. The `rua` and `ruf` values specify emails to send two different types of diagnostic reports to.
 
 ## The Good
 
@@ -80,7 +80,7 @@ Google has the big data and the heuristics to provide anti-phishing measures tha
 
 ## The Bad
 
-If you start checking the SPF and DMARC records for a lot of organizations you'll notice weak configurations are plentiful. SPF soft fails are widespread and DMARC policies other than `reject` are quite common.
+If you start checking the SPF and DMARC records for a lot of organizations you'll notice weak configurations are plentiful. SPF soft fails are widespread and DMARC policies other than `reject/quarantine` are quite common.
 
 Even `github.com` has an SPF soft fail and a `none` DMARC policy:
 
@@ -96,6 +96,8 @@ The likely reason as far as I can tell: many companies rely on third-parties to 
 SPF records can be hard to maintain when third parties can't provide an extensive list of IP addresses. With the ephemeral nature of many modern services these addresses may also change on a regular basis.
 
 Rather than risk legitimate emails getting blocked, it appears many organizations favor lax email validation rules.
+
+Note that even when main domains, such as `contoso.com`, have SPF and DMARC adequately configured, the organization likely has other domains. What do the DNS records look like for `contoso-sales.com`?
 
 ## The Ugly
 
@@ -141,4 +143,5 @@ If you're an organization:
 
 * Review your inbound email filtering solution: ensure SPF, DKIM and DMARC validation are enabled. Emails that fail validation should be quarantined.
 * If you need to whitelist external domains, or treat them as internal domains, check that the domains' SPF and DMARC records are well configured so that they cannot be spoofed.
-* Review your own SPF and DMARC records. You want SPF to _hard_ fail and DMARC to have a `reject` policy.
+* Review your own SPF and DMARC records. You want SPF to _hard_ fail and DMARC to have a `reject` policy for both domains and subdomains.
+* Ensure _all_ of your domains have SPF and DMARC configured. Even if `contoso.com` is properly configured, you don't want attackers sending emails from `contoso-sales.com`.
