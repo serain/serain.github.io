@@ -36,8 +36,9 @@ This record indicates that the owners of `contoso.com` expect emails from `@cont
 
 The qualifier of the last argument `all` is important:
 
-* `-all` is a _hard fail_: if the email fails SPF validation, the `contoso.com` owners want the email to be discarded
+* `-all` is a _hard fail_: if the email fails SPF validation, the `contoso.com` owners want the email to be discarded.
 * `~all` would be a _soft fail_; if the email fails SPF validation, the `contoso.com` owners wish the email to be allowed through, but perhaps be treated as slightly suspicious (by, for example, raising a spam score).
+* `+all` would result in a pass regardless of the sources in the precding arguments.
 
 ### DomainKeys Identified Mail (DKIM)
 
@@ -74,9 +75,9 @@ The policy value `p` tells recipients how to treat emails that fail SPF and DKIM
 
 ## The Good
 
-Regardless of SPF and DMARC configurations you are unlikely to be able to spoof emails from popular domains to a recipient at a robust email provider, such as `@gmail.com`.
+Regardless of SPF and DMARC configurations you are unlikely to be able to spoof emails from popular domains to a recipient at a robust email provider, such as GMail.
 
-Google has the big data and the heuristics to provide anti-phishing measures that don't rely on SPF and DMARC. I briefly tried spoofing domains with lax SPF and no DMARC records to a Gmail address: all emails landed in the spam box.
+Google has the big data and the heuristics to provide anti-spam and anti-phishing measures that don't rely on SPF and DMARC. I briefly tried spoofing domains with lax SPF and no DMARC records to a Gmail address: all emails landed in the spam box.
 
 ## The Bad
 
@@ -91,9 +92,9 @@ $ dig +short txt _dmarc.github.com
 "v=DMARC1; p=none; rua=mailto:dmarc@github.com"
 ```
 
-The likely reason as far as I can tell: many companies rely on third-parties to send emails on their behalf.
+The reason as far as I can tell is that many companies rely on third-parties to send emails on their behalf.
 
-SPF records can be hard to maintain when third parties can't provide an extensive list of IP addresses. With the ephemeral nature of many modern services these addresses may also change on a regular basis.
+SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses. With the ephemeral nature of many modern services these addresses may also change on a regular basis.
 
 Rather than risk legitimate emails getting blocked, it appears many organizations favor lax email validation rules.
 
@@ -101,17 +102,17 @@ Note that even when main domains, such as `contoso.com`, have SPF and DMARC adeq
 
 ## The Ugly
 
-A number of organizations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems. I can't give any meaningful metric as I've only sampled a small number in the grand scheme of things, but I've seen it enough to believe that the option should not be discarded by red teams and pentesters.
+A number of organizations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems (remember that it is up to recipients to validate inbound emails). I can't give any meaningful metric as I've only sampled a negligible number in the grand scheme of things, but I've seen it enough to believe that the possibility should not be discarded by red teams and pentesters.
 
-As far as I can tell, reasons for having inbound validation disabled range from the good old default configuration to an explicit desire to have email "just work".
+Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured SPF records out there, it is not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
 
-Naturally, this leaves the organizations open to some clever phishing attacks from trusted external sources.
+Naturally, disabled validation leaves the organizations open to some clever phishing attacks from trusted external sources.
 
-_Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source will usually fail regardless._
+_Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source will usually fail._
 
 ## Bypassing External Filters (Sometimes)
 
-Phishing-aware organizations will configure their inbound mail filter to tag external emails with some kind of warning to their employees. This can take the form a subject line prefix (`Subject: "EXTERNAL: Hello World"`) or of a message added to the body of the email (`THIS MESSAGE ORIGINATES FROM OUTSIDE YOUR ORGANIZATION. BE CAREFUL.`).
+Phishing-aware organizations will configure their inbound mail filter to tag external emails with some kind of warning to their employees. This can take the form of a subject line prefix (`Subject: "EXTERNAL: Hello World"`) or of a message added to the body of the email (`THIS MESSAGE ORIGINATES FROM OUTSIDE YOUR ORGANIZATION. BE CAREFUL.`).
 
 Let's assume that the fictional company ACME (`acme.org`) is a subsidiary of Contoso (`contoso.com`). Given the relationship, the Sys Admins at Contoso have decided to not enforce the external filter for `acme.org`, and vice-versa. As a result emails between ACME and Contoso essentially appear as internal communications, whereas emails from other sources are tagged as external.
 
@@ -126,13 +127,15 @@ The above DMARC configuration means recipients will not enforce SPF and DKIM val
 
 At this point, you've probably guessed it: on a recent engagement I was able to send emails to `@contoso.com` impersonating any source from `@acme.org`, _bypassing the external filter and blending in as internal communication_. This opens the door to all kinds of phishing attacks such as impersonating Sys Admins, management, HR or an automated internal system.
 
+If we wanted to receive email responses to these phishing attempts, we could try setting the `Reply-To` header to an external email address we can read.
+
 ## `mailspoof`
 
 [`mailspoof`](https://github.com/serain/mailspoof) is a tool I wrote to quickly scan a large list of domains for misconfigured SPF and DMARC records.
 
 ## Conclusion
 
-If you're a Red Team:
+If you're a red team:
 
 * Enumerate your target's parent and subsidiary companies and their domains, as well as any third-party SAAS they may use.
 * Identify domains with weak SPF and DMARC configurations.
