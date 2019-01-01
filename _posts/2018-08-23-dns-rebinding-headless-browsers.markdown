@@ -8,15 +8,15 @@ keywords: "dns rebinding headless browsers dref"
 description: "DNS rebinding headless browsers with dref"
 ---
 
-# # DNS Rebinding Headless Browsers
+# DNS Rebinding Headless Browsers
 
 This article describes the use of HTTP Referer headers to execute DNS rebinding attacks on AWS-hosted analytics systems, leading to a compromise of the cloud environment.
 
-## ## Note
+## Note
 
 I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/blog/from-http-referer-to-aws-security-credentials/).
 
-## ## Introduction
+## Introduction
 
 While DNS rebinding was first described nearly two decades ago, it has recently gained a second youth with the proliferation of insecure IoT devices and a series of highly publicized vulnerabilities. The release of a couple of frameworks, such as MWR's _[dref](https://github.com/mwrlabs/dref)_ or Brannon Dorsey's [DNS Rebind Toolkit](https://github.com/brannondorsey/dns-rebind-toolkit), has also lowered the barrier to entry to conducting this somewhat convoluted attack.
 
@@ -26,7 +26,7 @@ With the release of _dref_, the author started seeking out attack vectors that w
 
 The attack covered in this article is a generic representation of a couple of cases encountered on bug bounty programs.
 
-## ## Getting a Foot in the Door
+## Getting a Foot in the Door
 
 In his excellent research into HTTP's ["hidden" attack surface](https://portswigger.net/blog/cracking-the-lens-targeting-https-hidden-attack-surface), PortSwigger's James Kettle highlighted that some web sites will issue HTTP requests back to Referer URLs logged from incoming traffic. Reasons for doing so could vary from marketing to threat analytics.
 
@@ -42,7 +42,7 @@ The use of headless Chrome browsers is likely warranted by the spread of JavaScr
 
 By setting up a _dref_ server and sending a request with a Referer URL pointing to it, it would be possible to execute payloads in the context of the browsers' internal networks. This would allow an attacker to explore the network and exfiltrate information from any HTTP services encountered.
 
-## ## Hanging Around
+## Hanging Around
 
 The common, stable, DNS rebinding attack requires a victim browser to remain at least 60 seconds on the payload website. This is due to browsers' built-in DNS cache. Browser-based TCP port scanning techniques also require a similar length of time to sweep a port across a class C subnet.
 
@@ -63,7 +63,7 @@ router.get('/hang.png', function (req, res, next) {
 
 With these measures in place, an attacker would have up to four minutes of JavaScript code execution in the browsers.
 
-## ## Situational Awareness
+## Situational Awareness
 
 The _dref_ tool includes the _[netmap.js](https://github.com/serain/netmap.js)_ browser-based TCP port scanning module. With it, the framework can be used to determine the local IP address of the browsers, infer a subnet, and proceed to scan the network for TCP services. This could be a viable path for lateral movement.
 
@@ -105,7 +105,7 @@ The results clearly indicated that port 80 was open and reachable:
 ]
 ```
 
-## ## Exfiltrating Data across Origins
+## Exfiltrating Data across Origins
 
 The AWS metadata endpoint is a read-only service, thus offering no value in CSRF or blind SSRF attacks. To demonstrate a security impact it was necessary to exfiltrate responses from the service.
 
@@ -141,7 +141,7 @@ async function main () {
 main()
 ```
 
-## ## AWS Compromise
+## AWS Compromise
 
 The security implications from being able to read data from the AWS metadata endpoint are well documented [elsewhere](https://www.google.com/search?q=aws+ssrf) and will not be covered in depth here.
 
@@ -205,9 +205,9 @@ $ aws ec2 describe-instances
 
 The extent of the impact is determined by the permissions granted with the credentials. This can range from complete compromise to information disclosure. Even with low privileges, attackers may be able to leverage such access to uncover additional attack paths or escalate their privileges.
 
-## ## Remediation
+## Remediation
 
-### ### AWS
+### AWS
 
 In AWS environments, measures should always be taken to prevent unintended interactions with the AWS metadata endpoint. As services may need to access the endpoint, a possible measure is to implement _iptables_ rules on the instances to limit traffic to root while ensuring that processes that interact with user input do not run as root.
 
@@ -215,13 +215,13 @@ This vector is not limited to attacking the AWS metadata endpoint as other netwo
 
 As always, the principle of least privilege also applies: security credentials should not offer more privileges than necessary.
 
-### ### DNS Rebinding
+### DNS Rebinding
 
 In general, there is likely no adequate reason for external DNS answers to contain internal IP addresses. Where possible, such DNS answers should be dropped.
 
 Services wrapped in SSL/TLS and services that validate the Host header are not affected by DNS rebinding.
 
-## ## Conclusion
+## Conclusion
 
 DNS rebinding was always understood to present a theoretical risk but has historically not been taken seriously. Traditional vectors that would be used to deliver the attack usually allow more direct means of exploiting victims.
 
@@ -229,12 +229,12 @@ However, this research has demonstrated the vectors are not limited to phishing 
 
 Engineers implementing such services should take into account the access they will be granting to untrusted scripts, and design the services accordingly.
 
-## ## Tools
+## Tools
 
 MWR's DNS rebinding framework dref can be found on [GitHub](https://github.com/mwrlabs/dref).
 
 The reson8 tool will be released shortly. The tool can be used by security professionals to detect web applications that will issue requests to URLs submitted in HTTP headers. reson8 is intended for testing large sets of URLs. For single test cases the author recommends PortSwigger's collaborator-everywhere.
 
-## ## Thanks
+## Thanks
 
 Thanks go to Markus Blechinger and Adam Williams at MWR for their insights and tips while conducting this research.
