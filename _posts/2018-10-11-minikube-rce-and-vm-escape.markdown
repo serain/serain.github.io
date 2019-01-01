@@ -8,15 +8,15 @@ keywords: "minikube rce dns rebinding"
 description: "CVE-2018-1002103 - Minikube RCE and VMS escape through DNS Rebinding"
 ---
 
-# # Minikube RCE & VM Escape
+# Minikube RCE & VM Escape
 
 In October 2018 I found that the Kubernetes dashboard service on Minikube was vulnerable to DNS rebinding attacks that could lead to remote code execution on the host. `CVE-2018-1002103` was assigned to the issue.
 
-## ## Note
+## Note
 
 I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/advisories/minikube-rce/).
 
-## ## Description
+## Description
 
 Minikube is a popular option for testing and developing locally for Kubernetes, and is part of the larger Kubernetes project.
 
@@ -24,15 +24,15 @@ The Kubernetes dashboard service on Minikube is vulnerable to DNS rebinding atta
 
 This issue would typically be exploited via a malicious web page, for example through a watering hole or phishing attack.
 
-## ## Impact
+## Impact
 
 An attacker can obtain containerized remote code execution in the Minikube VM by posting a deployment to the Kubernetes dashboard. When using VirtualBox, VMWare Fusion or Xhyve, the attacker may also break out of the Minikube VM by mounting the host user's home directory.
 
 This attack can lead to persistent access to the host operating system.
 
-## ## Cause
+## Cause
 
-### ### Remote Code Execution
+### Remote Code Execution
 
 The Kubernetes dashboard is enabled by default on Minikube installations and is accessible on the Minikube VM on port 30000/TCP. The Minikube VM itself is provisioned on a host-only network, and as such is only intended to be accessed by the host.
 
@@ -47,7 +47,7 @@ The Kubernetes dashboard service on a Minikube installation is vulnerable to DNS
 * the service does not use HTTPS
 * the service does not validate the HTTP Host header
 
-### ### VM Escape
+### VM Escape
 
 The VirtualBox, VMWare Fusion and Xhyve drivers will mount the host user's home directory by default. An attacker may configure a deployment to mount the home directory from the Minikube VM into a container. This essentially allows the attacker to break out of the Minikube VM. The image below illustrates the chain of mounts on a MacOS host:
 
@@ -55,7 +55,7 @@ The VirtualBox, VMWare Fusion and Xhyve drivers will mount the host user's home 
 
 The attacker may then, for example, backdoor the user's `.bash_profile`, or retrieve private keys to gain access to other systems.
 
-## ## Interim Workaround
+## Interim Workaround
 
 The issue affects versions of Minikube prior to `0.30.0`. If running on an affected version, it is recommended to disable the Kubernetes dashboard service from Minikube:
 
@@ -63,7 +63,7 @@ The issue affects versions of Minikube prior to `0.30.0`. If running on an affec
 $ minikube addons disable dashboard
 ```
 
-## ## Solution
+## Solution
 
 The issue was fixed in release `0.30.0`. It is recommended to upgrade.
 
@@ -73,7 +73,7 @@ The issue was remediated by:
 * validating the Host header from incoming HTTP requests matches the pattern `127.0.0.1:{port}`
 * exposing the dashboard service on a random port
 
-## ## Technical Details
+## Technical Details
 
 A malicious web page will start by triggering a DNS rebind against the Kubernetes dashboard to bypass the Same-Origin Policy. From then on, the page will be in a position to read responses from the dashboard.
 
@@ -141,7 +141,7 @@ drwxr-xr-x    1 1001     1001          96 Mar 30  2018 Scripts
 drwxr-xr-x    1 1001     1001         128 May 27 21:46 VirtualBox VMs
 ```
 
-## ## Proof of Concept
+## Proof of Concept
 
 This section provides an implementation of the attack using MWR's DNS rebinding exploitation framework [dref](https://github.com/mwrlabs/dref).
 
@@ -243,7 +243,7 @@ else main()
 
 A Minikube user visiting `http://minikube.{dref_domain}.com` will be exploited and a reverse shell with the host’s file system mounted will be given to the attacker on `1.2.3.4:4444`.
 
-## ## Detailed Timeline
+## Detailed Timeline
 
 | 2018-09-29 | Issue communicated to Kubernetes security contact |
 | 2018-10-02 | Confirmation of receipt by Kubernetes |

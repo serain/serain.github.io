@@ -66,7 +66,7 @@ The principle of least privileges: we'll assume that the application will get br
 
 * **Enforce select base images**
 
-Minimalist and security-conscious base images, such as Amazon Linux or Alpine Linux, should be favored. Larger distributions like Ubuntu are not necessarily insecure, but provide an unnecessarily large attack surface and are not generally thought of as security-focussed distributions.
+Minimalist and security-conscious base images, such as Amazon Linux or Alpine Linux, should be favored. Larger distributions like Ubuntu are not necessarily insecure, but provide an unnecessarily large attack surface and are not generally thought of as security-focused distributions.
 
 * **Remove unnecessary or `setuid` binaries**
 
@@ -82,7 +82,7 @@ Modern package managers, such as [`Pipenv`](https://pipenv.readthedocs.io/en/lat
 
 A simple `pipenv check` or `npm audit` in the pipeline will fail if any known vulnerabilities are present in the packages used by the application.
 
-It is important to note that it may not be practical to enforce a zero tolerance policy on all potential security issues. Naturally any issue that presents a risk should be removed; however developers may be left with issues that present minimal or unproven risks, or an issue that can only be exploited in peculiar scenarios unlikely to be present in the application. Such issues may be explicitely ignored through command-line arguments, provided they have been reviewed and understood.
+It is important to note that it may not be practical to enforce a zero tolerance policy on all potential security issues. Naturally any issue that presents a risk should be removed; however developers may be left with issues that present minimal or unproven risks, or an issue that can only be exploited in peculiar scenarios unlikely to be present in the application. Such issues may be explicitly ignored through command-line arguments, provided they have been reviewed and understood.
 
 ## Static Analysis
 
@@ -100,7 +100,7 @@ There are additional security checks that can be integrated into the pipeline, b
 
 * **Use Docker Content Trust**
 
-Docker Content Trust (DCT) allows Docker clients to verify the integrity and the publisher of image tags. This essentailly guarantees that the base images have been pushed by trusted publishers and mitigates supply-chain or man-in-the-middle type attacks during the build process. DCT can be enabled by setting the `DOCKER_CONTENT_TRUST` environment variable with:
+Docker Content Trust (DCT) allows Docker clients to verify the integrity and the publisher of image tags. This essentially guarantees that the base images have been pushed by trusted publishers and mitigates supply-chain or man-in-the-middle type attacks during the build process. DCT can be enabled by setting the `DOCKER_CONTENT_TRUST` environment variable with:
 
 ```
 $ export DOCKER_CONTENT_TRUST=1
