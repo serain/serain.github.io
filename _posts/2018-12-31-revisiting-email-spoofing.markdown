@@ -109,7 +109,7 @@ _Note that you will likely not be able to send emails from `@contoso.com` to ano
 
 ## Bypassing External Filters (Sometimes)
 
-Phishing-aware organizations will configure their inbound mail filter to tag external emails with some kind of warning to their employees. This can take the form a subject line prefix (`Subject: "EXTERNAL: Hello World"`) or of a message added to the body of the email (`THIS MESSAGE ORIGINATES FROM OUTSIDE YOUR organization. BE CAREFUL.`).
+Phishing-aware organizations will configure their inbound mail filter to tag external emails with some kind of warning to their employees. This can take the form a subject line prefix (`Subject: "EXTERNAL: Hello World"`) or of a message added to the body of the email (`THIS MESSAGE ORIGINATES FROM OUTSIDE YOUR ORGANIZATION. BE CAREFUL.`).
 
 Let's assume that the fictional company ACME (`acme.org`) is a subsidiary of Contoso (`contoso.com`). Given the relationship, the Sys Admins at Contoso have decided to not enforce the external filter for `acme.org`, and vice-versa. As a result emails between ACME and Contoso essentially appear as internal communications, whereas emails from other sources are tagged as external.
 
