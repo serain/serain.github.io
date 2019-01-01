@@ -20,7 +20,7 @@ I will also outline an interesting way I was able to bypass an organisation's ex
 
 Email dates from the days the Internet was a trusted network and people were expected to behave. As such, the original protocols simply trust senders to be who they say they are. You can send an email claiming to be Google, the President or anyone else from any box on the internet using a tool like `sendmail`.
 
-The onus is on recipients to verify the identity of email senders. To this end, three protocols were introduced. These are explained in a cursory and rather simplified manner in this post; readers interested in a more detailed introduction are encouraged to start by the respective Wikipedia pages.
+The onus is on recipients to verify the identity of email senders. To this end, three methods were introduced. These are explained in a cursory and rather simplified manner in this post; readers interested in a more detailed introduction are encouraged to start by the respective Wikipedia pages.
 
 ### Sender Policy Framework (SPF)
 
@@ -96,19 +96,19 @@ SPF records can be hard to maintain when third parties can't provide an extensiv
 
 Rather than risk legitimate emails getting blocked, it appears many organisations favor lax email validation rules.
 
-_Note that you will likely not be able to send emails as `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured._
-
 ## The Ugly
 
-A number of organisations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems. I can't give any meaningful metric as I've only sampled a small number in the grand scheme of things, but I've seen it enough to know that the option should not be discarded by red teams and pentesters.
+A number of organisations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems. I can't give any meaningful metric as I've only sampled a small number in the grand scheme of things, but I've seen it enough to believe that the option should not be discarded by red teams and pentesters.
 
 As far as I can tell, reasons for having inbound validation disabled range from the good old default configuration to an explicit desire to have email "just work".
 
-Naturally, this leaves the door wide open to some clever phishing attacks.
+Naturally, this leaves the organisations open to some clever phishing attacks from trusted external sources.
+
+_Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source will usually fail regardless._
 
 ## Bypassing External Filters (Sometimes)
 
-Phishing-aware organisations will configure their inbound mail filter to tag external emails with some kind of warning to their employees. This can take the form a subject line prefix (`Subject: "EXTERNAL: Hello World"`) or of a message added to the body of the email (`THIS MESSAGE ORIGINATES FROM OUTSIDE YOUR ORGANISATION. BE CAREFUL.`). External emails may also undergo some additional checks or limitations on attachments.
+Phishing-aware organisations will configure their inbound mail filter to tag external emails with some kind of warning to their employees. This can take the form a subject line prefix (`Subject: "EXTERNAL: Hello World"`) or of a message added to the body of the email (`THIS MESSAGE ORIGINATES FROM OUTSIDE YOUR ORGANISATION. BE CAREFUL.`).
 
 Let's assume that the fictional company ACME (`acme.org`) is a subsidiary of Contoso (`contoso.com`). Given the relationship, the Sys Admins at Contoso have decided to not enforce the external filter for `acme.org`, and vice-versa. As a result emails between ACME and Contoso essentially appear as internal communications, whereas emails from other sources are tagged as external.
 
