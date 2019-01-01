@@ -112,6 +112,26 @@
 }
 
 /**
+ * Custom part of Projects
+ */
+
+.projects {
+    &:before, &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    position: relative;
+    margin-bottom: 15px;
+    margin-top: 8px;
+}
+
+.projects li {
+    display: inline;
+    width: 50%;
+}
+
+/**
  * Custom part of instagram photos
  */
 .photos,
