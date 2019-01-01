@@ -5,7 +5,7 @@ date: 2018-12-31T18:58:35+00:00
 author: alxk
 sitemap: false
 keywords: "redteam email spf dkim dmarc pentest"
-description: "Quick overview of email anti-spoofing measures for red teamers, along with common misconfigurations and potential external filter bypasses"
+description: "Quick overview of SPF, DKIM and DMARC for red teamers, along with common misconfigurations and a potential external email filter bypass"
 ---
 
 # Revisiting Email Spoofing
