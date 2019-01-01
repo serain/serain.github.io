@@ -134,9 +134,7 @@ If you're a Red Team:
 * Enumerate your target's parent and subsidiary companies and their domains, as well as any third-party SAAS they may use
 * Identify domains with weak SPF and DMARC configurations
 * You may be able to bypass "EXTERNAL" filters by spoofing parent and subsidiary companies
-* You may be able to spoof a trusted SAAS to harvest credentials or entice a download
-
-_Note that you may face legal hurdles attempting to impersonate companies not within your scope. You will want to clear this with your point of contact beforehand to ensure that any incidents are not escalated beyond your target organisation._
+* You may be able to spoof a trusted SAAS to harvest credentials or entice a download (note: there are legal considerations around spoofing a third-party unrelated to your engagement)
 
 If you're an organisation:
 
