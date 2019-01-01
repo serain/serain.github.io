@@ -26,7 +26,7 @@ Pentests against specific applications can't yet be fully automated. Logic flaws
 
 Readers will recognize that some of these issues were the source of several recent high profile breaches. These issues also typically account for up to half of the findings on an average pentest report.
 
-By extending a traditional Continuous Integration (CI) pipeline, we can catch these issues as they arise in an application and provide a form of continuous assurance against new vulnerabilities, even when the application is not under a ctive development. Combined with developer education, these measures can limit the reliance on regular pentests to keep an application secure, offering more cost-effective security.
+By extending a traditional Continuous Integration (CI) pipeline, we can catch these issues as they arise in an application and provide a form of continuous assurance against new vulnerabilities, even when the application is not under active development. Combined with developer education, these measures can limit the reliance on regular pentests to keep an application secure, offering more cost-effective security.
 
 The post will also cover services that can automatically manage security updates in your third-party dependencies.
 
