@@ -14,7 +14,7 @@ In October 2018 I found that the Kubernetes dashboard service on Minikube was vu
 
 ## Note
 
-I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/advisories/minikube-rce/).
+I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/advisories/minikube-rce/). It is reproduced here as a mirror.
 
 ## Description
 

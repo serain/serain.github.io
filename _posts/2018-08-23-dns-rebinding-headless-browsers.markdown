@@ -14,7 +14,7 @@ This article describes the use of HTTP Referer headers to execute DNS rebinding 
 
 ## Note
 
-I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/blog/from-http-referer-to-aws-security-credentials/).
+I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/blog/from-http-referer-to-aws-security-credentials/). It is reproduced here as a mirror.
 
 ## Introduction
 
