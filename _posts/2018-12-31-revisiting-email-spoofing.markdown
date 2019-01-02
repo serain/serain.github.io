@@ -104,9 +104,9 @@ Note that even when main domains, such as `contoso.com`, have SPF and DMARC adeq
 
 A number of organizations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems (remember that it is up to recipients to validate inbound emails). I can't give any meaningful metric as I've only sampled a negligible number in the grand scheme of things, but I've seen it enough to believe that the possibility should not be discarded by red teams and pentesters.
 
-Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured SPF records out there, it is not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
+Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured DNS records out there, it is not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
 
-Naturally, disabled validation leaves the organizations open to some clever phishing attacks from trusted external sources.
+Naturally, disabled validation leaves the organizations open to some clever phishing attacks impersonating trusted external sources.
 
 _Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source will usually fail._
 
