@@ -126,7 +126,7 @@ It is important to understand what we hope to achieve by including an automated 
 * Missing or misconfigured headers
 * Debug messages
 
-Mozilla published a [blog post](https://blog.mozilla.org/security/2017/01/25/setting-a-baseline-for-web-security-controls/) on how it uses ZAP with its CI environment.
+Mozilla published a [blog post](https://blog.mozilla.org/security/2017/01/25/setting-a-baseline-for-web-security-controls/) on how it uses ZAP within its CI environment.
 
 ## Auto-Update Dependencies
 
