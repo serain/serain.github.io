@@ -123,7 +123,7 @@ $ dig +short txt _dmarc.acme.org
 "v=DMARC1; p=none; rua=mailto:dmarc@acme.org"
 ```
 
-The above DMARC configuration means recipients will not enforce SPF and DKIM validation on inbound emails that claim to be from `acme.org`.
+The above DMARC configuration means recipients are not asked to enforce SPF and DKIM validation on inbound emails that claim to be from `acme.org`.
 
 At this point, you've probably guessed it: on a recent engagement I was able to send emails to `@contoso.com` impersonating any source from `@acme.org`, _bypassing the external filter and blending in as internal communication_. This opens the door to all kinds of phishing attacks such as impersonating Sys Admins, management, HR or an automated internal system.
 
