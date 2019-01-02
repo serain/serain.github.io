@@ -44,7 +44,9 @@ We'll extend this pipeline to include the security checks that we'll discuss in 
 
 ## Recurring Builds for Continuous Security
 
-Pipelines are typically run in response to a developer-triggered event, such as pushing code.
+Before diving into the meat of the subject, a quick note on why pipelines should run regularly.
+
+CI pipelines are typically run in response to a developer-triggered event, such as pushing code or opening a merge request.
 
 But let's assume that an application has reached a stable production state and is no longer under active development; when the developers pushed the last code changes, the pipeline succeeded without any errors and all dependencies were up to date and secure.
 
