@@ -64,7 +64,7 @@ The `:latest` tag tells Docker to use the latest version of a base image to buil
 
 * **Don't run as `root`**
 
-The principle of least privileges: we'll assume that the application will get breached, and when it does we want to ensure attackers are left with the low privileges inside the container. We therefor want to ensure developers are dropping privileges by the end of Dockerfile.
+The principle of least privileges: we'll assume that the application will be compromised, and when it does we want to ensure attackers are left with the low privileges inside the container. We therefor want to ensure developers are dropping privileges by the end of Dockerfile.
 
 * **Enforce select base images**
 
