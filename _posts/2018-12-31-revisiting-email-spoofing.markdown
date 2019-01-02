@@ -38,7 +38,7 @@ The qualifier of the last argument `all` is important:
 
 * `-all` is a _hard fail_: if the email fails SPF validation, the `contoso.com` owners want the email to be discarded.
 * `~all` would be a _soft fail_; if the email fails SPF validation, the `contoso.com` owners wish the email to be allowed through, but perhaps be treated as slightly suspicious (by, for example, raising a spam score).
-* `+all` would result in a pass regardless of the sources in the precding arguments.
+* `+all` would result in a pass regardless of the sources in the preceding arguments.
 
 ### DomainKeys Identified Mail (DKIM)
 
@@ -92,9 +92,9 @@ $ dig +short txt _dmarc.github.com
 "v=DMARC1; p=none; rua=mailto:dmarc@github.com"
 ```
 
-The reason as far as I can tell is that many companies rely on third-parties to send emails on their behalf.
+The reason as far as I can tell is that many companies rely on third-parties to send emails on their behalf. A typical example would be marketing emails.
 
-SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses. With the ephemeral nature of many modern services these addresses may also change on a regular basis.
+SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses, and the ephemeral nature of many modern services means these addresses could change on a regular basis. Sharing DKIM keys with third parties may also be logistically difficult (not the mention the security implications).
 
 Rather than risk legitimate emails getting blocked, it appears many organizations favor lax email validation rules.
 
@@ -104,9 +104,9 @@ Note that even when main domains, such as `contoso.com`, have SPF and DMARC adeq
 
 A number of organizations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems (remember that it is up to recipients to validate inbound emails). I can't give any meaningful metric as I've only sampled a negligible number in the grand scheme of things, but I've seen it enough to believe that the possibility should not be discarded by red teams and pentesters.
 
-Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured SPF records out there, it is not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
+Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured DNS records out there, it is not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
 
-Naturally, disabled validation leaves the organizations open to some clever phishing attacks from trusted external sources.
+Naturally, disabled validation leaves the organizations open to some clever phishing attacks impersonating trusted external sources.
 
 _Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source will usually fail._
 
@@ -123,7 +123,7 @@ $ dig +short txt _dmarc.acme.org
 "v=DMARC1; p=none; rua=mailto:dmarc@acme.org"
 ```
 
-The above DMARC configuration means recipients will not enforce SPF and DKIM validation on inbound emails that claim to be from `acme.org`.
+The above DMARC configuration means recipients are not asked to enforce SPF and DKIM validation on inbound emails that claim to be from `acme.org`.
 
 At this point, you've probably guessed it: on a recent engagement I was able to send emails to `@contoso.com` impersonating any source from `@acme.org`, _bypassing the external filter and blending in as internal communication_. This opens the door to all kinds of phishing attacks such as impersonating Sys Admins, management, HR or an automated internal system.
 
@@ -137,10 +137,10 @@ If we wanted to receive email responses to these phishing attempts, we could try
 
 If you're a red team:
 
-* Enumerate your target's parent and subsidiary companies and their domains, as well as any third-party SAAS they may use.
+* Enumerate your target's parent and subsidiary companies and their domains, as well as any external SAAS they may use.
 * Identify domains with weak SPF and DMARC configurations.
 * You may be able to bypass external filters by spoofing parent and subsidiary companies.
-* You may be able to spoof a trusted SAAS to harvest credentials or entice a download (note: there are legal considerations around spoofing a third-party unrelated to your engagement).
+* You may be able to spoof a trusted external SAAS to harvest credentials or entice a download (note: there are legal considerations around spoofing a third-party unrelated to your engagement).
 
 If you're an organization:
 
