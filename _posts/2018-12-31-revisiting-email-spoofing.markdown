@@ -94,7 +94,7 @@ $ dig +short txt _dmarc.github.com
 
 The reason as far as I can tell is that many companies rely on third-parties to send emails on their behalf.
 
-SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses. With the ephemeral nature of many modern services these addresses may also change on a regular basis.
+SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses. With the ephemeral nature of many modern services these addresses may also change on a regular basis. Sharing DKIM keys with third parties may also be logistically difficult.
 
 Rather than risk legitimate emails getting blocked, it appears many organizations favor lax email validation rules.
 
