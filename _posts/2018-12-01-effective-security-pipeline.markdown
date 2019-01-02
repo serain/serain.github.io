@@ -110,7 +110,7 @@ $ export DOCKER_CONTENT_TRUST=1
 
 ## Image Scanning
 
-There are several solutions that will scan an image for security issues, such as vulnerable binaries and libraries. Among the free and open source ones, [Clair](https://github.com/coreos/clair) is currently the front-runner, although integration into a CI pipeline requires a certain amount of effort.
+There are several solutions that will scan an image for security issues, such as vulnerable binaries and libraries. Among the free and open source ones, [Clair](https://github.com/coreos/clair) is currently the front-runner.
 
 Clair feeds on various sources, such as NIST and various Linux distribution bug trackers, to maintain an up to date list of vulnerabilities. When new issues are added to the database it can send out alerts if any images previously scanned will be affected.
 
