@@ -118,7 +118,7 @@ Clair feeds on various sources, such as NIST and various Linux distribution bug 
 
 As a last security check in our pipeline, we want to consider running an automated web application scan. A popular option to cover a lot of basic web vulnerability checks is [Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) from OWASP, which can easily be integrated into most pipelines. There is even an [offical Jenkins plugin](https://wiki.jenkins.io/display/JENKINS/zap+plugin#zapplugin-ZAPasapartofaCIEnvironment).
 
-It is important to understand what we can hope to achieve by including an automated web application scan. We are not looking for logic issues or any convoluted chain of attack; for those we are better off relying on qualified security consultants. Rather, we want to catch trivial but recurrent issues such as:
+It is important to understand what we hope to achieve by including an automated web application scan. We are not looking for logic issues or any convoluted chain of attack; for those we are better off relying on qualified security consultants. Rather, we want to catch trivial but recurrent issues such as:
 
 * Default passwords
 * Missing CSRF tokens
