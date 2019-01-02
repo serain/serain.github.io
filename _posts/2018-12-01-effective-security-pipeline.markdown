@@ -44,7 +44,9 @@ We'll extend this pipeline to include the security checks that we'll discuss in 
 
 ## Recurring Builds for Continuous Security
 
-Pipelines are typically run in response to a developer-triggered event, such as pushing code.
+Before diving into the meat of the subject, a quick note on why pipelines should run regularly.
+
+CI pipelines are typically run in response to a developer-triggered event, such as pushing code or opening a merge request.
 
 But let's assume that an application has reached a stable production state and is no longer under active development; when the developers pushed the last code changes, the pipeline succeeded without any errors and all dependencies were up to date and secure.
 
@@ -62,7 +64,7 @@ The `:latest` tag tells Docker to use the latest version of a base image to buil
 
 * **Don't run as `root`**
 
-The principle of least privileges: we'll assume that the application will get breached, and when it does we want to ensure attackers are left with the low privileges inside the container. We therefor want to ensure developers are dropping privileges by the end of Dockerfile.
+The principle of least privileges: we'll assume that the application will be compromised, and when it does we want to ensure attackers are left with low privileges inside the container. We therefor want to ensure developers are dropping privileges by the end of the Dockerfile.
 
 * **Enforce select base images**
 
@@ -108,7 +110,7 @@ $ export DOCKER_CONTENT_TRUST=1
 
 ## Image Scanning
 
-There are several solutions that will scan an image for security issues, such as vulnerable binaries and libraries. Among the free and open source ones, [Clair](https://github.com/coreos/clair) is currently the front-runner, although integration into a CI pipeline requires a certain amount of effort.
+There are several solutions that will scan an image for security issues, such as vulnerable binaries and libraries. Among the free and open source ones, [Clair](https://github.com/coreos/clair) is currently the front-runner.
 
 Clair feeds on various sources, such as NIST and various Linux distribution bug trackers, to maintain an up to date list of vulnerabilities. When new issues are added to the database it can send out alerts if any images previously scanned will be affected.
 
@@ -116,7 +118,7 @@ Clair feeds on various sources, such as NIST and various Linux distribution bug 
 
 As a last security check in our pipeline, we want to consider running an automated web application scan. A popular option to cover a lot of basic web vulnerability checks is [Zed Attack Proxy](https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project) from OWASP, which can easily be integrated into most pipelines. There is even an [offical Jenkins plugin](https://wiki.jenkins.io/display/JENKINS/zap+plugin#zapplugin-ZAPasapartofaCIEnvironment).
 
-It is important to understand what we can hope to achieve by including an automated web application scan. We are not looking for logic issues or any convoluted chain of attack; for those we are better off relying on qualified security consultants. Rather, we want to catch trivial but recurrent issues such as:
+It is important to understand what we hope to achieve by including an automated web application scan. We are not looking for logic issues or any convoluted chain of attack; for those we are better off relying on qualified security consultants. Rather, we want to catch trivial but recurrent issues such as:
 
 * Default passwords
 * Missing CSRF tokens
@@ -124,7 +126,7 @@ It is important to understand what we can hope to achieve by including an automa
 * Missing or misconfigured headers
 * Debug messages
 
-Mozilla published a [blog post](https://blog.mozilla.org/security/2017/01/25/setting-a-baseline-for-web-security-controls/) on how it uses ZAP with its CI environment.
+Mozilla published a [blog post](https://blog.mozilla.org/security/2017/01/25/setting-a-baseline-for-web-security-controls/) on how it uses ZAP within its CI environment.
 
 ## Auto-Update Dependencies
 
