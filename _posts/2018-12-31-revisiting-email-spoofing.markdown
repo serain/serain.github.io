@@ -38,7 +38,7 @@ The qualifier of the last argument `all` is important:
 
 * `-all` is a _hard fail_: if the email fails SPF validation, the `contoso.com` owners want the email to be discarded.
 * `~all` would be a _soft fail_; if the email fails SPF validation, the `contoso.com` owners wish the email to be allowed through, but perhaps be treated as slightly suspicious (by, for example, raising a spam score).
-* `+all` would result in a pass regardless of the sources in the precding arguments.
+* `+all` would result in a pass regardless of the sources in the preceding arguments.
 
 ### DomainKeys Identified Mail (DKIM)
 
@@ -137,10 +137,10 @@ If we wanted to receive email responses to these phishing attempts, we could try
 
 If you're a red team:
 
-* Enumerate your target's parent and subsidiary companies and their domains, as well as any third-party SAAS they may use.
+* Enumerate your target's parent and subsidiary companies and their domains, as well as any external SAAS they may use.
 * Identify domains with weak SPF and DMARC configurations.
 * You may be able to bypass external filters by spoofing parent and subsidiary companies.
-* You may be able to spoof a trusted SAAS to harvest credentials or entice a download (note: there are legal considerations around spoofing a third-party unrelated to your engagement).
+* You may be able to spoof a trusted external SAAS to harvest credentials or entice a download (note: there are legal considerations around spoofing a third-party unrelated to your engagement).
 
 If you're an organization:
 
