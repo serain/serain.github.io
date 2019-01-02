@@ -92,7 +92,7 @@ $ dig +short txt _dmarc.github.com
 "v=DMARC1; p=none; rua=mailto:dmarc@github.com"
 ```
 
-The reason as far as I can tell is that many companies rely on third-parties to send emails on their behalf.
+The reason as far as I can tell is that many companies rely on third-parties to send emails on their behalf. A typical example would be marketing emails.
 
 SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses, and the ephemeral nature of many modern services means these addresses could change on a regular basis. Sharing DKIM keys with third parties may also be logistically difficult.
 
