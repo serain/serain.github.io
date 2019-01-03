@@ -144,7 +144,7 @@ $ printf "Subject: GitHub Password Reset\n\nHey John, it's time to reset your Gi
 
 Spoofing GitHub lands directly into John Wick's Contoso inbox. His client even conveniently fetched the domain's `favicon`:
 
-![github spoof](https://alex.kaskaso.li/images/posts/dns-referer-attack2.png "github spoof"){: .center-image }
+![github spoof](https://alex.kaskaso.li/images/posts/revisiting-email-spoofing_github-spoof.png "github spoof"){: .center-image }
 
 I submitted multiple open bug bounty reports to various companies in the same situation as GitHub, knowing full well that they were likely already aware of the issues. As suspected, the reports were acknowledged, thanks were given, but issues with these configurations are well known, intentional and will not be fixed.
 
