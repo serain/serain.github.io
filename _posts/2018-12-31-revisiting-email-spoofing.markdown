@@ -83,22 +83,20 @@ Google has the big data and the heuristics to provide anti-spam and anti-phishin
 
 If you start checking the SPF and DMARC records for a lot of organizations you'll notice weak configurations are plentiful. SPF soft fails are widespread and DMARC policies other than `reject` and `quarantine` are quite common.
 
-Even `github.com` has a `none` DMARC policy, meaning GitHub doesn't want recipients to reject any emails from `@github.com`, validation be damned:
+Even `github.com` has a `none` DMARC policy, meaning GitHub doesn't want recipients to reject any emails from `@github.com`, even if both SPF and DKIM fail:
 
 ```
-$ dig +short txt github.com
-"v=spf1 ip4:192.30.252.0/22 ip4:208.74.204.0/22 ip4:46.19.168.0/23 include:_spf.google.com include:esp.github.com include:_spf.createsend.com include:mail.zendesk.com include:servers.mcsv.net ~all"
 $ dig +short txt _dmarc.github.com
 "v=DMARC1; p=none; rua=mailto:dmarc@github.com"
 ```
 
-The reason is that many companies rely on third-parties to send emails on their behalf, for marketing and other purposes.
+The reason is that many companies rely on third-parties to send emails on their behalf for marketing and other purposes.
 
 SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses, and the ephemeral nature of many modern services means these addresses could change on a regular basis. Sharing DKIM keys with third parties may also be logistically difficult (not the mention the security implications).
 
 Rather than risk legitimate emails getting blocked, many organizations favor lax email validation rules.
 
-As a result, we can probably send emails as `@github.com` to most people who are not behind a decent email filter from Microsoft or Google.
+As a result, we can probably send emails as `@github.com` to most people who are not behind a decent email filter like GMail's.
 
 _Note that even when main domains, such as `contoso.com`, have SPF and DMARC adequately configured, the organization likely has other domains. What do the DNS records look like for `contoso-sales.com`?_
 
