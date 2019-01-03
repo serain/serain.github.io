@@ -106,7 +106,7 @@ Firstly, a number of organizations have SPF, DKIM and DMARC validation turned of
 
 Reasons for having inbound validation disabled range from the good old "it's the default configuration" to an explicit desire to have email "just work". Given the amount of misconfigured DNS records out there, it's not surprising that organizations would find legitimate, if invalid, inbound emails getting blocked.
 
-Naturally, disabled validation leaves the organizations open to some clever phishing attacks impersonating trusted external sources. But even with validation enabled, there are plenty reputable companies with lax validation policies to abuse.
+Naturally, disabled validation leaves the organizations open to some clever phishing attacks impersonating trusted external sources with rigid email validation rules. But even with validation enabled, there are plenty of reputable domains with lax validation policies to abuse.
 
 _Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source should usually fail._
 
