@@ -77,7 +77,7 @@ The policy value `p` tells recipients how to treat emails that fail SPF and DKIM
 
 Regardless of SPF and DMARC configurations you are unlikely to be able to spoof emails from popular domains to a recipient at a robust email provider, such as GMail.
 
-Google has the big data and the heuristics to provide anti-spam and anti-phishing measures that don't rely on SPF and DMARC. I briefly tried spoofing domains with lax SPF and no DMARC records to a Gmail address: all emails landed in the spam box.
+Google has the big data and the heuristics to provide anti-spam and anti-phishing measures that don't rely on SPF and DMARC. I briefly tried spoofing domains with lax SPF and DMARC records to a Gmail address: all emails landed in the spam box.
 
 ## The Bad
 
