@@ -112,7 +112,7 @@ Naturally, disabled validation leaves the organizations open to some clever phis
 
 _Note that you will likely not be able to send emails from `@contoso.com` to another `@contoso.com` email address even if the SPF and DMARC records are poorly configured, and even if inbound email validation is disabled. Trying to deliver an internal email from an external source should usually fail._
 
-The easiest way to tell if an organisation is enforcing validation is to give it a spin. Contoso is actually enforcing DMARC and you can't send them an email from `@google.com`:
+The easiest way to tell if an organisation is enforcing validation is to give it a spin. Contoso is actually enforcing DMARC so you can't send them an email from `@google.com`:
 
 ```
 $ printf "Subject: Chrome Security Update\n\nAn important security update is available for Chrome. It is important that you update now https://www.google-chrome-update.com/download" | sendmail -i -t -v -f "security.update@google.com" -t "john.wick@contoso.com"
