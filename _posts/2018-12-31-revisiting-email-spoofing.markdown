@@ -83,7 +83,7 @@ Google has the big data and the heuristics to provide anti-spam and anti-phishin
 
 If you start checking the SPF and DMARC records for a lot of organizations you'll notice weak configurations are plentiful. SPF soft fails are widespread and DMARC policies other than `reject` and `quarantine` are quite common.
 
-Even `github.com` has an SPF soft fail and a `none` DMARC policy:
+Even `github.com` has a `none` DMARC policy, meaning GitHub doesn't want recipients to reject any emails from `@github.com`, validation be damned:
 
 ```
 $ dig +short txt github.com
@@ -92,11 +92,11 @@ $ dig +short txt _dmarc.github.com
 "v=DMARC1; p=none; rua=mailto:dmarc@github.com"
 ```
 
-The reason as far as I can tell is that many companies rely on third-parties to send emails on their behalf. A typical example would be marketing emails.
+The reason is that many companies rely on third-parties to send emails on their behalf, for marketing and other purposes.
 
 SPF records can be hard to keep accurate when third parties can't provide an extensive list of IP addresses, and the ephemeral nature of many modern services means these addresses could change on a regular basis. Sharing DKIM keys with third parties may also be logistically difficult (not the mention the security implications).
 
-Rather than risk legitimate emails getting blocked, it appears many organizations favor lax email validation rules.
+Rather than risk legitimate emails getting blocked, many organizations favor lax email validation rules.
 
 As a result, we can probably send emails as `@github.com` to most people who are not behind a decent email filter from Microsoft or Google.
 
@@ -146,7 +146,7 @@ Spoofing GitHub lands directly into John Wick's Contoso inbox. His client even c
 
 ![github spoof](https://alex.kaskaso.li/images/posts/revisiting-email-spoofing_github-spoof.png "github spoof"){: .center-image }
 
-I submitted multiple open bug bounty reports to various companies in the same situation as GitHub, knowing full well that they were likely already aware of the issues. As suspected, the reports were acknowledged, thanks were given, but issues with these configurations are well known, intentional and will not be fixed.
+I submitted multiple open bug bounty reports to various companies in the same situation as GitHub, knowing that they were likely already aware of the issues. As suspected, the reports were acknowledged, thanks were given, but issues with these configurations are known, intentional and will not be fixed.
 
 
 ## Bypassing External Filters (Sometimes)
@@ -161,8 +161,6 @@ Unfortunately `acme.org` is configured with a DMARC policy of `none`:
 $ dig +short txt _dmarc.acme.org
 "v=DMARC1; p=none; rua=mailto:dmarc@acme.org"
 ```
-
-The above DMARC configuration means recipients are not asked to enforce SPF and DKIM validation on inbound emails that claim to be from `acme.org`.
 
 At this point, you've probably guessed it: on a recent engagement I was able to send emails to `@contoso.com` impersonating any source from `@acme.org`, _bypassing the external filter and blending in as internal communication_. This opens the door to all kinds of phishing attacks such as impersonating Sys Admins, management, HR or an automated internal system.
 
