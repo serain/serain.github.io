@@ -11,7 +11,7 @@ description: "Quick overview of SPF, DKIM and DMARC for red teamers, along with 
 
 # Revisiting Email Spoofing
 
-Email spoofing is still a thing and some organizations are at risk of receiving legitimate-looking phishing emails from spoofed domains.
+Email spoofing is still a thing and organizations are at risk of receiving legitimate-looking phishing emails from spoofed domains.
 
 This post will give a cursory overview of the methods used to prevent email spoofing and introduce a tool to remotely identify domains with misconfigured anti-spoofing measures.
 
