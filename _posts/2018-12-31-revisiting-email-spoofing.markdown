@@ -13,7 +13,7 @@ description: "Quick overview of SPF, DKIM and DMARC for red teamers, along with 
 
 Email spoofing is still a thing and organizations are at risk of receiving legitimate-looking phishing emails from spoofed domains.
 
-This post will give a cursory overview of the methods used to prevent email spoofing and introduce a tool to remotely identify domains with misconfigured anti-spoofing measures.
+This post will give a cursory overview of the methods used to prevent email spoofing and introduce a tool to remotely identify domains with misconfigured anti-spoofing measures. It will then show a practical example of spoofing a popular service's domain to send a phishing email.
 
 I will also outline an interesting way I was able to bypass an organization's external email filter to phish employees with internal emails.
 
@@ -115,6 +115,7 @@ _Note that you will likely not be able to send emails from `@contoso.com` to ano
 The easiest way to tell if an organisation is enforcing validation is to give it a spin. Contoso is actually enforcing DMARC so you can't send them an email from `@google.com`:
 
 ```
+$ apt install opensmtpd sendmail
 $ printf "Subject: Chrome Security Update\n\nAn important security update is available for Chrome. It is important that you update now https://www.google-chrome-update.com/download" | sendmail -i -t -v -f "security.update@google.com" -t "john.wick@contoso.com"
 ...
 050 >>> MAIL From:<security.update@google.com>
