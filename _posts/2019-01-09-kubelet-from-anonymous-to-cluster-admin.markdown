@@ -198,7 +198,7 @@ curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.X.X/bin/li
 
 ## Access to the Nodes
 
-Access to the underlying nodes' filesystem can be obtained by mounting the node's root directory into a container deployed in a pod.
+Access to an underlying node's filesystem can be obtained by mounting the node's root directory into a container deployed in a pod.
 
 The following YAML, `node-access.yaml`, mounts the host node's filesystem to `/host` in a container that spawns a reverse shell back to an attacker:
 
