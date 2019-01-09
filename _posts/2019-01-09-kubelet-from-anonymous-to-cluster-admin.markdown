@@ -190,7 +190,7 @@ kubectl --insecure-skip-tls-verify=true  \
 
 These sample requests fetch Base64 encoded secrets used in the cluster.
 
-Note that because of differences in headers that the `kube-apiserver` expects to see, it may be necessary to download a version of `kubectl` that matches the target Kubernetes cluster. The cluster's version can be obtained by hitting the `/version` endpoint. The corresponding binary can then be fetched by modifying the version in the request below:
+Note that because of differences in HTTP headers that the `kube-apiserver` expects to see, it may be necessary to download a version of `kubectl` that matches the target Kubernetes cluster. The cluster's version can be obtained by hitting the `/version` endpoint. The corresponding binary can then be fetched by modifying the version in the request below:
 
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.X.X/bin/linux/amd64/kubectl
