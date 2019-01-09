@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "kubelet: from anonymous to cluster-admin"
+title: "kubelet: anonymous to cluster-admin"
 date: 2019-01-09T23:08:55+00:00
 author: alxk
 sitemap: false
@@ -8,7 +8,7 @@ keywords: "kubelet kubernetes pentesting cluster-admin api hacking"
 description: "Abusing the kubelet default configuration to gain access to the kube-apiserver"
 ---
 
-# kubelet: from anonymous to cluster-admin
+# kubelet: anonymous to cluster-admin
 
 This post will cover abusing the `kubelet` default configuration to gain access to the `kube-apiserver` on an on-premise self-managed Kubernetes cluster. This can also lead to code execution on the nodes.
 
