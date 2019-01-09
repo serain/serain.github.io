@@ -16,7 +16,7 @@ This post will cover abusing the `kubelet` default configuration to gain access 
 
 The image below shows a high-level overview of Kubernetes' architecture:
 
-![kubernetes architecture](https://alex.kaskaso.li/images/posts/kubernetes-architecture.png "kubernetes architecture"){: .center-image }
+![kubernetes architecture](https://alex.kaskaso.li/images/posts/kubernetes-architecture.png "kubernetes architecture"){: .center-image width="80%" border="1px solid black" }
 
 The inner workings of Kubernetes are quite involved and this article will not discuss them in detail. As a brief overview of the relevant bits:
 
