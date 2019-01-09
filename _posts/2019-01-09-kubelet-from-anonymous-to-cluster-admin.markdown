@@ -250,6 +250,6 @@ The `rbac.authorization.k8s.io` API can provide a lot of information about roles
 $ curl -ks https://10.1.2.3/apis/rbac.authorization.k8s.io/
 ```
 
-## Recommendation
+## Recommendations
 
 The `kubelet` service should be run with `--anonymous-auth false`. This service should also be segregated at the network level. It is also recommended to ensure that all Service Accounts have the least privileges needed for their tasks.
