@@ -38,7 +38,7 @@ The `kubelet` service usually runs on port 10250/TCP.
 
 ## Default kubelet Authentication
 
-The [documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) states that `kubelet` defaults to a mode that allows anonymous authentication:
+The Kubernetes [documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/) states that `kubelet` defaults to a mode that allows anonymous authentication:
 
 ```
 --anonymous-auth
