@@ -188,7 +188,7 @@ kubectl --insecure-skip-tls-verify=true  \
         get secrets --all-namespaces -o json
 ```
 
-These requests will fetch Base64 encoded secrets used in the cluster.
+These sample requests fetch Base64 encoded secrets used in the cluster.
 
 Note that because of differences in headers that the `kube-apiserver` expects to see, it may be necessary to download a version of `kubectl` that matches the target Kubernetes cluster. The cluster's version can be obtained by hitting the `/version` endpoint. The corresponding binary can then be fetched by modifying the version in the request below:
 
