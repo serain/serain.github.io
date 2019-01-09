@@ -149,7 +149,7 @@ the Cluster. The API permissions of the service account depend
 on the authorization plugin and policy in use.
 ```
 
-Following the ["Accessing the Cluster"](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod) link reveals that tokens are mounted at the following path:
+Following the ["Accessing the Cluster"](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod) link shows that tokens are mounted at the following path:
 
 ```
 /var/run/secrets/kubernetes.io/serviceaccount/token
