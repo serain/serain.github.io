@@ -34,7 +34,7 @@ Attackers may wish to gain authenticated access the `kube-apiserver`. This could
 
 For this scenario, we will assume that administrative authentication to the `kube-apiserver` is properly secured using mutual TLS authentication. Due to a lack of network segregation in the setup, the `kubelet` APIs on the worker nodes are accessible to an attacker over the network.
 
-The `kubelet` service usually runs on port 10250/TCP on worker nodes.
+The `kubelet` service usually runs on port 10250/TCP.
 
 ## Default kubelet Authentication
 
