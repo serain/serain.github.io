@@ -182,10 +182,10 @@ $ curl -ks -H "Authorization: Bearer <TOKEN>" \
 A more elegant solution is to use `kubectl` directly:
 
 ```
-kubectl --insecure-skip-tls-verify=true  \
-        --server="https://10.1.1.1:6443" \
-        --token="<TOKEN>"                \
-        get secrets --all-namespaces -o json
+$ kubectl --insecure-skip-tls-verify=true  \
+          --server="https://10.1.1.1:6443" \
+          --token="<TOKEN>"                \
+          get secrets --all-namespaces -o json
 ```
 
 These sample requests fetch Base64 encoded secrets used in the cluster.
