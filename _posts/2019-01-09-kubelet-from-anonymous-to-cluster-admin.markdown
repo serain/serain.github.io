@@ -139,9 +139,14 @@ $ python3 kubelet-anon-rce.py           \
 The Kubernetes [documentation](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) states that pods are assigned a Service Account by default:
 
 ```
-When you create a pod, if you do not specify a service account, it is automatically assigned the default service account in the same namespace. [...]
+When you create a pod, if you do not specify a service account,
+it is automatically assigned the default service account in the
+same namespace. [...]
 
-You can access the API from inside a pod using automatically mounted service account credentials, as described in Accessing the Cluster. The API permissions of the service account depend on the authorization plugin and policy in use.
+You can access the API from inside a pod using automatically
+mounted service account credentials, as described in Accessing
+the Cluster. The API permissions of the service account depend
+on the authorization plugin and policy in use.
 ```
 
 Following the ["Accessing the Cluster"](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod) link reveals that tokens are mounted at the following path:
