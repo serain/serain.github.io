@@ -10,7 +10,7 @@ description: "Abusing the kubelet default configuration to gain access to the ku
 
 # kubelet: anonymous to cluster-admin
 
-This post will cover abusing the `kubelet` default configuration to gain access to the `kube-apiserver` on an on-premise self-managed Kubernetes cluster. This can also lead to code execution on the nodes.
+This post will cover abusing the `kubelet` default configuration to gain access to the `kube-apiserver` on an on-premise Kubernetes cluster. This can also lead to code execution on the nodes.
 
 ## Architecture Overview
 
