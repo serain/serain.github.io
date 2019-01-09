@@ -170,7 +170,7 @@ $ python3 kubelet-anon-rce.py           \
 
 ## kube-apiserver Authentication
 
-The token can be used to authenticate to the `kube-apiserver` API on master nodes.
+The token can be used to authenticate to the `kube-apiserver` API on master nodes. This service will usually listen on 6443/TCP on master nodes.
 
 Interaction with the API through `curl` is straightforward:
 
