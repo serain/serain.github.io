@@ -252,4 +252,6 @@ $ curl -ks https://10.1.2.3/apis/rbac.authorization.k8s.io/
 
 ## Recommendations
 
-The `kubelet` service should be run with `--anonymous-auth false`. This service should also be segregated at the network level. It is also recommended to ensure that all Service Accounts have the least privileges needed for their tasks.
+The `kubelet` service should be run with `--anonymous-auth false`. This service should also be segregated at the network level.
+
+It is also recommended to ensure that all Service Accounts have the least privileges needed for their tasks.
