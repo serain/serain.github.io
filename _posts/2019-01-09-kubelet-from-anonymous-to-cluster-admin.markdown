@@ -10,7 +10,7 @@ description: "Abusing the kubelet default configuration to gain access to the ku
 
 # kubelet: anonymous to cluster-admin
 
-This post will cover abusing the `kubelet` default configuration to gain access to the `kube-apiserver` on an on-premise Kubernetes cluster. This can also lead to code execution on the nodes.
+This post will cover abusing the `kubelet` default configuration to gain access to the `kube-apiserver` on a Kubernetes cluster. This can also lead to code execution on the nodes.
 
 ## Architecture Overview
 
@@ -30,7 +30,7 @@ However, each pod is assigned a Service Account by default; the Service Account 
 
 ## Objective and Environment
 
-Attackers may wish to gain authenticated access the `kube-apiserver`. This could allow them to, for example, read secrets or create and modify pods. This can also lead to code execution on the underlying node machines, facilitating lateral movement in an on-premise network.
+Attackers may wish to gain authenticated access the `kube-apiserver`. This could allow them to, for example, read secrets or create and modify pods. This can also lead to code execution on the underlying node machines, facilitating lateral movement.
 
 For this scenario, we will assume that administrative authentication to the `kube-apiserver` is properly secured using mutual TLS authentication. Due to a lack of network segregation in the setup, the `kubelet` APIs on the worker nodes are accessible to an attacker over the network.
 
