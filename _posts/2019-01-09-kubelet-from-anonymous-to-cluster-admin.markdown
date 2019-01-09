@@ -226,10 +226,10 @@ spec:
 This can be deployed with the following command:
 
 ```
-kubectl --insecure-skip-tls-verify=true  \
-        --server="https://10.1.1.1:6443" \
-        --token="<TOKEN>"                \
-        deploy -f node-access.yaml
+$ kubectl --insecure-skip-tls-verify=true  \
+          --server="https://10.1.1.1:6443" \
+          --token="<TOKEN>"                \
+          deploy -f node-access.yaml
 ```
 
 While not technically RCE on the node, a remote containerized shell with access to the filesystem will in many cases lead to RCE.
