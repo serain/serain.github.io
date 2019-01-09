@@ -16,7 +16,7 @@ This post will cover abusing the `kubelet` default configuration to gain access 
 
 The image below shows a high-level overview of Kubernetes' architecture:
 
-[]()
+![kubernetes architecture](https://alex.kaskaso.li/images/posts/kubernetes-architecture.png "kubernetes architecture"){: .center-image }
 
 The inner workings of Kubernetes are quite involved and this article will not discuss them in detail. As a brief overview of the relevant bits:
 
@@ -24,7 +24,7 @@ The inner workings of Kubernetes are quite involved and this article will not di
 * Communication between the `kube-apiserver` on the master and `kubelet` services on the worker nodes is bi-directional. This communication also happens over REST APIs.
 * "Pods" (logical groupings of one or more containers) run on the various nodes. The `kube-apiserver` holds the information that allows each `kubelet` to determine what it should be running.
 
-Authentication between the various components is ideally done over mutual TLS. 
+Authentication between the various components is ideally done over mutual TLS.
 
 However, each pod is assigned a Service Account by default; the Service Account in question and the extent of the privileges are configurable. These service accounts allow various services to interact with the `kube-apiserver` by using a `Bearer` token.
 
