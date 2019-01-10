@@ -5,7 +5,7 @@ date: 2019-01-09T23:08:55+00:00
 author: alxk
 sitemap: false
 keywords: "kubelet kubernetes pentesting cluster-admin api hacking"
-description: "Abusing the kubelet default configuration to gain access to the kube-apiserver"
+description: "Abusing the kubelet default configuration to gain access to the kube-apiserver."
 ---
 
 # kubelet: anonymous to cluster-admin
