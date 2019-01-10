@@ -206,7 +206,7 @@ The following deployment, `node-access.yaml`, mounts the host node's filesystem 
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mwr-test
+  name: test
 spec:
   containers:
   - name: busybox
