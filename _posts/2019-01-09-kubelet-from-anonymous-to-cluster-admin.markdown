@@ -22,7 +22,7 @@ The inner workings of Kubernetes are quite involved and this article will not di
 
 * Human administrators talk to the "API Server" on a master node. The canonical name for this service is `kube-apiserver` and communication is done over a RESTful API (usually abstracted with the CLI tool `kubectl`).
 * Communication between the `kube-apiserver` on the master and `kubelet` services on the worker nodes is bi-directional. This communication also happens over REST APIs.
-* "Pods" (logical groupings of one or more containers) run on the various nodes. The `kube-apiserver` holds the information that allows each `kubelet` to determine what it should be running.
+* "Pods" (logical groupings of one or more containers) run on the nodes. The `kube-apiserver` holds the information that allows each `kubelet` to determine what it should be running.
 
 Authentication between the various components is ideally done over mutual TLS.
 
