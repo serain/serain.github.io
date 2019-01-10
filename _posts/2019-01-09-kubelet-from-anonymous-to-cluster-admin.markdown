@@ -242,7 +242,7 @@ The `tiller` pod attacked in this scenario is a good target to get a token with 
 
 Given the nature of the service, Tiller requires high privileges and the [Helm docs suggest assigning the `cluster-admin` role](https://github.com/helm/helm/blob/master/docs/rbac.md#tiller-and-role-based-access-control) to its Service Account.
 
-If a high-privileged Service Account is not available, attackers may consider obtaining any token with "create pod" privileges in a given namespace. The attackers could then proceed to create pods with any other target Service Account token from the namespace mounted, thus gaining those privileges. Alternatively tokens with the desired privileges, such as "read secrets", may be readily available.
+If a high-privileged Service Account is not available, an attacker may consider obtaining any token with "create pod" privileges in a given namespace. The attacker could then proceed to create pods with any other target Service Account token from the namespace mounted, thus gaining those privileges. Alternatively tokens with the desired privileges, such as "read secrets", may be readily available.
 
 The `rbac.authorization.k8s.io` API can provide a lot of information about roles and service accounts available in given namespaces:
 
