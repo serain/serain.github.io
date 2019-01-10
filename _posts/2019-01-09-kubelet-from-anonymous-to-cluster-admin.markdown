@@ -155,7 +155,7 @@ Following the ["Accessing the Cluster"](https://kubernetes.io/docs/tasks/access-
 /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 
-The token for the `tiller` Service Account can thus be retrieved by using the API `/exec` endpoint to print it out:
+The token for the `tiller` Service Account can thus be retrieved by using the `kubelet` API `/exec` endpoint to print it out:
 
 ```
 $ python3 kubelet-anon-rce.py           \
