@@ -247,7 +247,7 @@ If a high-privileged Service Account is not available, an attacker may consider 
 The `rbac.authorization.k8s.io` API can provide a lot of information about roles and service accounts available in given namespaces:
 
 ```
-$ curl -ks https://10.1.2.3/apis/rbac.authorization.k8s.io/
+$ curl -ks https://10.1.2.3:6443/apis/rbac.authorization.k8s.io/
 ```
 
 ## Recommendations
