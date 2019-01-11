@@ -12,6 +12,10 @@ description: "Abusing the kubelet default configuration to gain access to the ku
 
 This post will cover abusing the `kubelet` default configuration to gain privileged access to the `kube-apiserver` on a Kubernetes cluster. This can also lead to code execution on the nodes.
 
+## Note
+
+I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/blog/attacking-kubernetes-through-kubelet/). It is reproduced here as a mirror.
+
 ## Architecture Overview
 
 The image below shows a high-level overview of Kubernetes' architecture:
