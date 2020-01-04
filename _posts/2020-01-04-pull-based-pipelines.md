@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "pull-based CD pipelines: not just for k8s manifests"
+title: "Security advantages of pull-based CD pipelines"
 date: 2020-01-04T23:00:55+00:00
 author: alxk
 sitemap: false
@@ -8,24 +8,25 @@ keywords: "security kubernetes docker ci cd"
 description: "Securing CI/CD pipelines with a pull-based approach"
 ---
 
-# Pull-based CD pipelines: not just for k8s manifests
+# Security advantages of pull-based CD pipelines
 
 We recently adopted [GitOps](https://www.weave.works/technologies/gitops/) for Kubernetes (k8s) deployments, using Weaveworks' _[flux](https://www.weave.works/oss/flux/)_ daemon. This is a "pull-based" approach to continuous deployment (CD) for k8s, very much pioneered by Weaveworks' themselves.
 
 There's several advantages to this but what I'm going to focus on here are the security benefits. I'm then going to advocate for the adoption of the pull-based CD approach beyond k8s manifests, particularly around building and pushing container images.
 
-Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a security hazard, and should only be used for "CI" (running tests).
+Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a security hazard and should only be used for "CI" (running tests).
 
-IMAGE OF POOP UNICORN DEVOPS
+![devops unicorn](https://alex.kaskaso.li/images/posts/devops-security-unicorn.png "devops unicorn"){: .center-image }
 
 ## Hazards of push-based CI/CD tooling
 
 Let's define "push-based" in this context: if you're using something like CircleCI or Jenkins to deploy, those tools are _pushing_ your services:
 * they're building and _pushing_ your image to a container registry
 * they're _pushing_ your updated manifests to production
+
 So the engineers have access to the CI/CD tooling, and the CI/CD tooling has access to production. It looks like this (note the direction of the arrows):
 
-IMAGE SHOWING PUSH ARROWS (engineer)->(CI/CD)- SPLIT ARROWS ->(production) and ->(registry)
+![traditional pipeline](https://alex.kaskaso.li/images/posts/traditional_pipeline.png "traditional pipeline"){: .center-image }
 
 We'll see how this contrasts with a pull-based approach later.
 
