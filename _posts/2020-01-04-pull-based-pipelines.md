@@ -42,7 +42,7 @@ Minimizing your attack surface is a basic security principle.
 
 Let's say you have something like Jenkins running on your network. There's [150 CVEs for Jenkins core](https://www.cvedetails.com/vulnerability-list.php?vendor_id=15865&product_id=34004&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=150&sha=42dfa4c7d4f30241bc7fa7cb4e94138bcf01a35e), with 15 of those just from 2019. This figure excludes plugin vulnerabilities - (of which there are many more)[https://jenkins.io/security/advisories/] (not to mention the risk of supply-chain attacks with those).
 
-To add to the fun, (_reflected_ cross-site scripting in Jenkins)[https://www.google.com/search?client=firefox-b-d&q=jenkins+reflected+xss] can lead to remote code execution (RCE) on the Jenkins host, meaning attackers can probably gain an initial foothold into (quite a few companies)[https://crt.sh/?q=jenkins.%25] with some innocuous phishing or watering hole attacks (you did click on a random link to view this blog post, didn't you? 🙃).
+To add to the fun, [_reflected_ cross-site scripting in Jenkins)](https://www.google.com/search?client=firefox-b-d&q=jenkins+reflected+xss) can lead to remote code execution (RCE) on the Jenkins host, meaning attackers can probably gain an initial foothold into [quite a few companies](https://crt.sh/?q=jenkins.%25) with some innocuous phishing or watering hole attacks (you did click on a random link to view this blog post, didn't you? 🙃).
 
 RCE on your Jenkins host is bad enough, but if you have production deployment secrets on there it's game over.
 
@@ -65,7 +65,7 @@ You have branch protections on your `master` branch and require one or more peer
 
 It may be tempting to think that only CircleCI has access to deployment secrets in the scenario above, or that only a peer-reviewed `master` branch can be pushed to your container registry and deployed to production.
 
-In fact Alice, Bob and everyone else on that team can trivially pull the deploy secrets out, and CircleCI's (contexts)[https://circleci.com/docs/2.0/contexts/] offer little solace here as long as you want to empower the team to deploy on their own.
+In fact Alice, Bob and everyone else on that team can trivially pull the deploy secrets out, and CircleCI's [contexts](https://circleci.com/docs/2.0/contexts/) offer little solace here as long as you want to empower the team to deploy on their own.
 
 Anyone who can push a branch to your project can get a hold of your secrets just by printing out the environment variables, or POSTing them to an endpoint - after all, CI/CD tooling is literally Code-Execution-as-a-Service.
 
@@ -77,9 +77,9 @@ It should be noted that Travis and GitHub Actions offer better controls, allowin
 
 It seems to be fashion these days to share your deepest secrets with everyone.
 
-There's companies like (Platform9)[https://platform9.com/] or (Spotinst)[https://spotinst.com/] who want admin access to your cloud environment or production cluster to help you manage things. Of course, you're also expected to give this access to your CI/CD SaaS of choice, if you're going for the Cloud version.
+There's companies like [Platform9](https://platform9.com/) or [Spotinst](https://spotinst.com/) who want admin access to your cloud environment or production cluster to help you manage things. Of course, you're also expected to give this access to your CI/CD SaaS of choice, if you're going for the Cloud version.
 
-This is all the more worrying given that (some threat actors are known to have shifted their focus to targeting managed service providers)[https://www.ncsc.gov.uk/information/global-targeting-enterprises-managed-service-providers]; why run targetted attacks against a thousand companies when they can target a single company and gain access to a thousand customers?
+This is all the more worrying given that [some threat actors are known to have shifted their focus to targeting managed service providers](https://www.ncsc.gov.uk/information/global-targeting-enterprises-managed-service-providers); why run targetted attacks against a thousand companies when they can target a single company and gain access to a thousand customers?
 
 To a certain extent, you have to trust third-parties these days. However, I'm more comfortable with AWS lording over my services than a startup or small company who may be cutting corners around security while they focus on market acrobatics.
 
@@ -94,7 +94,7 @@ For those not in the loop, the _flux_ daemon sits _inside your k8s cluster_ and 
 * it _pulls_ k8s manifests from a git repo, and applies them to the cluster
 * it monitors your container registry for newer images, and updates your k8s resources accordingly
 
-I'll just focus on the first point here for brevity ((the docs)[https://docs.fluxcd.io/en/1.17.0/introduction.html#introducing-flux] give a good intro to all the functionality for those interested).
+I'll just focus on the first point here for brevity ([the docs](https://docs.fluxcd.io/en/1.17.0/introduction.html#introducing-flux) give a good intro to the rest).
 
 _flux_ regularly polls `master` branch of the repo that contains your k8s YAML manifests and makes sure that what's in your cluster matches what's defined in the "GitOps" repo. In the simplest terms, this is what it does:
 
@@ -126,11 +126,11 @@ Your deployment access controls are now in your GitOps git repo and you probably
 
 In the previous section I said "your CD tool now sits in your k8s cluster" but that's only partially true. If you only adopt Weaveworks' _flux_ and call it a day, you're still _pushing_ your Docker images to a container registry, probably using a CI/CD tool like Jenkins or CircleCI.
 
-In fact, that's what Weaveworks explicity say in their own (blog posts)[https://www.weave.works/blog/continuous-delivery-weave-flux/] which is a bit surprising; they're lauding the security benefits of their _pull-based_ k8s deployment approach while recommending their users _push_ images to a container registry, and from CircleCI nonetheless.
+In fact, that's what Weaveworks explicity say in their own [blog posts](https://www.weave.works/blog/continuous-delivery-weave-flux/) which is a bit surprising; they're lauding the security benefits of their _pull-based_ k8s deployment approach while recommending their users _push_ images to a container registry, and from CircleCI nonetheless.
 
 IMAGE OF WEAVEWORKS CIRCLECI PUSHING TO ECR
 
-So we've not really solved the problem at this point. If the CI/CD tool is compromised according to one of the scenarios we described above, attackers can push arbitrary images to the container registry. Given that _flux_ also (automates the deployment of new images by monitoring the container registry)[https://docs.fluxcd.io/en/1.17.0/introduction.html#automated-deployment-of-new-container-images], that's still a CI/CD path to production to be abused by attackers.
+So we've not really solved the problem at this point. If the CI/CD tool is compromised according to one of the scenarios we described above, attackers can push arbitrary images to the container registry. Given that _flux_ also [automates the deployment of new images by monitoring the container registry](https://docs.fluxcd.io/en/1.17.0/introduction.html#automated-deployment-of-new-container-images), that's still a CI/CD path to production to be abused by attackers.
 
 ## Pull-based image builds
 
@@ -138,7 +138,7 @@ The solution seems straightforward at this point: building and adding new images
 
 Such a service would have no network attack surface and wouldn't risk leaking any image deployment secrets.
 
-I'm playing around with a proof-of-concept that polls my repos and uses Google's (_kaniko_)[https://github.com/GoogleContainerTools/kaniko] to build images in a safe location.
+I'm playing around with a proof-of-concept that polls my repos and uses Google's [_kaniko_](https://github.com/GoogleContainerTools/kaniko) to build images in a safe location.
 
 ## TL;DR
 
