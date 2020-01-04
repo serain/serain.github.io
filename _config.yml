@@ -29,4 +29,4 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
-  - jekyll-crosspost-to-medium
+  # - jekyll-crosspost-to-medium
