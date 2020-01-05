@@ -48,7 +48,7 @@ RCE on your Jenkins host is bad enough, but if you have production deployment se
 
 ### Free-for-all secrets
 
-![oprah secrets](https://alex.kaskaso.li/images/posts/oprah-secrets.jpg "oprah secrets"){: .center-image }
+![oprah secrets](https://alex.kaskaso.li/images/posts/oprah_secrets.jpg "oprah secrets"){: .center-image }
 
 I'll talk about CirleCI here but this probably applies to other CI/CD tools.
 
