@@ -16,7 +16,7 @@ There's several advantages to this but what I'm going to focus on here are the s
 
 Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a security hazard and should only be used for "CI" (running tests).
 
-![devops unicorn](https://alex.kaskaso.li/images/posts/devops-security-unicorn.png "devops unicorn"){: .center-image }
+![devops unicorn](https://alex.kaskaso.li/images/posts/devops-security-unicorn.png "devops unicorn" =100x){: .center-image }
 
 ## Hazards of push-based CI/CD tooling
 
