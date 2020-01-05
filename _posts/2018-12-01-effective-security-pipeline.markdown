@@ -1,7 +1,7 @@
 ---
 crosspost_to_medium: true
 layout: post
-title: "Effective Security Pipeline"
+title: "Security-focused CI/CD Pipeline"
 date: 2018-12-01T23:03:25+00:00
 author: alxk
 sitemap: false
@@ -9,7 +9,7 @@ keywords: "devsecops pipeline docker security"
 description: "Building an effective DevSecOps pipeline to catch security issues both during development and continuously in production."
 ---
 
-# Effective Security Pipeline
+# Security-focused CI/CD Pipeline
 
 In this post we'll walk through the main components of a DevSecOps Continuous Integration pipeline. This will allow us to catch security issues both during development and on a continuous basis in production.
 
