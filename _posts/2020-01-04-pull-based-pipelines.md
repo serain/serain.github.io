@@ -13,7 +13,7 @@ description: "Securing CI/CD pipelines with a pull-based approach"
 We recently adopted [GitOps](https://www.weave.works/technologies/gitops/) for Kubernetes deployments, using Weaveworks' _[flux](https://www.weave.works/oss/flux/)_ daemon. This is a "pull-based" approach to continuous deployment for k8s, very much pioneered by Weaveworks' themselves.
 
 There's several advantages to this but what I'm going to focus on here are the security benefits. I'm then going to advocate for the adoption of the pull-based CD approach beyond k8s manifests, particularly around building and pushing container images.
-
+``
 Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a security hazard and should only be used for "CI" (running tests).
 
 ![devops unicorn](https://alex.kaskaso.li/images/posts/devops-security-unicorn.png "devops unicorn"){: .center-image }
@@ -30,11 +30,11 @@ So the engineers have access to the CI/CD tooling, and the CI/CD tooling has acc
 
 We'll see how this contrasts with a pull-based approach later.
 
-First, what's the issue with using tools like Jenkins or CirleCI for deployment? My main arguments against traditional CI/CD tools are:
+First, what's the issue with tools like Jenkins or CirleCI for deployment? My main security arguments against traditional CI/CD tools are:
 
-* They offer a network attack surface
-* Some offer very disappointing access controls over secrets
-* With a SaaS CI/CD tool, you're sharing your secrets with yet another third-party
+* the network attack surface
+* disappointing access controls over secrets (looking at you CircleCI)
+* yet another third-party with your deployment secrets (for SaaS)
 
 ### Network attack surface
 
@@ -71,7 +71,7 @@ In fact Alice, Bob and everyone else on that team can trivially pull the deploy 
 
 In the above scenario, compromising a single engineer is enough to gain access to production through CircleCI (at least to the extent their context allows).
 
-It should be noted that Travis and GitHub Actions offer better controls, allowing you to restrict secrets on a per-branch basis. You would therefor only expose  deploy secrets to `master` code that's been peer-reviewed (and therefor assumed safe).
+It should be noted that Travis and GitHub Actions offer better controls, allowing you to restrict secrets on a per-branch basis. You would therefor only expose deployment secrets to `master` code that's been peer-reviewed (and therefor assumed safe). Still, that's production deployment secrets outside of the trust boundary of your production environment. As we'll see later, this is not necessary.
 
 ### Sharing is not caring
 
@@ -120,9 +120,9 @@ _flux_ has no network attack surface and doesn't leak secrets.
 Your deployment access controls are now in your GitOps git repo and you probably want:
 * branch protections on `master`
 * a number of peer-reviews
-* restrict who can review using CODEOWNERS (either the team, or some admins)
+* require reviews from team members using CODEOWNERS
 
-With these measures, multiple engineers need to be compromised for an attacker to make his way to production.
+With these measures, multiple engineers from the same team need to be compromised for an attacker to make his way to production through the CD pipeline.
 
 ## What about the images?
 
@@ -138,7 +138,7 @@ So we've not really solved the problem at this point. If the CI/CD tool is compr
 
 The solution seems straightforward at this point: building and adding new images to the container registry should also be done with a pull-based approach. We need a daemon that polls application repositories for peer-reviewed (trusted) changes to `master`. Upon a change, it builds the application's Dockerfile and safely puts the image in the container registry.
 
-What we're looking for is something like this:
+What we're looking for is something like this (again, arrows):
 
 ![pull pipeline](https://alex.kaskaso.li/images/posts/pull_pipeline.png "pull pipeline"){: .center-image }
 
@@ -150,8 +150,8 @@ I've been playing around with a proof-of-concept that polls repos and uses Googl
 
 We need to turn our pipelines around and start pulling.
 
-Traditional push-based CI/CD tools are a security hazard. It’s true that some offer better security controls than others, but either way, there are tangible security benefits with pull-based pipelines. We should aim for zero production secrets in the likes of Jenkins and CircleCI, or any engineer’s laptop for that matter.
+Traditional push-based CI/CD tools are a security hazard. It’s true that some offer better security controls than others, but either way, there are tangible security benefits with pull-based pipelines.
+
+Continuous deployment can and should only be done within the trust boundary of your production environment.
 
 We now need a solid pull-based tool for building images to complement _flux_.
-
-The same should also be considered for other deployment activities, like updating a common library on Artifactory.
