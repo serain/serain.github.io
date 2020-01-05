@@ -8,7 +8,7 @@ keywords: "security kubernetes docker ci cd"
 description: "Securing CI/CD pipelines with a pull-based approach"
 ---
 
-# Security advantages of pull-based CD pipelines
+# Pull-based CD pipelines
 
 We recently adopted [GitOps](https://www.weave.works/technologies/gitops/) for Kubernetes deployments, using Weaveworks' _[flux](https://www.weave.works/oss/flux/)_ daemon. This is a "pull-based" approach to continuous deployment for k8s, very much pioneered by Weaveworks' themselves.
 
@@ -16,7 +16,7 @@ There's several advantages to this but what I'm going to focus on here are the s
 
 Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a security hazard and should only be used for "CI" (running tests).
 
-![devops unicorn](https://alex.kaskaso.li/images/posts/devops-security-unicorn.png "devops unicorn" =100x){: .center-image }
+![devops unicorn](https://alex.kaskaso.li/images/posts/devops-security-unicorn.png "devops unicorn"){: .center-image }
 
 ## Hazards of push-based CI/CD tooling
 
