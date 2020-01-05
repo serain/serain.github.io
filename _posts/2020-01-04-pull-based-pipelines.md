@@ -152,6 +152,6 @@ I've been playing around with a proof-of-concept that polls repos and uses Googl
 
 We need to turn our pipelines around and start pulling.
 
-Traditional CI/CD tools are a security hazard. It's true that some offer better security controls than others, but either way, there are tangible security benefits with pull-based pipelines.
+Traditional push-based CI/CD tools are a security hazard. It's true that some offer better security controls than others, but either way, there are tangible security benefits with pull-based pipelines.
 
 We need a pull-based tool for building images. The same should also be considered for other deployment activities, like updating a common library on Artifactory.
