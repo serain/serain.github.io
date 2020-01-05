@@ -1,33 +1,35 @@
 ---
 layout: default
 ---
-      <div class="home">
-        <div class="content-col-wrapper">
-          <div class="content-col">
-            <div class="dummy">
-              <b><span class="big">Hey!</span></b> {{ site.description }}
-              <br><br>
-              ♨ <b><span class="big">Tools and projects.</span></b><br>
+<div class="home">
+  <div class="content-col-wrapper">
+    <div class="content-col">
+      <div class="dummy">
+        <b><span class="big">Hey!</span></b> {{ site.description }}
+        <br><br>
+        ♨ <b><span class="big">Tools and projects.</span></b><br>
 
-              <div class="projects">
-                <ul class="post-list">
-                  <li class="titlepost">
-                    <a class="post-link" href="https://github.com/mwrlabs/dref">DNS Rebinding Exploitation Framework (dref)</a>
-                  </li>
-                  <li class="titlepost">
-                    <a class="post-link" href="https://github.com/serain/mailspoof">mailspoof</a>
-                  </li>
-                  <li class="titlepost">
-                    <a class="post-link" href="https://github.com/serain/netmap.js">netmap.js</a>
-                  </li>
-                  <li class="titlepost">
-                    <a class="post-link" href="https://github.com/serain/k8s-lab">Kubernetes Lab (K8s from Terraform/Ansible)</a>
-                  </li>
-                </ul>
-              </div><br>
+        <div class="projects">
+          <ul class="post-list">
+            <li class="titlepost">
+              <a class="post-link" href="https://github.com/mwrlabs/dref">DNS Rebinding Exploitation Framework
+                (dref)</a>
+            </li>
+            <li class="titlepost">
+              <a class="post-link" href="https://github.com/serain/mailspoof">mailspoof</a>
+            </li>
+            <li class="titlepost">
+              <a class="post-link" href="https://github.com/serain/netmap.js">netmap.js</a>
+            </li>
+            <li class="titlepost">
+              <a class="post-link" href="https://github.com/serain/k8s-lab">Kubernetes Lab (K8s from
+                Terraform/Ansible)</a>
+            </li>
+          </ul>
+        </div><br>
 
 
-              <!-- <div class="photos">
+        <!-- <div class="photos">
                 <a href="https://www.instagram.com/p/BCI1dwchQX5/" class="p0 photo" target="_blank">
                   <img alt="Vectisaurus Fruitadens Rajasaurus Empaterias." src="{{ site.baseurl }}/images/ig_1.jpg">
                 </a>
@@ -50,25 +52,27 @@ layout: default
                 <div class="caption c4">Lewisuchus Poekilopleuron Opisthocoelicaudia Xixiasaurus.</div>
               </div><br> -->
 
-              <div class="dummy blogpost">
-                ✍ <b><span class="big">Posts.</span></b>
-              </div>
-            </div><p></p><p></p>
-              <ul class="post-list">{% for post in paginator.posts %}
-                <li class="titlepost">
-                  <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-                  <div class="datepost">
-                    <span class="post-meta">{{ post.date | date: "%-d %b %Y" }}</span>
-                  </div>
-                </li>{% endfor %}
-              </ul>
-          </div>
-        </div>{% if paginator.previous_page %}
-          <a href="{{ paginator.previous_page_path }}">
-            <b><span class="big">Balik Lagi</span></b>
-          </a>{% else %}{% endif %}{% if paginator.next_page %}
-          <a href="{{ paginator.next_page_path }}">
-            <b><span class="big">Lanjut</span></b>
-          </a>{% else %}{% endif %}
-        {% include nav.html %}
+        <div class="dummy blogpost">
+          ✍ <b><span class="big">Posts.</span></b>
+        </div>
       </div>
+      <p></p>
+      <p></p>
+      <ul class="post-list">{% for post in posts %}
+        <li class="titlepost">
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <div class="datepost">
+            <span class="post-meta">{{ post.date | date: "%-d %b %Y" }}</span>
+          </div>
+        </li>{% endfor %}
+      </ul>
+    </div>
+    <!-- </div>{% if paginator.previous_page %}
+  <a href="{{ paginator.previous_page_path }}">
+    <b><span class="big">Balik Lagi</span></b>
+  </a>{% else %}{% endif %}{% if paginator.next_page %}
+  <a href="{{ paginator.next_page_path }}">
+    <b><span class="big">Lanjut</span></b>
+  </a>{% else %}{% endif %} -->
+    {% include nav.html %}
+  </div>
