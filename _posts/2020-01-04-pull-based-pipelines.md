@@ -50,7 +50,7 @@ RCE on your Jenkins host is bad enough, but if you have production deployment se
 
 ![oprah secrets](https://alex.kaskaso.li/images/posts/oprah_secrets.jpg "oprah secrets"){: .center-image }
 
-I'll talk about CirleCI here but this probably applies to other CI/CD tools.
+I'll talk about CirleCI here but this applies to other CI/CD tools.
 
 Everything is Agile and DevOps, so you want to allow your engineers to deploy multiple times a day, with minimal friction.
 
