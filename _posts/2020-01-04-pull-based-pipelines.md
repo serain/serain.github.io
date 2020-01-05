@@ -152,7 +152,7 @@ I've been playing around with a proof-of-concept that polls repos and uses Googl
 
 We need to turn our pipelines around and start pulling.
 
-Traditional push-based CI/CD tools are a security hazard. It’s true that some offer better security controls than others, but either way, there are tangible security benefits with pull-based pipelines. We should aim for zero production secrets in the likes of Jenkins and CircleCI.
+Traditional push-based CI/CD tools are a security hazard. It’s true that some offer better security controls than others, but either way, there are tangible security benefits with pull-based pipelines. We should aim for zero production secrets in the likes of Jenkins and CircleCI, or any engineer’s laptop for that matter.
 
 We now need a solid pull-based tool for building images to complement _flux_.
 
