@@ -142,7 +142,7 @@ The solution seems straightforward at this point: building and adding new images
 
 What we're looking for is something like this:
 
-![pull pipeline](https://alex.kaskaso.li/images/posts/traditional_pipeline.png "pull pipeline"){: .center-image }
+![pull pipeline](https://alex.kaskaso.li/images/posts/pull_pipeline.png "pull pipeline"){: .center-image }
 
 Such a service would have no network attack surface and wouldn't risk leaking any image deployment secrets.
 
