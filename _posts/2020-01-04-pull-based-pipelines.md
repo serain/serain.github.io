@@ -67,7 +67,7 @@ You have branch protections on your `master` branch and require one or more peer
 
 It may be tempting to think that only CircleCI has access to deployment secrets in the scenario above, or that only a peer-reviewed `master` branch can be pushed to your container registry and deployed to production.
 
-In fact Alice, Bob and everyone else on that team can trivially pull the deploy secrets out, and CircleCI's contexts offer little solace here as long as you want to empower the team to deploy on their own. Pulling the secrets out is as simple as printing out the environment variables, or POSTing them to an endpoint - after all, CI/CD tooling is literally Code-Execution-as-a-Service.
+In fact Alice, Bob and everyone else on that team can trivially pull the deploy secrets out, and CircleCI's contexts offer little solace here as long as you want to empower the team to deploy on their own. Pulling the secrets out is as simple as printing out the environment variables during a job run, or POSTing them to an endpoint - after all, CI/CD tooling is literally Code-Execution-as-a-Service.
 
 In the above scenario, compromising a single engineer is enough to gain access to production through CircleCI (at least to the extent their context allows).
 
