@@ -20,7 +20,7 @@ markdown: kramdown
 highlighter: rouge
 auto_ids: true
 encoding: "utf-8"
-paginate: 5
+paginate: 10
 permalink: /post/:title
 paginate_path: "/page/:num/"
 
