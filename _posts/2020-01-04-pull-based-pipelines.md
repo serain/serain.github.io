@@ -42,7 +42,7 @@ Minimizing your attack surface is a basic security principle.
 
 Let's say you have something like Jenkins running on your network. There's [150 CVEs for Jenkins core](https://www.cvedetails.com/vulnerability-list.php?vendor_id=15865&product_id=34004&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=150&sha=42dfa4c7d4f30241bc7fa7cb4e94138bcf01a35e), with 15 of those just from 2019. This figure excludes plugin vulnerabilities - [of which there are many more](https://jenkins.io/security/advisories/) (not to mention the risk of supply-chain attacks with those).
 
-To add to the fun, [_reflected_ cross-site scripting in Jenkins](https://www.google.com/search?client=firefox-b-d&q=jenkins+reflected+xss) can lead to remote code execution (RCE) on the Jenkins host, meaning attackers can probably gain an initial foothold into [quite a few companies](https://crt.sh/?q=jenkins.%25) with some innocuous phishing or watering hole attacks (you did click on a random link to view this blog post, didn't you? 🙃).
+To add to the fun, [_reflected_ Cross-Site Scripting in Jenkins](https://www.google.com/search?client=firefox-b-d&q=jenkins+reflected+xss) can lead to remote code execution on the Jenkins host, meaning attackers can probably gain an initial foothold into [quite a few companies](https://crt.sh/?q=jenkins.%25) with some innocuous phishing or watering hole attacks (you did click on a random link to view this blog post, didn't you? 🙃).
 
 RCE on your Jenkins host is bad enough, but if you have production deployment secrets on there it's game over.
 
