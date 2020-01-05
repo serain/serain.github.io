@@ -58,7 +58,7 @@ layout: default
       </div>
       <p></p>
       <p></p>
-      <ul class="post-list">{% for post in posts %}
+      <ul class="post-list">{% for post in paginator.posts %}
         <li class="titlepost">
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
           <div class="datepost">
