@@ -113,7 +113,7 @@ And just like that, the state of your cluster is version controlled, auditable a
 
 More importantly though, you can go ahead and remove cluster access from your CI/CD tool. Your CD pipeline now looks like this (notice the direction of the arrows):
 
-![gitops pipeline](https://alex.kaskaso.li/images/posts/traditional_pipeline.png "gitops pipeline"){: .center-image }
+![gitops pipeline](https://alex.kaskaso.li/images/posts/gitops_pipeline.png "gitops pipeline"){: .center-image }
 
 Because your CD tool now sits in your k8s cluster and uses a _pull-based_ approach, an attacker would already need privileged access to your cluster to abuse it (read: there's no point attacking the CD tool now).
 
