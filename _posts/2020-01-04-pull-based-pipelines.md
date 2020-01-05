@@ -138,9 +138,13 @@ So we've not really solved the problem at this point. If the CI/CD tool is compr
 
 The solution seems straightforward at this point: building and adding new images to the container registry should also be done with a pull-based approach. We need a daemon that polls application repositories for peer-reviewed (trusted) changes to `master`. Upon a change, it builds the application's Dockerfile and safely puts the image in the container registry.
 
+What we're looking for is something like this:
+
+![pull pipeline](https://alex.kaskaso.li/images/posts/traditional_pipeline.png "pull pipeline"){: .center-image }
+
 Such a service would have no network attack surface and wouldn't risk leaking any image deployment secrets.
 
-I'm playing around with a proof-of-concept that polls repos and uses Google's [_kaniko_](https://github.com/GoogleContainerTools/kaniko) to build images in a safe location.
+I've been playing around with a proof-of-concept that polls repos and uses Google's [_kaniko_](https://github.com/GoogleContainerTools/kaniko) to build images in a safe location.
 
 ## TL;DR
 
