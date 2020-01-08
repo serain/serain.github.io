@@ -20,7 +20,7 @@ Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a secur
 
 ## Hazards of push-based CI/CD tooling
 
-Let's define "push-based" in this context: if you're using something like CircleCI or Jenkins to deploy, those tools are _pushing_ your services:
+Let's define "push-based" in this context. If you're using something like CircleCI or Jenkins to deploy, those tools are _pushing_ your services:
 * they're building and _pushing_ your image to a container registry
 * they're _pushing_ your updated manifests to production
 
@@ -30,7 +30,7 @@ So the engineers have access to the CI/CD tooling, and the CI/CD tooling has acc
 
 We'll see how this contrasts with a pull-based approach later.
 
-First, what's the issue with tools like Jenkins or CirleCI for deployment? My main security arguments against traditional CI/CD tools are:
+First, what's the issue with tools like Jenkins or CircleCI for deployment? My main security arguments against traditional CI/CD tools are:
 
 * the network attack surface
 * disappointing access controls over secrets (looking at you CircleCI)
@@ -50,13 +50,13 @@ RCE on your Jenkins host is bad enough, but if you have production deployment se
 
 ![oprah secrets](https://alex.kaskaso.li/images/posts/oprah_secrets.jpg "oprah secrets"){: .center-image }
 
-I'll talk about CirleCI here but this applies to other CI/CD tools.
+I'll talk about CircleCI here but this applies to other CI/CD tools.
 
 Everything is Agile and DevOps, so you want to allow your engineers to deploy multiple times a day, with minimal friction.
 
 You have branch protections on your `master` branch and require one or more peer review of changes before a branch can be merged into `master`. So the CI/CD flow you'd expect is maybe something like:
 * Alice pushes a new branch with some changes
-* CirleCI runs some tests in the branch
+* CircleCI runs some tests in the branch
 * Bob reviews Alice's branch and approves the changes
 * Alice merges branch into `master`
 * CircleCI, from `master`:
