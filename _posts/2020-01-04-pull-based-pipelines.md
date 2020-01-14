@@ -18,6 +18,10 @@ Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a secur
 
 ![devops unicorn](https://alex.kaskaso.li/images/posts/devops-security-unicorn.png "devops unicorn"){: .center-image }
 
+## Note
+
+I originally published this on [Medium](https://medium.com/@alexkaskasoli/pull-based-cd-pipelines-for-security-4e044b403f56). It is reproduced here as a mirror.
+
 ## Hazards of push-based CI/CD tooling
 
 Let's define "push-based" in this context. If you're using something like CircleCI or Jenkins to deploy, those tools are _pushing_ your services:
