@@ -64,10 +64,10 @@ You have branch protections on your `master` branch and require one or more peer
 * Bob reviews Alice's branch and approves the changes
 * Alice merges branch into `master`
 * CircleCI, from `master`:
-* runs tests again
-* builds image
-* pushes image to the container registry
-* deploys
+    - runs tests again
+    - builds image
+    - pushes image to the container registry
+    - deploys
 
 It may be tempting to think that only CircleCI has access to deployment secrets in the scenario above, or that only a peer-reviewed `master` branch can be pushed to your container registry and deployed to production.
 
