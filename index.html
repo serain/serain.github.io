@@ -1,33 +1,45 @@
 ---
 layout: default
 ---
+
 <div class="home">
   <div class="content-col-wrapper">
     <div class="content-col">
       <div class="dummy">
-        <b><span class="big">Hey!</span></b> {{ site.description }}
-        <br><br>
-        ♨ <b><span class="big">Tools and projects.</span></b><br>
+        <b><span class="big">Hey!</span></b> {{ site.description }} <br /><br />
+        ♨ <b><span class="big">Tools and projects.</span></b
+        ><br />
 
         <div class="projects">
           <ul class="post-list">
             <li class="titlepost">
-              <a class="post-link" href="https://github.com/mwrlabs/dref">DNS Rebinding Exploitation Framework
-                (dref)</a>
+              <a class="post-link" href="https://github.com/serain/bbrecon"
+                >Bug Bounty Recon (bbrecon)</a
+              >
             </li>
             <li class="titlepost">
-              <a class="post-link" href="https://github.com/serain/mailspoof">mailspoof</a>
+              <a class="post-link" href="https://github.com/mwrlabs/dref"
+                >DNS Rebinding Exploitation Framework (dref)</a
+              >
             </li>
             <li class="titlepost">
-              <a class="post-link" href="https://github.com/serain/netmap.js">netmap.js</a>
+              <a class="post-link" href="https://github.com/serain/mailspoof"
+                >mailspoof</a
+              >
             </li>
             <li class="titlepost">
-              <a class="post-link" href="https://github.com/serain/k8s-lab">Kubernetes Lab (K8s from
-                Terraform/Ansible)</a>
+              <a class="post-link" href="https://github.com/serain/netmap.js"
+                >netmap.js</a
+              >
+            </li>
+            <li class="titlepost">
+              <a class="post-link" href="https://github.com/serain/k8s-lab"
+                >Kubernetes Lab (K8s from Terraform/Ansible)</a
+              >
             </li>
           </ul>
-        </div><br>
-
+        </div>
+        <br />
 
         <!-- <div class="photos">
                 <a href="https://www.instagram.com/p/BCI1dwchQX5/" class="p0 photo" target="_blank">
@@ -58,13 +70,17 @@ layout: default
       </div>
       <p></p>
       <p></p>
-      <ul class="post-list">{% for post in paginator.posts %}
+      <ul class="post-list">
+        {% for post in paginator.posts %}
         <li class="titlepost">
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}"
+            >{{ post.title }}</a
+          >
           <div class="datepost">
             <span class="post-meta">{{ post.date | date: "%-d %b %Y" }}</span>
           </div>
-        </li>{% endfor %}
+        </li>
+        {% endfor %}
       </ul>
     </div>
     <!-- </div>{% if paginator.previous_page %}
@@ -76,3 +92,4 @@ layout: default
   </a>{% else %}{% endif %} -->
     {% include nav.html %}
   </div>
+</div>
