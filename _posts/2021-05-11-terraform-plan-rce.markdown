@@ -10,7 +10,7 @@ description: "Running a Terraform plan on unstrusted code can lead to RCE and cr
 
 # Terraform Plan "RCE"
 
-Based on a couple of recent conversations and blog posts on Terraform pull request automation, it seems that a lot of people don't realise that running a `terraform plan` on untrusted code can lead to remote code execution. If you're running a `plan` on production resources from untrusted code (say, on a pull request before it's been reviewed and merged to a protected production branch) then that untrusted code could run any commands it wants in your CI/CD pipeline. This could lead to production credentials being exfiltrated, for example.
+Based on a couple of recent conversations and blog posts on Terraform pull request automation, it seems that a lot of people don't realise that running a `terraform plan` on untrusted code can lead to remote code execution. If you're running a `plan` on production resources from untrusted code (say, on a pull request before it's been reviewed and merged to a protected production branch) then that untrusted code could run any commands it wants in your production CI/CD pipeline. This could lead to production credentials being exfiltrated, for example.
 
 This also affects Terraform pull request automation solutions like [Atlantis](https://www.runatlantis.io/).
 
@@ -23,6 +23,8 @@ We'll assume there's a CI/CD pipeline for a repository that contains Infrastruct
 It's not rare for companies to encourage developers to submit a PR to an infrastructure repository for infrastructure they need. That PR will then be reviewed and merged by a member of an Ops team. In these cases, it could be that anyone in the company with access to the VCS can submit a PR to the infrastructure repository.
 
 In other cases teams may be running their own infrastructure end-to-end but still protect their production branch, and so expect production infrastructure changes to be peer-reviewed.
+
+In both of these cases, an attacker can essentially bypass your protections on production infrastructure changes if they're in a position to submit a PR to an infrastructure repository.
 
 We'll now discuss how this approach to "production planning on the PR" can lead to arbitrary code execution in the CI/CD pipeline, which can in turn leak production credentials.
 
