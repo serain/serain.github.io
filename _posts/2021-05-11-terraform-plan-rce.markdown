@@ -12,7 +12,7 @@ description: "Running a Terraform plan on unstrusted code can lead to RCE and cr
 
 Based on a couple of recent conversations and blog posts on Terraform pull request automation, it seems that a lot of people don't realise that running a `terraform plan` on untrusted code can lead to remote code execution. If you're running a `plan` on production resources from untrusted code (say, on a pull request before it's been reviewed and merged to `main` or `master`) then that untrusted code could run any commands it wants in your CI/CD pipeline. This could lead to credential exfiltration for example.
 
-This also affects Terraform pull request automation solutions, like (Atlantis)[https://www.runatlantis.io/].
+This also affects Terraform pull request automation solutions, like (Atlantis)[https://www.runatlantis.io/] .
 
 We'll start by discussing two main ways to do this, before discussing remediation. We'll then leave the reader with a take-home exercise to find a way around the remediation (and DM me the answer the answer on Twitter please!).
 
