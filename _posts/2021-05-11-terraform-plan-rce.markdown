@@ -37,7 +37,7 @@ That's it:
 - add the provider to the Terraform code in a feature branch
 - open a PR for the feature branch
 
-Since the provider will be pulled in during an `init` and run some code during the `plan`, you have arbitrary code execution.
+Since the provider will be pulled in during the `init` and run some code during the `plan`, you have arbitrary code execution.
 
 ## Using the `external` Provider
 
