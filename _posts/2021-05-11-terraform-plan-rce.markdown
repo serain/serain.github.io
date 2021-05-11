@@ -67,7 +67,7 @@ By default, Terraform will search for, and install, plugins using default search
 $ terraform plan -plugin-dir /tf/plugins
 ```
 
-This will prevent Terraform from dynamically pulling new plugins.
+This will prevent Terraform from dynamically pulling in new plugins.
 
 ### Don't do a production `plan` on untrusted code!
 
