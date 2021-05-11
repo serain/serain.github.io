@@ -18,7 +18,7 @@ We'll start by discussing two ways to do this before covering remediation. We'll
 
 ## Setup
 
-We'll assume there's a CI/CD pipeline for a repository that contains Infrastructure-as-Code. At some point after a PR is opened and before the PR has been accepted and merged to a protected branch, the CI/CD pipeline runs a `terraform init` followed by a `terraform plan` on the production infrastructure. People usually do this so you can see how a PR will affect production before it's merged.
+We'll assume there's a CI/CD pipeline for a repository that contains Infrastructure-as-Code. At some point after a PR is opened and before the PR has been accepted and merged to a protected production branch, the CI/CD pipeline runs a `terraform init` followed by a `terraform plan` on the production infrastructure. People usually do this so you can see how a PR will affect production before it's merged.
 
 It's not rare for companies to encourage developers to submit a PR to an infrastructure repository for infrastructure they need. That PR will then be reviewed and merged by a member of an Ops team. In these cases, it could be that anyone in the company with access to the VCS can submit a PR to the infrastructure repository.
 
@@ -57,7 +57,7 @@ The `query` will be passed as a JSON string on `stdin` to the `program`; you cou
 
 ## Remediation
 
-There's a few things to keep in mind. If you're using a PR automation solution like Atlantis you can also apply some of this by modifying the default Atlantis workflows.
+There's a few things to keep in mind. If you're using Atlantis you can also apply some of this by modifying the default Atlantis workflows.
 
 ### `-plugin-dir`
 
