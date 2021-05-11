@@ -28,7 +28,9 @@ We'll now discuss how this approach to "production planning on the PR" can lead 
 
 ## Using a Custom Provider
 
-Anyone can write a [custom provider](https://learn.hashicorp.com/tutorials/terraform/provider-setup) and publish it to the [Terraform Registry](https://registry.terraform.io/). That's it:
+Anyone can write a [custom provider](https://learn.hashicorp.com/tutorials/terraform/provider-setup) and publish it to the [Terraform Registry](https://registry.terraform.io/).
+
+That's it:
 
 - write a custom provider than runs some code you want, like exfiltrating credentials
 - publish it to the Terraform Registry
