@@ -91,4 +91,8 @@ Let's say I'm using `-plugin-dir` and only using plugins I trust and have instal
 
 **Can you find a way to abuse common providers that are likely to be present to run arbitrary code or exfiltrate credentials during a `terraform plan`?**
 
+Or alternatively:
+
+**Can you think of a way to do this with core functionality?**
+
 If you find a way, tweet me at [@\_alxk](https://twitter.com/_alxk)!
