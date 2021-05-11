@@ -75,7 +75,7 @@ In fact Alice, Bob and everyone else on that team can trivially pull the deploy 
 
 In the above scenario, compromising a single engineer is enough to gain access to production through CircleCI (at least to the extent their context allows).
 
-It should be noted that Travis and GitHub Actions offer better controls, allowing you to restrict secrets on a per-branch basis. You would therefor only expose deployment secrets to `master` code that's been peer-reviewed (and therefor assumed safe). Still, that's production deployment secrets outside of the trust boundary of your production environment. As we'll see later, this is not necessary.
+It should be noted that Travis and other solutions offer better controls, allowing you to restrict secrets on a per-branch basis. You would therefor only expose deployment secrets to `master` code that's been peer-reviewed (and therefor assumed safe). Still, that's production deployment secrets outside of the trust boundary of your production environment. As we'll see later, this is not necessary.
 
 ### Sharing is not caring
 
