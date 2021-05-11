@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Terraform Plan "RCE"'
-date: 2020-01-04T23:00:55+00:00
+date: 2021-05-11T11:00:00+00:00
 author: alxk
 sitemap: false
 keywords: "security terraform cicd"
@@ -39,7 +39,7 @@ Since the provider will be pulled in during an `init` and run some code during t
 
 ## Using the `external` Provider
 
-A much more elegant solution was suggested by one of my colleagues. Terraform offers the [`external` provider](https://registry.terraform.io/providers/hashicorp/external/latest/docs) which provides a way to interface between Terraform and external programs. You can use the `external` data source to run arbitrary code that will also be executed during a plan. The following example is given by Terraform in the [docs](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source):
+A much more elegant solution was suggested by my colleague [Chongyang Shi](https://scy.email). Terraform offers the [`external` provider](https://registry.terraform.io/providers/hashicorp/external/latest/docs) which provides a way to interface between Terraform and external programs. You can use the `external` data source to run arbitrary code that will also be executed during a plan. The following example is given by Terraform in the [docs](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/data_source):
 
 ```
 data "external" "example" {
