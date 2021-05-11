@@ -85,6 +85,6 @@ A `terraform plan` is not as passive as you may think and it's not necessarily a
 
 Let's say I'm using `-plugin-dir` and only using plugins I trust and have installed locally in my CI/CD pipeline. Think of the standard plugins for cloud providers and maybe some common plugins for managing databases.
 
-**Can you find a way to abuse common providers that are likely to be present to run arbitrary code or exfiltrate credentials?**
+**Can you find a way to abuse common providers that are likely to be present to run arbitrary code or exfiltrate credentials during a `terraform plan`?**
 
 If you find a way, tweet me at [@\_alxk](https://twitter.com/_alxk)!
