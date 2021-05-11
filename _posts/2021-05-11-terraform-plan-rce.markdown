@@ -57,8 +57,6 @@ The `query` will be passed as a JSON string on `stdin` to the `program`; you cou
 
 ## Remediation
 
-There's a few things to keep in mind. If you're using Atlantis you can also apply some of this by modifying the default Atlantis workflows.
-
 ### `-plugin-dir`
 
 By default, Terraform will search for, and install, plugins using default search paths. This includes pulling the plugins directly from the Terraform Registry. You can instead install the plugins yourself in a local directory and pass the `-plugin-dir` option to the `plan`:
@@ -68,6 +66,8 @@ $ terraform plan -plugin-dir /tf/plugins
 ```
 
 This will prevent Terraform from dynamically pulling in new plugins.
+
+If you're using Atlantis you may also be able to do this by modifying the default Atlantis workflows.
 
 ### Don't do a production `plan` on untrusted code!
 
