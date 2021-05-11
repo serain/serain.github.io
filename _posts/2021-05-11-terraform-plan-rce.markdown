@@ -14,7 +14,7 @@ Based on a couple of recent conversations and blog posts on Terraform pull reque
 
 This also affects Terraform pull request automation solutions, like (Atlantis)[https://www.runatlantis.io/] .
 
-We'll start by discussing two ways to do this, before discussing remediation. We'll then leave the reader with a take-home exercise to find a way around the remediation (and DM me the answer the answer on Twitter please!).
+We'll start by discussing two ways to do this before covering remediation. We'll then leave the reader with a take-home exercise to find a way around the remediation (and DM me the answer the answer on Twitter please!).
 
 ## Setup
 
