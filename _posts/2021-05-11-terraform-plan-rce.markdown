@@ -77,6 +77,10 @@ Alternatively - or additionally - don't run a production `plan` on untrusted cod
 
 Ideally you use read-only roles for running your `plan`. This is not always practical though and note that even if you can pull this off in AWS or GCP, you may have other things (like database credentials) in your Terraform state file that could be exfiltrated by untrusted code.
 
+## Bad Remediation
+
+It has been suggested to me that the way to protect against this is to use tight egress controls in your CI/CD pipeline. I don't agree with that. Most people are likely using Terraform to manage their cloud environments and no network egress controls on the CI/CD runner will prevent exfiltration via cloud resources like S3 buckets.
+
 ## Conclusion
 
 A `terraform plan` is not as passive as you may think and it's not necessarily a read-only operation. There is code running and running a `plan` on untrusted code can be risky.
