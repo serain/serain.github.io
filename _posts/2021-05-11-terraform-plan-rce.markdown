@@ -10,7 +10,7 @@ description: "Running a Terraform plan on unstrusted code can lead to RCE and cr
 
 # Terraform Plan "RCE"
 
-Based on a couple of recent conversations and blog posts on Terraform pull request automation, it seems that a lot of people don't realise that running a `terraform plan` on untrusted code can lead to remote code execution. If you're running a `plan` on production resources from untrusted code (say, on a pull request before it's been reviewed and merged to a protected production branch) then that untrusted code could run any commands it wants in your production CI/CD pipeline. This could lead to production credentials being exfiltrated, for example.
+Based on a couple of recent conversations and blog posts on Terraform pull request automation, it seems that a lot of people don't realise that running a `terraform plan` on untrusted code can lead to remote code execution. If you're running a `plan` on production resources from untrusted code (say, on a pull request before it's been reviewed and merged to a protected production branch) then that untrusted code could run any commands it wants in your production CI/CD pipeline. This could lead to production credentials or customer data being exfiltrated, for example.
 
 This also affects Terraform pull request automation solutions like [Atlantis](https://www.runatlantis.io/).
 
@@ -32,7 +32,7 @@ Anyone can write a [custom provider](https://learn.hashicorp.com/tutorials/terra
 
 That's it:
 
-- write a custom provider than runs some malicious code (like exfiltrating credentials)
+- write a custom provider than runs some malicious code (like exfiltrating credentials or customer data)
 - publish it to the Terraform Registry
 - add the provider to the Terraform code in a feature branch
 - open a PR for the feature branch
