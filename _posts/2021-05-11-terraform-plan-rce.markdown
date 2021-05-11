@@ -79,7 +79,7 @@ Ideally you use read-only roles for running your `plan`. This is not always prac
 
 ## Bad Remediation
 
-It has been suggested to me that the way to protect against this is to use tight egress controls in your CI/CD pipeline. I don't agree with that. Most people are likely using Terraform to manage their cloud environments and no network egress controls on the CI/CD runner will prevent exfiltration via cloud resources like S3 buckets.
+It may be suggested that the way to protect against this is to use tight egress controls around your CI/CD pipeline and your production environment. I don't agree with that. Most people are likely using Terraform to manage their cloud environments and no egress controls on the CI/CD runner will prevent exfiltration via cloud services like S3 buckets. In addition, the runner may have enough privileges to modify its own egress controls.
 
 ## Conclusion
 
