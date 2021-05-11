@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Terraform Plan "RCE"'
+title: "Terraform Plan RCE"
 date: 2021-05-11T11:00:00+00:00
 author: alxk
 sitemap: false
