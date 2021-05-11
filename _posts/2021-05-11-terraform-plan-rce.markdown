@@ -18,7 +18,7 @@ We'll start by discussing two ways to do this before covering remediation. We'll
 
 ## Setup
 
-We'll assume there's a CI/CD pipeline for a repository that contains Infrastructure-as-Code. At some point after a PR is opened and before the PR has been accepted and merged to a protected branch, the CI/CD pipeline runs a `terraform init` followed by a `terraform plan` on the production infrastructure. People usually do this so you can see how a PR will affect production before it's merged. Note that in order to do this, some form of production credentials will have to be present during the `plan`. Also note that if you're managing a database in Terraform, for example, then database credentials will be present in your state file.
+We'll assume there's a CI/CD pipeline for a repository that contains Infrastructure-as-Code. At some point after a PR is opened and before the PR has been accepted and merged to a protected branch, the CI/CD pipeline runs a `terraform init` followed by a `terraform plan` on the production infrastructure. People usually do this so you can see how a PR will affect production before it's merged.
 
 It's not rare for companies to encourage developers to submit a PR to an infrastructure repository for infrastructure they need. That PR will then be reviewed and merged by a member of an Ops team. In these cases, it could be that anyone in the company with access to the VCS can submit a PR to the infrastructure repository.
 
