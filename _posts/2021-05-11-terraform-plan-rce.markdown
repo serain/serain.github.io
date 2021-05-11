@@ -22,7 +22,7 @@ We'll assume there's a CI/CD pipeline for a repository that contains Infrastruct
 
 It's not rare for companies to encourage developers to submit a PR to an infrastructure repository for infrastructure they need. That PR will then be reviewed and merged by a member of an Ops team. In these cases, it could be that anyone in the company with access to the VCS can submit a PR to the infrastructure repository.
 
-In other cases, teams may be running their own infrastructure end-to-end, but still protect the `main` or `master` branch, and so expect PR's to be peer-reviewed before changes can affect production.
+In other cases, teams may be running their own infrastructure end-to-end, but still protect the `main` or `master` branch, and so expect production infrastructure changes to be peer-reviewed before.
 
 We'll now discuss how this approach to "production planning on the PR" can lead to arbitrary code execution in the CI/CD pipeline, which can in turn leak production credentials.
 
