@@ -92,7 +92,7 @@ Alternatively - or additionally - don't run a production `plan` on untrusted cod
 
 ### Read-only `plan` role
 
-Ideally you use read-only roles for running your `plan`. This is not always practical though and note that even if you can pull this off in AWS or GCP, you may have other things (like database credentials) in your Terraform state file that could be exfiltrated by untrusted code.
+Ideally you use read-only roles for running your `plan`. This is not always practical though and note that even if you can pull this off in AWS or GCP, you may have other things (like database credentials) in your Terraform state file or environment that could be accessed by untrusted code.
 
 ## Bad Remediation
 
