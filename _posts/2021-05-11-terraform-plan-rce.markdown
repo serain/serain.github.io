@@ -26,7 +26,7 @@ It's not rare for companies to encourage developers to submit a PR to an infrast
 
 In other cases teams may be running their own infrastructure end-to-end but still protect their production branch, and so expect production infrastructure changes to be peer-reviewed.
 
-We'll now discuss how this approach to "production planning on the PR" can lead to arbitrary code execution in the CI/CD pipeline in the production context. An attacker who is in a position to open a PR can use this to exfitrate credentials or customer data, bypassing defensive measures like production branch protections.
+We'll now discuss how this approach to "production planning on the PR" can lead to arbitrary code execution in the CI/CD pipeline in the production context. An attacker who is in a position to open a PR can use this to exfitrate production credentials or customer data, bypassing defensive measures like production branch protections.
 
 ## Using a Custom Provider
 
