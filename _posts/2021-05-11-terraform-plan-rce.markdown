@@ -76,9 +76,11 @@ The `query` will be passed as a JSON string on `stdin` to the `program`; you cou
 
 ## Abusing Common Providers
 
-After extending this discussion to a cloud security forum, a couple of people have suggested ways of exfiltrating variables by abusing common providers that are likely already used by a target.
+After extending this discussion to a cloud security forum, a couple of people have suggested ways of exfiltrating variables by abusing common providers that are likely already in use.
 
-For example, as an attacker you could leverage the AWS provider to request a resource in another account you control and set the resource name to a Terraform variable you want to exfiltrate. After opening a PR and letting the `plan` run, you would then check the CloudTrail logs in the other account to retrieve the value.
+For example, as an attacker you could leverage the AWS provider to lookup a resource in another account you control and set the resource name to a Terraform variable you want to exfiltrate from the production CI/CD context. Terraform will attempt to refresh that resource during the `plan`. After opening a PR and letting the `plan` run, you would then check the CloudTrail logs in the other account to retrieve the value.
+
+I've not tried this yet, but it seems plausible.
 
 ## Remediation
 
@@ -94,7 +96,7 @@ This will prevent Terraform from dynamically pulling in new plugins.
 
 If you're using Atlantis you may also be able to do this by modifying the default Atlantis workflows.
 
-I have to caution that while `-plugin-dir` with whitelisted providers may be a mitigation against arbitrary RCE, it is unlikely to be sufficient to prevent exfiltration of variables via more creative ways (see "Abusing Common Providers" above).
+Note that while `-plugin-dir` with whitelisted providers may be a mitigation against arbitrary RCE, it is unlikely to be sufficient to prevent exfiltration of variables via more creative ways.
 
 ### Read-only `plan` role
 
@@ -102,11 +104,11 @@ Ideally you use read-only roles for running your `plan`. This is not always prac
 
 ### Don't do a production `plan` on untrusted code!
 
-Just don't run a production `plan` on untrusted code! Only do a production `plan` on trusted code that's been peer-reviewed and merged to your protected production branch. Ideally you have a manual approval step after your production `plan` and before your production `apply`.
+Just don't run a production `plan` on untrusted code! Only do a production `plan` on trusted code that's been peer-reviewed and merged to your protected production branch. You should still have a manual approval step after your production `plan` and before your production `apply`.
 
 ## Conclusion
 
-A `terraform plan` is not as passive as you may think. If you run plans on PRs you could be opening a path to bypassing branch protections and your expected two-person process for production changes.
+A `terraform plan` is not as passive as you may think. If you run production plans on PRs you could be opening a path to bypassing branch protections and any expected process you have for production access.
 
 An attacker may only need to compromise one of your engineers to abuse the Infrastructure-as-Code CI/CD pipeline and move to production.
 
