@@ -76,7 +76,7 @@ The `query` will be passed as a JSON string on `stdin` to the `program`; you cou
 
 ## Abusing Common Providers
 
-After extending this discussion to a cloud security forum, a couple of people have suggested ways of exfiltrating variables by abusing common providers.
+After extending this discussion to a cloud security forum, a couple of people have suggested ways of exfiltrating variables by abusing common providers that are likely already used by a target.
 
 For example, as an attacker you could leverage the AWS provider to request a resource in another account you control and set the resource name to a Terraform variable you want to exfiltrate. After opening a PR and letting the `plan` run, you would then check the CloudTrail logs in the other account to retrieve the value.
 
