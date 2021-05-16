@@ -110,4 +110,4 @@ A `terraform plan` is not as passive as you may think. If you run plans on PRs y
 
 An attacker may only need to compromise one of your engineers to abuse the Infrastructure-as-Code CI/CD pipeline and move to production.
 
-If you want to discuss this hit me up on Twitter [@\_alxk](https://twitter.com/_alxk).
+If you want to discuss this feel free to hit me up on Twitter [@\_alxk](https://twitter.com/_alxk)!
