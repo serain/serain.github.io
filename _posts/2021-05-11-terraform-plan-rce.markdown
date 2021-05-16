@@ -80,6 +80,8 @@ After extending this discussion to a cloud security forum, a couple of people ha
 
 For example, as an attacker you could leverage the AWS provider to lookup a resource in another account you control and set the resource name to a Terraform variable you want to exfiltrate from the production CI/CD context. Terraform will attempt to refresh that resource during the `plan`. After opening a PR and letting the `plan` run, you would then check the CloudTrail logs in the other account to retrieve the value.
 
+I've not tried this yet, but it seems plausible.
+
 ## Remediation
 
 ### `-plugin-dir`
