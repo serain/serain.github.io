@@ -96,14 +96,16 @@ If you're using Atlantis you may also be able to do this by modifying the defaul
 
 I have to caution that while `-plugin-dir` with whitelisted providers may be a mitigation against arbitrary RCE, it is unlikely to be sufficient to prevent exfiltration of variables via more creative ways (see "Abusing Common Providers" above).
 
-### Don't do a production `plan` on untrusted code!
-
-Alternatively - or additionally - don't run a production `plan` on untrusted code! Only do a production `plan` on trusted code that's been peer-reviewed and merged to your protected production branch. Ideally you have a manual approval step after your production `plan` and before your production `apply`. If something looks fishy in the `plan`, open another PR to revert the last changes.
-
 ### Read-only `plan` role
 
 Ideally you use read-only roles for running your `plan`. This is not always practical though and note that even if you can pull this off in AWS or GCP, you may have other things (like database credentials) in your Terraform state file or environment that could be accessed by untrusted code.
 
+### Don't do a production `plan` on untrusted code!
+
+Just don't run a production `plan` on untrusted code! Only do a production `plan` on trusted code that's been peer-reviewed and merged to your protected production branch. Ideally you have a manual approval step after your production `plan` and before your production `apply`.
+
 ## Conclusion
 
-A `terraform plan` is not as passive as you may think and it's not necessarily a read-only operation. There is code running and running a `plan` on untrusted code can be risky.
+A `terraform plan` is not as passive as you may think. If you run plans on PRs you could be opening a path to bypassing branch protections and your expected two-person process for production changes.
+
+An attacker may only need to compromise one of your engineers to abuse the Infrastructure-as-Code CI/CD pipeline and move to production.
