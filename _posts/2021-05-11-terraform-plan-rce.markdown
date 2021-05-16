@@ -109,3 +109,5 @@ Just don't run a production `plan` on untrusted code! Only do a production `plan
 A `terraform plan` is not as passive as you may think. If you run plans on PRs you could be opening a path to bypassing branch protections and your expected two-person process for production changes.
 
 An attacker may only need to compromise one of your engineers to abuse the Infrastructure-as-Code CI/CD pipeline and move to production.
+
+If you want to discuss this hit me up on Twitter [@\_alxk](https://twitter.com/_alxk).
