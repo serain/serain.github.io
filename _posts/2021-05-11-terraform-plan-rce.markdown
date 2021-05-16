@@ -78,6 +78,8 @@ The `query` will be passed as a JSON string on `stdin` to the `program`; you cou
 
 ### `-plugin-dir`
 
+> Update: After opening the discussion on a forum, I have to caution that while `-plugin-dir` with whitelisted providers may be a mitigation against arbitrary RCE, it is unlikely to be sufficient to prevent exfiltration of credentials via more creative ways. It seems likely you could abuse the AWS provider (for example) to exfiltrate any variable Terraform has access to. The idea would be to request a resource on another AWS account you control, setting the target resource name to a variable you want to exfiltrate. You could then check the CloudTrail logs in the other account to retrieve the value. I'm inclined to say you should just forget about running Terraform plans on PRs if you expect a two-person rule to be enforced for security reasons (see next section).
+
 By default, Terraform will search for, and install, plugins using default search paths. This includes pulling the plugins directly from the Terraform Registry. You can instead install the plugins yourself in a local directory and pass the `-plugin-dir` option to the `plan`:
 
 ```
