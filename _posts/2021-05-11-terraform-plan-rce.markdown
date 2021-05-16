@@ -74,7 +74,7 @@ data "external" "example" {
 
 The `query` will be passed as a JSON string on `stdin` to the `program`; you could use this to grab variables from Terraform.
 
-### Abusing Common Providers
+## Abusing Common Providers
 
 After extending the discussion on a cloud security forum, a couple of people have suggested ways of exfiltrating variables by abusing common providers.
 
