@@ -14,7 +14,7 @@ Based on a couple of recent conversations and blog posts on Terraform pull reque
 
 This also affects Terraform pull request automation solutions like [Atlantis](https://www.runatlantis.io/).
 
-We'll start by discussing two ways to do this before covering remediation. We'll then leave the reader with a take-home exercise to find a way around the remediation (and DM me the answer on [Twitter](https://twitter.com/_alxk) please!)
+We'll start by discussing two ways to do this before covering remediation.
 
 ## Setup
 
@@ -74,11 +74,15 @@ data "external" "example" {
 
 The `query` will be passed as a JSON string on `stdin` to the `program`; you could use this to grab variables from Terraform.
 
+### Abusing Common Providers
+
+After extending the discussion on a cloud security forum, a couple of people have suggested ways of exfiltrating variables by abusing common providers.
+
+For example, as an attacker you could leverage the AWS provider to request a resource in another account you control and set the resource name to a Terraform variable. You could then check the CloudTrail logs in the other account to retrieve the value.
+
 ## Remediation
 
 ### `-plugin-dir`
-
-> Update: After opening the discussion on a forum, I have to caution that while `-plugin-dir` with whitelisted providers may be a mitigation against arbitrary RCE, it is unlikely to be sufficient to prevent exfiltration of credentials via more creative ways. It seems likely you could abuse the AWS provider (for example) to exfiltrate any variable Terraform has access to. The idea would be to request a resource on another AWS account you control, setting the target resource name to a variable you want to exfiltrate. You could then check the CloudTrail logs in the other account to retrieve the value. I'm inclined to say you should just forget about running Terraform plans on PRs if you expect a two-person rule to be enforced for security reasons (see next section).
 
 By default, Terraform will search for, and install, plugins using default search paths. This includes pulling the plugins directly from the Terraform Registry. You can instead install the plugins yourself in a local directory and pass the `-plugin-dir` option to the `plan`:
 
@@ -90,6 +94,8 @@ This will prevent Terraform from dynamically pulling in new plugins.
 
 If you're using Atlantis you may also be able to do this by modifying the default Atlantis workflows.
 
+I have to caution that while `-plugin-dir` with whitelisted providers may be a mitigation against arbitrary RCE, it is unlikely to be sufficient to prevent exfiltration of variables via more creative ways (see "Abusing Common Providers" above).
+
 ### Don't do a production `plan` on untrusted code!
 
 Alternatively - or additionally - don't run a production `plan` on untrusted code! Only do a production `plan` on trusted code that's been peer-reviewed and merged to your protected production branch. Ideally you have a manual approval step after your production `plan` and before your production `apply`. If something looks fishy in the `plan`, open another PR to revert the last changes.
@@ -98,22 +104,6 @@ Alternatively - or additionally - don't run a production `plan` on untrusted cod
 
 Ideally you use read-only roles for running your `plan`. This is not always practical though and note that even if you can pull this off in AWS or GCP, you may have other things (like database credentials) in your Terraform state file or environment that could be accessed by untrusted code.
 
-## Bad Remediation
-
-It may be suggested that the way to protect against this is to use tight egress controls around your CI/CD pipeline and your production environment. I don't agree with that. Most people are likely using Terraform to manage their cloud environments and no egress controls on the CI/CD runner will prevent exfiltration via cloud services like S3 buckets. In addition, the runner may have enough privileges to modify its own egress controls.
-
 ## Conclusion
 
 A `terraform plan` is not as passive as you may think and it's not necessarily a read-only operation. There is code running and running a `plan` on untrusted code can be risky.
-
-## Bonus: Can you hack this?
-
-Let's say I'm using `-plugin-dir` and only using plugins I trust and have installed locally in my CI/CD pipeline. Think of the standard plugins for cloud providers and maybe some common plugins for managing databases.
-
-**Can you find a way to abuse common providers that are likely to be present to run arbitrary code or exfiltrate credentials during a `terraform plan`?**
-
-Or alternatively:
-
-**Can you think of a way to do this with core functionality?**
-
-If you find a way, tweet me at [@\_alxk](https://twitter.com/_alxk)!
