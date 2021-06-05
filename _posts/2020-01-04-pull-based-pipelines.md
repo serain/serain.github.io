@@ -22,11 +22,14 @@ Ultimately, I'm arguing that "CI/CD" tools like CircleCI and Jenkins are a secur
 
 I originally published this on [Medium](https://medium.com/@alexkaskasoli/pull-based-cd-pipelines-for-security-4e044b403f56). It is reproduced here as a mirror.
 
+This post got picked up by [Google's Kubernetes podcast](https://kubernetespodcast.com/episode/086-invention-ibm-istio/) and [CloudSecList](https://cloudseclist.com/issues/issue-19/).
+
 ## Hazards of push-based CI/CD tooling
 
 Let's define "push-based" in this context. If you're using something like CircleCI or Jenkins to deploy, those tools are _pushing_ your services:
-* they're building and _pushing_ your image to a container registry
-* they're _pushing_ your updated manifests to production
+
+- they're building and _pushing_ your image to a container registry
+- they're _pushing_ your updated manifests to production
 
 So the engineers have access to the CI/CD tooling, and the CI/CD tooling has access to production. It looks like this (note the direction of the arrows):
 
@@ -36,9 +39,9 @@ We'll see how this contrasts with a pull-based approach later.
 
 First, what's the issue with tools like Jenkins or CircleCI for deployment? My main security arguments against traditional CI/CD tools are:
 
-* the network attack surface
-* disappointing access controls over secrets (looking at you CircleCI)
-* yet another third-party with your deployment secrets (for SaaS)
+- the network attack surface
+- disappointing access controls over secrets (looking at you CircleCI)
+- yet another third-party with your deployment secrets (for SaaS)
 
 ### Network attack surface
 
@@ -59,15 +62,16 @@ I'll talk about CircleCI here but this applies to other CI/CD tools.
 Everything is Agile and DevOps, so you want to allow your engineers to deploy multiple times a day, with minimal friction.
 
 You have branch protections on your `master` branch and require one or more peer review of changes before a branch can be merged into `master`. So the CI/CD flow you'd expect is maybe something like:
-* Alice pushes a new branch with some changes
-* CircleCI runs some tests in the branch
-* Bob reviews Alice's branch and approves the changes
-* Alice merges branch into `master`
-* CircleCI, from `master`:
-    - runs tests again
-    - builds image
-    - pushes image to the container registry
-    - deploys
+
+- Alice pushes a new branch with some changes
+- CircleCI runs some tests in the branch
+- Bob reviews Alice's branch and approves the changes
+- Alice merges branch into `master`
+- CircleCI, from `master`:
+  - runs tests again
+  - builds image
+  - pushes image to the container registry
+  - deploys
 
 It may be tempting to think that only CircleCI has access to deployment secrets in the scenario above, or that only a peer-reviewed `master` branch can be pushed to your container registry and deployed to production.
 
@@ -95,8 +99,8 @@ How does adopting the pull-based approach offered by _flux_ improve the security
 
 For those not in the loop, the _flux_ daemon sits _inside your k8s cluster_ and does two things:
 
-* it _pulls_ k8s manifests from a git repo, and applies them to the cluster
-* it monitors your container registry for newer images, and updates your k8s resources accordingly
+- it _pulls_ k8s manifests from a git repo, and applies them to the cluster
+- it monitors your container registry for newer images, and updates your k8s resources accordingly
 
 I'll just focus on the first point here for brevity ([the docs](https://docs.fluxcd.io/en/1.17.0/introduction.html#introducing-flux) give a good intro to the rest).
 
@@ -122,9 +126,10 @@ Because your CD tool now sits in your k8s cluster and uses a _pull-based_ approa
 _flux_ has no network attack surface and doesn't leak secrets.
 
 Your deployment access controls are now in your GitOps git repo and you probably want:
-* branch protections on `master`
-* a number of peer-reviews
-* require reviews from team members using CODEOWNERS
+
+- branch protections on `master`
+- a number of peer-reviews
+- require reviews from team members using CODEOWNERS
 
 With these measures, multiple engineers from the same team need to be compromised for an attacker to make his way to production through the CD pipeline.
 
