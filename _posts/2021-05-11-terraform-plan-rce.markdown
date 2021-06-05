@@ -16,6 +16,10 @@ This also affects Terraform pull request automation solutions like [Atlantis](ht
 
 We'll start by discussing a couple of ways to do this before covering remediation.
 
+## Note
+
+This post got picked up by [Cloud Posse](https://cloudposse.com/devops/office-hours/public-office-hours-2021-05-19/) and [CloudSecList](https://cloudseclist.com/issues/issue-87/).
+
 ## Setup
 
 We'll assume there's a CI/CD pipeline for a repository that contains Infrastructure-as-Code. At some point after a PR is opened and before the PR has been accepted and merged to a protected production branch, the CI/CD pipeline runs a `terraform init` followed by a `terraform plan` on the production infrastructure.
