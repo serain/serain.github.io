@@ -10,7 +10,7 @@ description: "Centralizing infrastructure logs in a large AWS organization."
 
 # AWS Org Logging: Centralization
 
-I recently had to design and implement a centralized cloud infrastructure logging solution for a relatively large AWS organization with many teams operating their own infrastructure. I discuss some of the design decisions I made here.
+I recently had to design and implement a centralized cloud infrastructure logging solution for a relatively large AWS organization with many teams operating their own infrastructure.
 
 I split the problem in two. In this post I will discuss centralizing logs from CloudTrail, S3 and CloudWatch into one account. I will discuss log normalization in a future post.
 
