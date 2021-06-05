@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "AWS Log Centralization"
-date: 2021-05-11T11:00:00+00:00
+date: 2021-06-05T11:00:00+00:00
 author: alxk
 sitemap: false
 keywords: "security terraform cicd"
