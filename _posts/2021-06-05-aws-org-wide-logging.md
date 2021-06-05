@@ -45,7 +45,7 @@ In a nutshell:
 
 - CloudTrail logging is configured at the organization level for all accounts in the organization. These logs are stored in a bucket in the logging account.
 - S3-based logs are first stored in S3 buckets in source accounts and replicated to a single bucket in the logging account via S3 object replication.
-- CloudWatch-based logs are first stored in CloudWatch Log Groups in source accounts and sent to a single Firehose destination in the logging account via a Subscription Filter.
+- CloudWatch-based logs are first stored in CloudWatch Log Groups in source accounts and sent to a single Firehose destination in the logging account via a Subscription Filter. Firehose dumps these logs into another S3 bucket.
 
 The pros of this solution are:
 
