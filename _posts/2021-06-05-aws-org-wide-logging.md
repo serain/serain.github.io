@@ -109,6 +109,6 @@ Some other considerations here include ensuring that sensitive parameters are no
 
 ## Closing Remarks
 
-At this point we have centralized all our infrastructure logs in a single account, allowing us to tightly control access and retention. However the logs are currently not stored in a particularly clean and usable fashion and have limited value.
+At this point we have centralized all our infrastructure logs in a single account, allowing us to tightly control access and retention. However the logs are currently not stored in a particularly useful way.
 
 In a future blog post we will discuss normalizing the logs to improve queryability and shipping select logs to other services for further analysis.
