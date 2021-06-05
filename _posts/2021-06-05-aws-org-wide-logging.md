@@ -71,7 +71,7 @@ Organization trails can't be disabled by accounts in our organization, however w
 
 S3 allows users to configure object replication for buckets. As the name indicates, this will replicate objects from one bucket into another bucket. We can use this to replicate objects from a single logging bucket in a source account to a destination bucket in the logging account.
 
-By using a single destination bucket and taking advantage of the default object prefix used by most AWS services for their logs (`AWSLogs\{account_id}\{service_logs}\...`), our logs will be neatly organized by account ID in the destination bucket, without any additional work required. You can check the diagram in the Overview section to see this illustrated. For services that don't use the default AWS prefix (e.g. CloudFront), the same object prefix should be manually configured when setting up logging for the service.
+By using a single destination bucket and taking advantage of the default object prefix used by most AWS services (`AWSLogs\{account_id}\{service_logs}\...`), our logs will be neatly organized by account ID in the destination bucket, without any additional work required. You can check the diagram in the Overview section to see this illustrated. For services that don't use the default AWS prefix (e.g. CloudFront), the same object prefix should be manually configured when setting up logging for the service.
 
 The following diagram illustrates the components of the S3 log replication pipeline:
 
