@@ -24,16 +24,16 @@ There are three types of AWS logs to consider:
 
 This table shows the destinations supported by some common AWS services:
 
-| Logs                                         | S3 &nbsp;&nbsp; | CloudWatch |
-| -------------------------------------------- | --------------- | ---------- |
-| VPC flow &nbsp;&nbsp;                        | ✅ &nbsp;&nbsp; | ✅         |
-| Route53 resolver queries &nbsp;&nbsp;        | ✅ &nbsp;&nbsp; | ✅         |
-| Load Balancer access (all types)&nbsp;&nbsp; | ✅ &nbsp;&nbsp; | ❌         |
-| CloudFront access &nbsp;&nbsp;               | ✅ &nbsp;&nbsp; | ❌         |
-| RDS query &nbsp;&nbsp;                       | ❌ &nbsp;&nbsp; | ✅         |
-| EKS audit &nbsp;&nbsp;                       | ❌ &nbsp;&nbsp; | ✅         |
-| API Gateway access &nbsp;&nbsp;              | ❌ &nbsp;&nbsp; | ✅         |
-| Elasticsearch &nbsp;&nbsp;                   | ❌ &nbsp;&nbsp; | ✅         |
+| &nbsp;&nbsp;Logs                                         | S3 &nbsp;&nbsp; | CloudWatch |
+| -------------------------------------------------------- | --------------- | ---------- |
+| &nbsp;&nbsp;VPC flow &nbsp;&nbsp;                        | ✅ &nbsp;&nbsp; | ✅         |
+| &nbsp;&nbsp;Route53 resolver queries &nbsp;&nbsp;        | ✅ &nbsp;&nbsp; | ✅         |
+| &nbsp;&nbsp;Load Balancer access (all types)&nbsp;&nbsp; | ✅ &nbsp;&nbsp; | ❌         |
+| &nbsp;&nbsp;CloudFront access &nbsp;&nbsp;               | ✅ &nbsp;&nbsp; | ❌         |
+| &nbsp;&nbsp;RDS query &nbsp;&nbsp;                       | ❌ &nbsp;&nbsp; | ✅         |
+| &nbsp;&nbsp;EKS audit &nbsp;&nbsp;                       | ❌ &nbsp;&nbsp; | ✅         |
+| &nbsp;&nbsp;API Gateway access &nbsp;&nbsp;              | ❌ &nbsp;&nbsp; | ✅         |
+| &nbsp;&nbsp;Elasticsearch &nbsp;&nbsp;                   | ❌ &nbsp;&nbsp; | ✅         |
 
 ## Architecture Overview
 
