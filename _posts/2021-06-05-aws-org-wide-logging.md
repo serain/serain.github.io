@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS Log Centralization"
+title: "AWS Org Logging: Centralization"
 date: 2021-06-05T11:00:00+00:00
 author: alxk
 sitemap: false
