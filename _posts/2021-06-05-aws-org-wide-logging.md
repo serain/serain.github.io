@@ -95,15 +95,15 @@ In a nutshell, CloudWatch Log Groups allow us to set up a CloudWatch Subscriptio
 
 > In AWS, we can set up a subscription to forward our (CloudWatch) logs to a destination.
 
-Here the CloudWatch Log Destination targets a Firehose in the logging account, and Firehose dumps its records into S3. Note that the CloudWatch Log Destination is in the logging account and is the same for the entire organisation.
+Here the CloudWatch Log Destination targets a Firehose in the logging account, and Firehose dumps its records into S3. Note that the CloudWatch Log Destination is in the logging account and is the same for the whole organisation.
 
-A key consideration here is that we will want to enforce a strict naming convention on CloudWatch Log Groups in order to identify the source service that generated the logs when we later normalize logs. Services like RDS and EKS will enforce the following naming convention for the CloudWatch Log Groups, but for some other services (e.g. API Gateway) we will have to configure it manually:
+A key consideration here is that we will want to enforce a strict naming convention on CloudWatch Log Groups in order to identify the source service that generated the logs when we later normalize logs. Services like RDS and EKS will enforce the same naming convention for the CloudWatch Log Groups by default, but for some other services (e.g. API Gateway) we will have to configure it manually:
 
 ```
 /aws/{service_initialism}/{resource_id}/{resource_type}
 ```
 
-Since Firehose logs the source account ID and the CloudWatch Log Group name in the records, we can use these to identify the account and resource that generated logs.
+Since Firehose logs the source account ID and the source CloudWatch Log Group name in the records, we can use these to identify the account and resource that generated the logs when we normalize them in the future.
 
 Some other considerations here include ensuring that sensitive parameters are not logged (in particular for RDS, we should disable query parameters by enabling "terse" logging for DBs) and noting that CloudWatch Log Destinations are scoped by region. This means that if we operate in more than one region we will need a CloudWatch Log Destination in each region (but these can all point to the same Firehose in any region).
 
