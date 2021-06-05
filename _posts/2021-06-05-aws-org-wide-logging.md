@@ -20,16 +20,18 @@ There are three types of AWS logs to consider:
 
 This table shows which destinations some common AWS services support:
 
-| Logs                             | S3  | CloudWatch |
-| -------------------------------- | --- | ---------- |
-| VPC flow                         | ✅  | ✅         |
-| Route53 resolver queries         | ✅  | ✅         |
-| Load Balancer access (all types) | ✅  | ❌         |
-| CloudFront access                | ✅  | ❌         |
-| RDS query                        | ❌  | ✅         |
-| EKS audit                        | ❌  | ✅         |
-| API Gateway access               | ❌  | ✅         |
-| Elasticsearch                    | ❌  | ✅         |
+| Logs                                         | S3 &nbsp;&nbsp; | CloudWatch |
+| -------------------------------------------- | --------------- | ---------- |
+| VPC flow &nbsp;&nbsp;                        | ✅ &nbsp;&nbsp; | ✅         |
+| Route53 resolver queries &nbsp;&nbsp;        | ✅ &nbsp;&nbsp; | ✅         |
+| Load Balancer access (all types)&nbsp;&nbsp; | ✅ &nbsp;&nbsp; | ❌         |
+| CloudFront access &nbsp;&nbsp;               | ✅ &nbsp;&nbsp; | ❌         |
+| RDS query &nbsp;&nbsp;                       | ❌ &nbsp;&nbsp; | ✅         |
+| EKS audit &nbsp;&nbsp;                       | ❌ &nbsp;&nbsp; | ✅         |
+| API Gateway access &nbsp;&nbsp;              | ❌ &nbsp;&nbsp; | ✅         |
+| Elasticsearch &nbsp;&nbsp;                   | ❌ &nbsp;&nbsp; | ✅         |
+
+&nbsp;
 
 Given the disparate nature of these logs, I split the problem in two. In this post I will discuss centralizing logs from CloudTrail, S3 and CloudWatch into one account. I will discuss log normalization in a future blog post.
 
