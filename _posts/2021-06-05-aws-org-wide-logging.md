@@ -67,7 +67,7 @@ We can set up an organization trail to log all CloudTrail logs across the organi
 
 Organization trails can't be disabled by accounts in our organization, however we will want to ensure we have a SCP that prevents accounts from leaving our organization. Perhaps surprisingly, by default a child account user with sufficient privileges can remove the account from an organization, rendering our other SCPs useless!
 
-## Centralizing S3 logs
+## Centralizing S3-based Logs
 
 S3 allows users to configure object replication for buckets. As the name indicates, this will replicate objects from one bucket into another bucket. We can use this to replicate objects from a single logging bucket in a source account to a destination bucket in the logging account.
 
@@ -87,7 +87,7 @@ The destination bucket policy should allow all accounts in the organization to `
 
 Some other considerations here include ensuring that object replicas should be [owned by the destination account](https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-walkthrough-3.html) and that replicas are not modified or deleted when the source object is modified or deleted.
 
-## Centralizing CloudWatch logs
+## Centralizing CloudWatch-based Logs
 
 We can use Firehose to centralize logs from disparate CloudWatch Log Groups in the organization to a single bucket in the logging account. AWS has [good documentation on setting this up](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CrossAccountSubscriptions-Firehose.html).
 
