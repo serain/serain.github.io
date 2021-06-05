@@ -73,11 +73,11 @@ S3 allows users to configure object replication for buckets. As the name indicat
 
 By using a single destination bucket and taking advantage of the default object prefix used by most AWS services for their logs (`AWSLogs\{account_id}\{service_logs}\...`), logs will be neatly organized by account ID in the destination bucket, without any additional work required (see diagram in Overview section). For services that don't use the default AWS prefix (e.g. CloudFront), this should be manually configured when setting up logging for the service.
 
-The following diagram illustrates the components of the S3 log replication pipeline in a source account:
+The following diagram illustrates the components of the S3 log replication pipeline:
 
 ![aws org logging s3 overview](https://alex.kaskaso.li/images/posts/aws-org-logging-s3.png "aws org logging s3 overview"){: .center-image }
 
-These resources should be managed by organization admins and SCPs should be used to ensure:
+These resources should be managed by organization admins and SCPs should be used to protect resources in source accounts to ensure:
 
 - The buckets and their objects can't be deleted.
 - Only AWS logging principals from relevant regions should be able to put objects in those buckets.
