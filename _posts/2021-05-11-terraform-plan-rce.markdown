@@ -18,7 +18,7 @@ We'll start by discussing a couple of ways to do this before covering remediatio
 
 ## Note
 
-This post got picked up by [Cloud Posse](https://cloudposse.com/devops/office-hours/public-office-hours-2021-05-19/) and [CloudSecList](https://cloudseclist.com/issues/issue-87/).
+This post got picked up by [Cloud Posse](https://cloudposse.com/devops/office-hours/public-office-hours-2021-05-19/), [CloudSecList](https://cloudseclist.com/issues/issue-87/) and [weekly.tf](https://weekly.tf/issues/weekly-tf-issue-42-terraform-security-again-and-dependency-updates-608886). Thanks for the mentions!
 
 ## Setup
 
