@@ -39,19 +39,19 @@ Anyone can write a [custom provider](https://learn.hashicorp.com/tutorials/terra
 That's it:
 
 - write a custom provider than runs some malicious code (like exfiltrating credentials or customer data)
-- publish it to the Terraform Registry
-- add the provider to the Terraform code in a feature branch
-- open a PR for the feature branch
+    - publish it to the Terraform Registry
+    - add the provider to the Terraform code in a feature branch
+    - open a PR for the feature branch
 
-```
-terraform {
-  required_providers {
-    evil = {
-      source  = "evil/evil"
-      version = "1.0"
+    ```
+    terraform {
+        required_providers {
+            evil = {
+                source  = "evil/evil"
+                    version = "1.0"
+            }
+        }
     }
-  }
-}
 
 provider "evil" {}
 ```
@@ -66,13 +66,13 @@ The following example is given by Terraform in the [docs](https://registry.terra
 
 ```
 data "external" "example" {
-  program = ["python", "${path.module}/example-data-source.py"]
+    program = ["python", "${path.module}/example-data-source.py"]
 
-  query = {
-    # arbitrary map from strings to strings, passed
-    # to the external program as the data query.
-    id = "abc123"
-  }
+        query = {
+# arbitrary map from strings to strings, passed
+# to the external program as the data query.
+            id = "abc123"
+        }
 }
 ```
 
@@ -116,4 +116,4 @@ A `terraform plan` is not as passive as you may think. If you run production pla
 
 An attacker may only need to compromise one of your engineers to abuse the Infrastructure-as-Code CI/CD pipeline and move to production.
 
-If you want to discuss this feel free to hit me up on Twitter [@\_alxk](https://twitter.com/_alxk)!
+If you want to discuss this feel free to hit me up on Twitter [@alxk7i](https://twitter.com/_alxk)!
