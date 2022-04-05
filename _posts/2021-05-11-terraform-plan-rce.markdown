@@ -39,11 +39,11 @@ Anyone can write a [custom provider](https://learn.hashicorp.com/tutorials/terra
 That's it:
 
 - write a custom provider than runs some malicious code (like exfiltrating credentials or customer data)
-    - publish it to the Terraform Registry
-    - add the provider to the Terraform code in a feature branch
-    - open a PR for the feature branch
+  - publish it to the Terraform Registry
+  - add the provider to the Terraform code in a feature branch
+  - open a PR for the feature branch
 
-    ```
+```
     terraform {
         required_providers {
             evil = {
