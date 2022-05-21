@@ -167,17 +167,17 @@ Requesting the `/latest/user-data/` path will return information the developers 
 
                 exec /usr/bin/coreos-cloudinit --from-file /var/run/coreos/$USERDATA_FILE
                     "
-                    ```
+```
 
-                    In addition to listing an S3 bucket, the output reveals the service is running on Kubernetes, using Amazon's Auto-Scaling Group (ASG) and Spot Instances. The use of Kubernetes possibly offers other paths to exploitation that were not explored during this research.
+In addition to listing an S3 bucket, the output reveals the service is running on Kubernetes, using Amazon's Auto-Scaling Group (ASG) and Spot Instances. The use of Kubernetes possibly offers other paths to exploitation that were not explored during this research.
 
-                    The main trophy from interaction with the endpoint is the temporary security credentials. A list of available security credentials can be obtained from the `/latest/meta-data/iam/security-credentials/` path:
+The main trophy from interaction with the endpoint is the temporary security credentials. A list of available security credentials can be obtained from the `/latest/meta-data/iam/security-credentials/` path:
 
-                    ```json
-                    "data": {
-                        "code": 200,
-                        "body": "eu-north-1-role.kube.nodes.asgspot2"
-                    }
+```json
+"data": {
+    "code": 200,
+    "body": "eu-north-1-role.kube.nodes.asgspot2"
+}
 ````
 
         These credentials can be obtained by requesting `/latest/meta-data/iam/security-credentials/eu-north-1-role.kube.nodes.asgspot2`:
