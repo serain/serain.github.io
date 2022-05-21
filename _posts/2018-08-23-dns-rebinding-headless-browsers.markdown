@@ -180,7 +180,7 @@ The main trophy from interaction with the endpoint is the temporary security cre
 }
 ````
 
-        These credentials can be obtained by requesting `/latest/meta-data/iam/security-credentials/eu-north-1-role.kube.nodes.asgspot2`:
+These credentials can be obtained by requesting `/latest/meta-data/iam/security-credentials/eu-north-1-role.kube.nodes.asgspot2`:
 
 ```json
 "data": {
