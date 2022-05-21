@@ -155,18 +155,14 @@ Requesting the `/latest/user-data/` path will return information the developers 
 ````json
 "data": {
     "code": 200,
-        "body": "
-#!/bin/bash -xe
-echo 'KUBE_AWS_STACK_NAME=acme-prod-Nodeasgspotpool2-AAAAAAAAAAAA' >> /etc/environment
+    "body": "
+    #!/bin/bash -xe
+    echo 'KUBE_AWS_STACK_NAME=acme-prod-Nodeasgspotpool2-AAAAAAAAAAAA' >> /etc/environment
 
-[...]
+    run bash -c \"aws s3 --region $REGION cp s3://acme-kube-prod-978bf8d902cab3b72271abf554bb539c/kube-aws/clusters/acme-prod/exported/stacks/node-asg-spotpool2/userdata-worker-4d3482495353ecdc0b088d42510267be8160c26bff0577915f5aa2a435077e5a /var/run/coreos/$USERDATA_FILE\"
 
-run bash -c \"aws s3 --region $REGION cp s3://acme-kube-prod-978bf8d902cab3b72271abf554bb539c/kube-aws/clusters/acme-prod/exported/stacks/node-asg-spotpool2/userdata-worker-4d3482495353ecdc0b088d42510267be8160c26bff0577915f5aa2a435077e5a /var/run/coreos/$USERDATA_FILE\"
-
-[...]
-
-exec /usr/bin/coreos-cloudinit --from-file /var/run/coreos/$USERDATA_FILE
-"
+    exec /usr/bin/coreos-cloudinit --from-file /var/run/coreos/$USERDATA_FILE
+    "
 }
 ```
 
