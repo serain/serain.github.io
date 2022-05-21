@@ -197,7 +197,7 @@ The main trophy from interaction with the endpoint is the temporary security cre
 }"
 ```
 
-        These can then be used to authenticate to the AWS API:
+These can then be used to authenticate to the AWS API:
 
 ```
 $ export AWS_ACCESS_KEY_ID=AKIAI44QH8DHBEXAMPLE
@@ -208,38 +208,38 @@ $ aws ec2 describe-instances
 [...]
 ```
 
-            The extent of the impact is determined by the permissions granted with the credentials. This can range from complete compromise to information disclosure. Even with low privileges, attackers may be able to leverage such access to uncover additional attack paths or escalate their privileges.
+The extent of the impact is determined by the permissions granted with the credentials. This can range from complete compromise to information disclosure. Even with low privileges, attackers may be able to leverage such access to uncover additional attack paths or escalate their privileges.
 
 ## Remediation
 
 ### AWS
 
-            In AWS environments, measures should always be taken to prevent unintended interactions with the AWS metadata endpoint. As services may need to access the endpoint, a possible measure is to implement _iptables_ rules on the instances to limit traffic to root while ensuring that processes that interact with user input do not run as root.
+In AWS environments, measures should always be taken to prevent unintended interactions with the AWS metadata endpoint. As services may need to access the endpoint, a possible measure is to implement _iptables_ rules on the instances to limit traffic to root while ensuring that processes that interact with user input do not run as root.
 
-            This vector is not limited to attacking the AWS metadata endpoint as other network services may be exploitable. Firewall rules should be implemented accordingly.
+This vector is not limited to attacking the AWS metadata endpoint as other network services may be exploitable. Firewall rules should be implemented accordingly.
 
-            As always, the principle of least privilege also applies: security credentials should not offer more privileges than necessary.
+As always, the principle of least privilege also applies: security credentials should not offer more privileges than necessary.
 
 ### DNS Rebinding
 
-            In general, there is likely no adequate reason for external DNS answers to contain internal IP addresses. Where possible, such DNS answers should be dropped.
+In general, there is likely no adequate reason for external DNS answers to contain internal IP addresses. Where possible, such DNS answers should be dropped.
 
-            Services wrapped in SSL/TLS and services that validate the Host header are not affected by DNS rebinding.
+Services wrapped in SSL/TLS and services that validate the Host header are not affected by DNS rebinding.
 
 ## Conclusion
 
-            DNS rebinding was always understood to present a theoretical risk but has historically not been taken seriously. Traditional vectors that would be used to deliver the attack usually allow more direct means of exploiting victims.
+DNS rebinding was always understood to present a theoretical risk but has historically not been taken seriously. Traditional vectors that would be used to deliver the attack usually allow more direct means of exploiting victims.
 
-            However, this research has demonstrated the vectors are not limited to phishing and watering hole attacks. Any service that processes user-supplied URLs, whether directly or indirectly, may be at risk.
+However, this research has demonstrated the vectors are not limited to phishing and watering hole attacks. Any service that processes user-supplied URLs, whether directly or indirectly, may be at risk.
 
-            Engineers implementing such services should take into account the access they will be granting to untrusted scripts, and design the services accordingly.
+Engineers implementing such services should take into account the access they will be granting to untrusted scripts, and design the services accordingly.
 
 ## Tools
 
-            MWR's DNS rebinding framework dref can be found on [GitHub](https://github.com/mwrlabs/dref).
+MWR's DNS rebinding framework dref can be found on [GitHub](https://github.com/mwrlabs/dref).
 
-            The reson8 tool will be released shortly. The tool can be used by security professionals to detect web applications that will issue requests to URLs submitted in HTTP headers. reson8 is intended for testing large sets of URLs. For single test cases the author recommends PortSwigger's collaborator-everywhere.
+The reson8 tool will be released shortly. The tool can be used by security professionals to detect web applications that will issue requests to URLs submitted in HTTP headers. reson8 is intended for testing large sets of URLs. For single test cases the author recommends PortSwigger's collaborator-everywhere.
 
 ## Thanks
 
-            Thanks go to Markus Blechinger and Adam Williams at MWR for their insights and tips while conducting this research.
+Thanks go to Markus Blechinger and Adam Williams at MWR for their insights and tips while conducting this research.
