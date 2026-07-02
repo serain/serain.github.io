@@ -2,16 +2,25 @@
 <html>
   <head>
     <title>alxk's CV</title>
+    <!-- pdf-build:strip -->
+    <!--
+      wkhtmltopdf's bundled WebKit can't complete a TLS handshake with
+      fonts.googleapis.com, so these are unused (and would shadow the
+      locally-installed fonts) when rendering the PDF. build.sh strips
+      everything between the pdf-build:strip markers before rendering.
+      Browsers still load these normally.
+    -->
     <link
-      href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
       rel="stylesheet"
       type="text/css"
     />
     <link
-      href="http://fonts.googleapis.com/css?family=Monda:400,700"
+      href="https://fonts.googleapis.com/css?family=Monda:400,700"
       rel="stylesheet"
       type="text/css"
     />
+    <!-- /pdf-build:strip -->
     <style>
       /*
  * WKHTMLTOPDF Formatting
