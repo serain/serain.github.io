@@ -156,6 +156,9 @@
         Helvetica, Arial, sans-serif;
       font-size: 1em;
       min-width: 900px;
+      display: flex;
+      flex-direction: column;
+      min-height: 317mm;
     }
 
     a {
@@ -205,7 +208,7 @@
     }
 
     .intro .title {
-      padding: 10px 0;
+      padding: 12px 0 11px;
       text-align: center;
       width: 100%;
       text-transform: uppercase;
@@ -237,7 +240,7 @@
       font-size: 0.9em;
       line-height: 1.2em;
       float: left;
-      padding: 9px 13px;
+      padding: 11px 13px;
       text-align: justify;
       width: 730px;
     }
@@ -375,6 +378,7 @@
     .contact {
       background-color: #161616;
       color: white;
+      margin-top: auto;
     }
 
     .contact h2 {
@@ -419,9 +423,15 @@
       <h2>readme</h2>
       <div class="content">
         <p>
-          Security engineer with an offensive security background. In my role at Google DeepMind I threat modelled
-          the production deployment of ML solutions and led the initial framework for cybersecurity safety evaluations,
-          including running agents and vulnerable-by-design systems in isolated k8s environments.
+          Driven security engineer with an offensive security background. I take the catastrophic risks of
+          frontier AI seriously, with misuse and concentration of power chief among them, and see misalignment as a risk
+          amplifier. Securing the research of a lab working to get ahead of misalignment is the most direct lever I can
+          pull.
+        </p>
+        <p>
+          At Google DeepMind I threat modelled the production deployment of ML solutions and led the initial
+          framework for cybersecurity safety evaluations, including running agents and vulnerable-by-design systems in
+          isolated k8s environments on GCP.
         </p>
         <p>
           In my previous roles as a Security Engineer and Head of Security and DevOps, I drove the design of AWS
@@ -430,12 +440,8 @@
           consultants, translating compliance requirements into infrastructure-as-code policies.
         </p>
         <p>
-          Back in my pentesting days, I conducted security assessments on a range of tech stacks and participated in
-          "red team" engagements against large organizations, often exploiting then-nascent CI/CD and
-          DevOps tooling for lateral movement and privilege escalation.
-        </p>
-        <p>
-          THIS IS A PLACEHOLDER SENTENCE FOR JOB ALIGNMENT.
+          Back in my pentesting days, I participated in red team engagements against large organizations, often
+          exploiting then-nascent CI/CD and DevOps tooling for lateral movement and privilege escalation.
         </p>
       </div>
     </div>
@@ -445,8 +451,8 @@
       <h2>blog</h2>
       <div class="content">
         <p>
-          My blog <a href="https://alex.kaskaso.li"><span>https://alex.kaskaso.li/</span></a> showcases personal work,
-          conference talks and open-source projects, including CI/CD security thinking cited on Google's Kubernetes
+          My blog <a href="https://alex.kaskaso.li"><span>https://alex.kaskaso.li</span></a> showcases personal work,
+          talks and open-source projects, including CI/CD security thinking cited on Google's Kubernetes
           podcast and an AWS cloud attack nominated for PortSwigger's "best hacks of 2018".
         </p>
       </div>
@@ -464,24 +470,23 @@
                 <p>
                   Designed multi-account <span>AWS</span> orgs from scratch, including org-wide log centralization and
                   security guardrails. Built bespoke <span>IAM</span> tooling when necessary to balance security and
-                  developer
-                  velocity.
+                  developer velocity.
                 </p>
               </td>
               <td>
                 <h4>CI/CD</h4>
                 <p>
                   Built <span>GitOops</span>, a tool that briefly trended on GitHub, for attacking and defending
-                  CI/CD pipelines. Early <span>GitOps</span> adopter for infra-as-code, wrote and spoke on CI/CD
-                  security and pipeline hardening.
+                  CI/CD pipelines. Early <span>GitOps</span> and <span>Terraform</span> adopter, wrote
+                  and spoke on CI/CD security and pipeline hardening.
                 </p>
               </td>
               <td>
                 <h4>Kubernetes</h4>
                 <p>
-                  Researched and published <span>k8s</span> privilege-escalation paths (including a CVE
-                  for RCE/VM escape in minikube). Ran and hardened production clusters, and wrote custom k8s controllers
-                  for bespoke needs.
+                  Researched and wrote about <span>k8s</span> privilege-escalation paths (including a <span>CVE</span>
+                  for RCE/VM escape in <span>minikube</span>). Ran and hardened production clusters, and wrote custom
+                  k8s controllers for bespoke needs.
                 </p>
               </td>
             </tr>
@@ -489,23 +494,24 @@
               <td>
                 <h4>Email &amp; Comms Security</h4>
                 <p>
-                  Practical experience hardening collaboration and comms security (emails, Slack). Built tooling to scan
-                  for email protocol misconfigurations, and blogged on the topic.
+                  Practical experience hardening collaboration and comms security (email, <span>Slack</span>). Built
+                  tooling to scan for email protocol misconfigurations, and blogged on the topic.
                 </p>
               </td>
               <td>
                 <h4>Coding</h4>
                 <p>
                   Ship production tooling in <span>Python</span> and <span>Go</span>. Comfortable in
-                  <span>JavaScript</span>, some <span>C</span> and <span>Assembly</span> for offensive tooling and
+                  <span>JavaScript</span>, some C and Assembly for offensive tooling and
                   memory corruption research.
                 </p>
               </td>
               <td>
                 <h4>ML / AI Security</h4>
                 <p>
-                  Threat modelled ML deployments and watermarking robustness at Google DeepMind. A MicroMasters in stats
-                  and data science allows me to speak comfortably with researchers.
+                  Threat modelled <span>ML</span> deployments at Google DeepMind. A
+                  MicroMasters in stats and data science allows me to speak comfortably with
+                  researchers.
                 </p>
               </td>
             </tr>
@@ -563,7 +569,7 @@
               <td>
                 <h4>MWR InfoSecurity</h4>
                 <div class="italic">
-                  Security Consultant working on infrastructure and application security and "red team" simulated
+                  Security Consultant working on infrastructure and application security and red team simulated
                   attacks, for clients across industries from finance to critical infrastructure.
                 </div>
               </td>
