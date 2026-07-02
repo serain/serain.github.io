@@ -1,613 +1,612 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>alxk's CV</title>
-    <style>
-      /* wkhtmltopdf page-break controls */
-      .keep-together {
-        page-break-inside: avoid;
-      }
 
-      .break-before {
-        page-break-before: always;
-      }
+<head>
+  <meta charset="utf-8" />
+  <title>alxk's CV</title>
+  <style>
+    /* wkhtmltopdf page-break controls */
+    .keep-together {
+      page-break-inside: avoid;
+    }
 
-      .break-after {
-        page-break-after: always;
-      }
+    .break-before {
+      page-break-before: always;
+    }
 
-      /* CSS reset */
-      html,
-      body,
-      div,
-      span,
-      applet,
-      object,
-      iframe,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      blockquote,
-      pre,
-      a,
-      abbr,
-      acronym,
-      address,
-      big,
-      cite,
-      code,
-      del,
-      dfn,
-      em,
-      img,
-      ins,
-      kbd,
-      q,
-      s,
-      samp,
-      small,
-      strike,
-      strong,
-      sub,
-      sup,
-      tt,
-      var,
-      b,
-      u,
-      i,
-      center,
-      dl,
-      dt,
-      dd,
-      ol,
-      ul,
-      li,
-      fieldset,
-      form,
-      label,
-      legend,
-      table,
-      caption,
-      tbody,
-      tfoot,
-      thead,
-      tr,
-      th,
-      td,
-      article,
-      aside,
-      canvas,
-      details,
-      embed,
-      figure,
-      figcaption,
-      footer,
-      header,
-      hgroup,
-      menu,
-      nav,
-      output,
-      ruby,
-      section,
-      summary,
-      time,
-      mark,
-      audio,
-      video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-        box-sizing: border-box;
-      }
+    .break-after {
+      page-break-after: always;
+    }
 
-      article,
-      aside,
-      details,
-      figcaption,
-      figure,
-      footer,
-      header,
-      hgroup,
-      menu,
-      nav,
-      section {
-        display: block;
-      }
+    /* CSS reset */
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    embed,
+    figure,
+    figcaption,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    output,
+    ruby,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+      box-sizing: border-box;
+    }
 
-      body {
-        line-height: 1;
-      }
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+      display: block;
+    }
 
-      ol,
-      ul {
-        list-style: none;
-      }
+    body {
+      line-height: 1;
+    }
 
-      blockquote,
-      q {
-        quotes: none;
-      }
+    ol,
+    ul {
+      list-style: none;
+    }
 
-      blockquote:before,
-      blockquote:after,
-      q:before,
-      q:after {
-        content: "";
-        content: none;
-      }
+    blockquote,
+    q {
+      quotes: none;
+    }
 
-      table {
-        border-collapse: collapse;
-        border-spacing: 0;
-      }
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+      content: "";
+      content: none;
+    }
 
-      body {
-        background-color: white;
-        font-family: "Monda", "Open Sans", "HelveticaNeue", "Helvetica Neue",
-          Helvetica, Arial, sans-serif;
-        font-size: 1em;
-        min-width: 900px;
-      }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
 
-      a {
-        text-decoration: none !important;
-      }
+    body {
+      background-color: white;
+      font-family: "Monda", "Open Sans", "HelveticaNeue", "Helvetica Neue",
+        Helvetica, Arial, sans-serif;
+      font-size: 1em;
+      min-width: 900px;
+    }
 
-      .wrap {
-        min-width: 300px;
-        max-width: 900px;
-        margin: 0 auto;
-        overflow: auto;
-      }
+    a {
+      text-decoration: none !important;
+    }
 
-      p {
-        margin: 0 0 10px 0;
-        font: 13px/23px "Monda", "Open Sans", "HelveticaNeue", "Helvetica Neue",
-          Helvetica, Arial, sans-serif;
-        color: #656565;
-        width: calc(100% - 166px);
-      }
+    .wrap {
+      min-width: 300px;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: auto;
+    }
 
-      /* Intro / name banner */
+    p {
+      margin: 0 0 10px 0;
+      font: 13px/23px "Monda", "Open Sans", "HelveticaNeue", "Helvetica Neue",
+        Helvetica, Arial, sans-serif;
+      color: #656565;
+      width: calc(100% - 166px);
+    }
 
-      .intro {
-        position: relative;
-        background-color: #111;
-      }
+    /* Intro / name banner */
 
-      .column {
-        height: 100%;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-top: 1px solid transparent;
-        margin: 0 auto;
-        font-family: "Open Sans Condensed Light", sans-serif;
-        color: white;
-        text-align: center;
-      }
+    .intro {
+      position: relative;
+      background-color: #111;
+    }
 
-      .logo {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin: 0 10px 7px 10px;
-        border-radius: 10px;
-        background-color: #df4244;
-      }
+    .column {
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-top: 1px solid transparent;
+      margin: 0 auto;
+      font-family: "Open Sans Condensed Light", sans-serif;
+      color: white;
+      text-align: center;
+    }
 
-      .intro .title {
-        padding: 10px 0;
-        text-align: center;
-        width: 100%;
-        text-transform: uppercase;
-      }
+    .logo {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin: 0 10px 7px 10px;
+      border-radius: 10px;
+      background-color: #df4244;
+    }
 
-      .intro .title h1 {
-        display: inline-block;
-        font-size: 3em;
-        margin-bottom: 0px;
-        font-weight: 400;
-        font-family: "Open Sans Condensed Light", sans-serif !important;
-      }
+    .intro .title {
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+      text-transform: uppercase;
+    }
 
-      /* Shared section layout (h2 label + content column) */
+    .intro .title h1 {
+      display: inline-block;
+      font-size: 3em;
+      margin-bottom: 0px;
+      font-weight: 400;
+      font-family: "Open Sans Condensed Light", sans-serif !important;
+    }
 
-      section h2 {
-        display: block;
-        float: left;
-        padding: 16px;
-        width: 170px;
-        text-transform: uppercase;
-        font: 13px/29px Arial, sans-serif;
-        color: black;
-        font-weight: bold;
-        letter-spacing: 0px;
-      }
+    /* Shared section layout (h2 label + content column) */
 
-      section .content {
-        font-size: 0.9em;
-        line-height: 1.2em;
-        float: left;
-        padding: 13px;
-        text-align: justify;
-        width: 730px;
-      }
+    section h2 {
+      display: block;
+      float: left;
+      padding: 16px;
+      width: 170px;
+      text-transform: uppercase;
+      font: 13px/29px Arial, sans-serif;
+      color: black;
+      font-weight: bold;
+      letter-spacing: 0px;
+    }
 
-      section .content span {
-        color: #df4244;
-      }
+    section .content {
+      font-size: 0.9em;
+      line-height: 1.2em;
+      float: left;
+      padding: 13px;
+      text-align: justify;
+      width: 730px;
+    }
 
-      section .content p {
-        margin-top: 3px;
-      }
+    section .content span {
+      color: #df4244;
+    }
 
-      /* Work experience table */
+    section .content p {
+      margin-top: 3px;
+    }
 
-      .work table {
-        margin-top: 5px;
-        width: 100%;
-      }
+    /* Work experience table */
 
-      .work table h4 {
-        color: #df4244;
-      }
+    .work table {
+      margin-top: 5px;
+      width: 100%;
+    }
 
-      .work .italic {
-        font-style: italic;
-        font-size: 0.9em;
-        color: #656565;
-        margin-top: 5px;
-      }
+    .work table h4 {
+      color: #df4244;
+    }
 
-      .work td:first-child {
-        width: 80%;
-        padding-bottom: 30px;
-      }
+    .work .italic {
+      font-style: italic;
+      font-size: 0.9em;
+      color: #656565;
+      margin-top: 5px;
+    }
 
-      .work tr:last-of-type td:first-child {
-        padding-bottom: 0;
-      }
+    .work td:first-child {
+      width: 80%;
+      padding-bottom: 30px;
+    }
 
-      .work td:last-of-type {
-        font-size: 0.9em;
-      }
+    .work tr:last-of-type td:first-child {
+      padding-bottom: 0;
+    }
 
-      .work table td:last-of-type {
-        text-align: right;
-      }
+    .work td:last-of-type {
+      font-size: 0.9em;
+    }
 
-      /* About (readme) */
+    .work table td:last-of-type {
+      text-align: right;
+    }
 
-      .about {
-        background-color: #323232;
-        color: white;
-        padding: 4px 0;
-      }
+    /* About (readme) */
 
-      .about h2 {
-        color: #bbb;
-      }
+    .about {
+      background-color: #323232;
+      color: white;
+      padding: 4px 0;
+    }
 
-      .about p {
-        color: white;
-      }
+    .about h2 {
+      color: #bbb;
+    }
 
-      .resume {
-        margin-top: 0px;
-      }
+    .about p {
+      color: white;
+    }
 
-      /* Skills grid */
+    .resume {
+      margin-top: 0px;
+    }
 
-      .skills .qtable td {
-        height: 180px;
-      }
+    /* Skills grid */
 
-      .skills .qtable span {
-        color: #df4244;
-        transition: all 0.6s;
-      }
+    .skills .qtable td {
+      height: 180px;
+    }
 
-      .skills .qtable td:hover span {
-        color: #df4244;
-      }
+    .skills .qtable span {
+      color: #df4244;
+      transition: all 0.6s;
+    }
 
-      .qtable td {
-        width: 33.3%;
-        height: 232px;
-        float: left;
-        color: white;
-        padding: 30px 20px;
-        cursor: default;
-      }
+    .skills .qtable td:hover span {
+      color: #df4244;
+    }
 
-      .qtable tr:nth-of-type(odd) td:nth-of-type(odd) {
-        background-color: #111;
-      }
+    .qtable td {
+      width: 33.3%;
+      height: 232px;
+      float: left;
+      color: white;
+      padding: 30px 20px;
+      cursor: default;
+    }
 
-      .qtable tr:nth-of-type(odd) td:nth-of-type(even) {
-        background-color: #151515;
-      }
+    .qtable tr:nth-of-type(odd) td:nth-of-type(odd) {
+      background-color: #111;
+    }
 
-      .qtable tr:nth-of-type(even) td:nth-of-type(odd) {
-        background-color: #151515;
-      }
+    .qtable tr:nth-of-type(odd) td:nth-of-type(even) {
+      background-color: #151515;
+    }
 
-      .qtable tr:nth-of-type(even) td:nth-of-type(even) {
-        background-color: #111;
-      }
+    .qtable tr:nth-of-type(even) td:nth-of-type(odd) {
+      background-color: #151515;
+    }
 
-      .qtable h4 {
-        margin-bottom: 16px;
-        transition: all 0.6s;
-      }
+    .qtable tr:nth-of-type(even) td:nth-of-type(even) {
+      background-color: #111;
+    }
 
-      .qtable td:hover h4 {
-        color: #df4244;
-      }
+    .qtable h4 {
+      margin-bottom: 16px;
+      transition: all 0.6s;
+    }
 
-      .qtable p {
-        padding: 0;
-        margin: 0;
-        width: auto;
-        transition: all 1s;
-        line-height: 1.5em;
-        text-align: left;
-        letter-spacing: 1px;
-        font-size: 0.8em;
-        color: #bbb;
-        position: relative;
-      }
+    .qtable td:hover h4 {
+      color: #df4244;
+    }
 
-      .qtable td:hover p {
-        color: white;
-      }
+    .qtable p {
+      padding: 0;
+      margin: 0;
+      width: auto;
+      transition: all 1s;
+      line-height: 1.5em;
+      text-align: left;
+      letter-spacing: 1px;
+      font-size: 0.8em;
+      color: #bbb;
+      position: relative;
+    }
 
-      /* Contact */
+    .qtable td:hover p {
+      color: white;
+    }
 
-      .contact {
-        background-color: #161616;
-        color: white;
-      }
+    /* Contact */
 
-      .contact h2 {
-        color: #df4244;
-        padding: 3px !important;
-        padding-left: 16px !important;
-        padding-top: 4px !important;
-      }
+    .contact {
+      background-color: #161616;
+      color: white;
+    }
 
-      .contact .content {
-        padding: 0px !important;
-        padding-top: 4px !important;
-        padding-left: 14px !important;
-      }
+    .contact h2 {
+      color: #df4244;
+      padding: 3px !important;
+      padding-left: 16px !important;
+      padding-top: 4px !important;
+    }
 
-      .contact .content p {
-        color: white;
-      }
+    .contact .content {
+      padding: 0px !important;
+      padding-top: 4px !important;
+      padding-left: 14px !important;
+    }
 
-      .certificates h2 {
-        padding: 12px 16px 4px;
-      }
+    .contact .content p {
+      color: white;
+    }
 
-      .certificates .content {
-        padding: 11px 13px 4px;
-      }
+    .certificates h2 {
+      padding: 12px 16px 4px;
+    }
 
-    </style>
-  </head>
+    .certificates .content {
+      padding: 11px 13px 4px;
+    }
+  </style>
+</head>
 
-  <body>
-    <section class="intro">
-      <div class="column">
-        <div class="title">
-          <h1>alex</h1>
-          <div class="logo"></div>
-          <h1>kaskasoli</h1>
-        </div>
+<body>
+  <section class="intro">
+    <div class="column">
+      <div class="title">
+        <h1>alex</h1>
+        <div class="logo"></div>
+        <h1>kaskasoli</h1>
       </div>
-    </section>
-    <section class="about">
-      <div class="wrap">
-        <h2>readme</h2>
-        <div class="content">
-          <p>
-            Senior Security Engineer with an offensive security background,
-            picked up a part-time degree in Statistics and Data Science during
-            the pandemic.
-          </p>
-          <p>
-            In my last two roles as a Security Engineer and Head of Security and
-            DevOps I drove the design and development of AWS organizations,
-            hardened k8s clusters and cloud environments, evangelized GitOps
-            practices across the engineering pool, and set up logging and
-            monitoring stacks.
-          </p>
-          <p>
-            Back in my pentesting days, I conducted security assessments on a
-            range of tech stacks and participated in offensive engagements
-            against large organizations. I'm a big fan of leveraging CI/CD
-            pipelines and DevOps tooling for lateral movement and privilege
-            escalation. I'm less a fan of Active Directory and Windows
-            environments but will make sense of a Bloodhound graph to execute an
-            AD attack path.
-          </p>
-          <p>
-            During downtime I enjoy traveling and reading extensively: history,
-            hard SciFi and, increasingly, sobering tech books.
-          </p>
-        </div>
+    </div>
+  </section>
+  <section class="about">
+    <div class="wrap">
+      <h2>readme</h2>
+      <div class="content">
+        <p>
+          Senior Security Engineer with an offensive security background,
+          picked up a part-time degree in Statistics and Data Science during
+          the pandemic.
+        </p>
+        <p>
+          In my last two roles as a Security Engineer and Head of Security and
+          DevOps I drove the design and development of AWS organizations,
+          hardened k8s clusters and cloud environments, evangelized GitOps
+          practices across the engineering pool, and set up logging and
+          monitoring stacks.
+        </p>
+        <p>
+          Back in my pentesting days, I conducted security assessments on a
+          range of tech stacks and participated in offensive engagements
+          against large organizations. I'm a big fan of leveraging CI/CD
+          pipelines and DevOps tooling for lateral movement and privilege
+          escalation. I'm less a fan of Active Directory and Windows
+          environments but will make sense of a Bloodhound graph to execute an
+          AD attack path.
+        </p>
+        <p>
+          During downtime I enjoy traveling and reading extensively: history,
+          hard SciFi and, increasingly, sobering tech books.
+        </p>
       </div>
-    </section>
-    <section class="languages resume">
-      <div class="wrap">
-        <h2>blog</h2>
-        <div class="content">
-          <p>
-            My blog
-            <a href="https://alex.kaskaso.li"
-              ><span>https://alex.kaskaso.li/</span></a
-            >
-            showcases some personal work, conference talks and open-source
-            projects. This includes a critical vulnerability in Kubernetes'
-            Minikube, some thoughts on CI/CD security that were cited on
-            Google's k8s podcast, a custom k8s controller, a framework for
-            conducting DNS rebinding attacks as well as an interesting attack on
-            AWS cloud environments using headless browsers (nominated for
-            PortSwigger's "best web hacks of 2018").
-          </p>
-        </div>
+    </div>
+  </section>
+  <section class="languages resume">
+    <div class="wrap">
+      <h2>blog</h2>
+      <div class="content">
+        <p>
+          My blog
+          <a href="https://alex.kaskaso.li"><span>https://alex.kaskaso.li/</span></a>
+          showcases some personal work, conference talks and open-source
+          projects. This includes a critical vulnerability in Kubernetes'
+          Minikube, some thoughts on CI/CD security that were cited on
+          Google's k8s podcast, a custom k8s controller, a framework for
+          conducting DNS rebinding attacks as well as an interesting attack on
+          AWS cloud environments using headless browsers (nominated for
+          PortSwigger's "best web hacks of 2018").
+        </p>
       </div>
-    </section>
-    <section class="skills resume">
-      <div class="wrap">
-        <h2>skills</h2>
-        <div class="content">
-          <table class="qtable">
-            <tbody>
-              <tr>
-                <td>
-                  <h4>Cloud</h4>
-                  <p>
-                    Experienced with <span>AWS</span> and some
-                    <span>Azure</span>. Designed multi-account architecture with
-                    security in mind. Implemented centralized logging for a
-                    large AWS org.
-                  </p>
-                </td>
-                <td>
-                  <h4>Coding</h4>
-                  <p>
-                    Affinity with <span>Python</span>, some projects in
-                    <span>Golang</span> and <span>Node.js</span>. Dabbled around
-                    <span>C</span> and <span>Assembly</span> when working on
-                    basic memory corruption vulnerabilities.
-                  </p>
-                </td>
-                <td>
-                  <h4>CI/CD</h4>
-                  <p>
-                    <span>GitOps</span> evangelist. Spoke about
-                    <span>CI/CD</span> pipelines and security at a couple of
-                    local conferences and meetups.
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Kubernetes</h4>
-                  <p>
-                    Experience running and securing <span>k8s</span>. Wrote a
-                    <span>custom controller</span> and support tooling for
-                    AWS-backed secrets management.
-                  </p>
-                </td>
+    </div>
+  </section>
+  <section class="skills resume">
+    <div class="wrap">
+      <h2>skills</h2>
+      <div class="content">
+        <table class="qtable">
+          <tbody>
+            <tr>
+              <td>
+                <h4>Cloud</h4>
+                <p>
+                  Experienced with <span>AWS</span> and some
+                  <span>Azure</span>. Designed multi-account architecture with
+                  security in mind. Implemented centralized logging for a
+                  large AWS org.
+                </p>
+              </td>
+              <td>
+                <h4>Coding</h4>
+                <p>
+                  Affinity with <span>Python</span>, some projects in
+                  <span>Golang</span> and <span>Node.js</span>. Dabbled around
+                  <span>C</span> and <span>Assembly</span> when working on
+                  basic memory corruption vulnerabilities.
+                </p>
+              </td>
+              <td>
+                <h4>CI/CD</h4>
+                <p>
+                  <span>GitOps</span> evangelist. Spoke about
+                  <span>CI/CD</span> pipelines and security at a couple of
+                  local conferences and meetups.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Kubernetes</h4>
+                <p>
+                  Experience running and securing <span>k8s</span>. Wrote a
+                  <span>custom controller</span> and support tooling for
+                  AWS-backed secrets management.
+                </p>
+              </td>
 
-                <td>
-                  <h4>DevOps</h4>
-                  <p>
-                    Automating infrastructure and operations with
-                    <span>Terraform</span> and <span>Ansible</span>.
-                  </p>
-                </td>
-                <td>
-                  <h4>Security</h4>
-                  <p>
-                    Years of experience <span>security testing</span> a wide
-                    range of application stacks and infrastructure.
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              <td>
+                <h4>DevOps</h4>
+                <p>
+                  Automating infrastructure and operations with
+                  <span>Terraform</span> and <span>Ansible</span>.
+                </p>
+              </td>
+              <td>
+                <h4>Security</h4>
+                <p>
+                  Years of experience <span>security testing</span> a wide
+                  range of application stacks and infrastructure.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </section>
-    <section class="work resume">
-      <div class="wrap">
-        <h2>experience</h2>
-        <div class="content">
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <h4>Kaluza</h4>
-                  <div class="italic">
-                    Tech Lead Security Engineer at Kaluza, working on custom k8s
-                    secrets management for the new platform, centralized
-                    infrastructure logging for a large AWS org, automating
-                    security controls, identifying attack paths across the cloud
-                    environments and advising engineers on closing gaps.
-                  </div>
-                </td>
-                <td>
-                  2 years
-                  <div class="italic">London, UK</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>TrueLayer</h4>
-                  <div class="italic">
-                    Senior Cloud Security Engineer promoted to Head of DevOps
-                    and Security, working closely with engineering teams and
-                    upper management to scale infrastructure, enhance DevOps
-                    practices, mitigate security risks and meet regulatory
-                    compliance.
-                  </div>
-                </td>
-                <td>
-                  1.5 years
-                  <div class="italic">London, UK</div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>MWR InfoSecurity</h4>
-                  <div class="italic">
-                    Security Consultant at MWR InfoSecurity, working on
-                    infrastructure and application security and simulated
-                    attacks ("red team"). Worked with clients across a range of
-                    industries from finance to critical infrastructure.
-                  </div>
-                </td>
-                <td>
-                  4 years
-                  <div class="italic">London, UK</div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    </div>
+  </section>
+  <section class="work resume">
+    <div class="wrap">
+      <h2>experience</h2>
+      <div class="content">
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <h4>Kaluza</h4>
+                <div class="italic">
+                  Tech Lead Security Engineer at Kaluza, working on custom k8s
+                  secrets management for the new platform, centralized
+                  infrastructure logging for a large AWS org, automating
+                  security controls, identifying attack paths across the cloud
+                  environments and advising engineers on closing gaps.
+                </div>
+              </td>
+              <td>
+                2 years
+                <div class="italic">London, UK</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>TrueLayer</h4>
+                <div class="italic">
+                  Senior Cloud Security Engineer promoted to Head of DevOps
+                  and Security, working closely with engineering teams and
+                  upper management to scale infrastructure, enhance DevOps
+                  practices, mitigate security risks and meet regulatory
+                  compliance.
+                </div>
+              </td>
+              <td>
+                1.5 years
+                <div class="italic">London, UK</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>MWR InfoSecurity</h4>
+                <div class="italic">
+                  Security Consultant at MWR InfoSecurity, working on
+                  infrastructure and application security and simulated
+                  attacks ("red team"). Worked with clients across a range of
+                  industries from finance to critical infrastructure.
+                </div>
+              </td>
+              <td>
+                4 years
+                <div class="italic">London, UK</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </section>
-    <section class="certificates resume">
-      <div class="wrap">
-        <h2>certificates</h2>
-        <div class="content">
-          <p>
-            OSCP, OSCE, CRT, CCT
-            <br />MicroMasters Statistics and Data Science (MITx, in progress)
-            <br />BSc Ethical Hacking & Countermeasures (University of Abertay)
-          </p>
-        </div>
+    </div>
+  </section>
+  <section class="certificates resume">
+    <div class="wrap">
+      <h2>certificates</h2>
+      <div class="content">
+        <p>
+          OSCP, OSCE, CRT, CCT
+          <br />MicroMasters Statistics and Data Science (MITx, in progress)
+          <br />BSc Ethical Hacking & Countermeasures (University of Abertay)
+        </p>
       </div>
-    </section>
-    <section class="contact resume">
-      <div class="wrap">
-        <h2>contact</h2>
-        <div class="content">
-          <p>alex@kaskaso.li</p>
-        </div>
+    </div>
+  </section>
+  <section class="contact resume">
+    <div class="wrap">
+      <h2>contact</h2>
+      <div class="content">
+        <p>alex@kaskaso.li</p>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+</body>
+
 </html>
