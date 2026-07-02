@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
     <title>alxk's CV</title>
     <!-- pdf-build:strip -->
     <!--
@@ -206,131 +207,14 @@
       }
 
       /*
- * 
- *	HEADER
- * 
-*/
-
-      header {
-        position: fixed;
-        z-index: 1000;
-        width: 100%;
-      }
-
-      header h5 {
-        color: #2020a0;
-        font-size: 3em;
-        font-weight: bold;
-        letter-spacing: -3px;
-      }
-
-      header nav {
-        background-color: #111;
-        color: white;
-        padding: 0 5px;
-        text-align: center;
-        height: 40px;
-      }
-
-      header ul {
-        display: inline-block;
-        margin: 0 auto;
-      }
-
-      header a {
-        color: white;
-      }
-
-      header ul li {
-        position: relative;
-        display: inline-block;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-      }
-
-      header ul li:hover {
-        background-color: #393636;
-      }
-
-      header ul li:before {
-        position: absolute;
-        content: " ";
-        display: block;
-        width: 10px;
-        height: 10px;
-        margin: 15px;
-        border-radius: 10px;
-        background-color: white;
-        transition: all 0.5s;
-        -webkit-transition: all 0.5s;
-        -moz-transition: all 0.5s;
-        -o-transition: all 0.5s;
-      }
-
-      header ul li.highlight:before {
-        width: 14px;
-        height: 14px;
-        border-radius: 14px;
-        background-color: #df4244;
-        margin: 13px;
-      }
-
-      header ul li .tooltip {
-        position: absolute;
-        top: calc(100% + 2px);
-        left: calc(100% + 2px);
-        display: none;
-        background-color: #111;
-        border: 1px solid #df4244;
-        padding: 10px 10px;
-        height: 34px;
-        font-size: 0.8em;
-        letter-spacing: 1px;
-        border-radius: 0px 20px 20px 20px;
-      }
-
-      header ul li:hover .tooltip {
-        display: block;
-      }
-
-      /*
- * 
- *	END HEADER
- * 
-*/
-
-      /*
- * 
+ *
  *	INTRO
- * 
+ *
 */
 
       .intro {
         position: relative;
-        /* height: 63px; */
         background-color: #111;
-        /* background: url('https://web.archive.org/web/20160322141911im_/http://alexkaskasoli.com/img/bg.jpg') no-repeat fixed 0% 0% / cover content-box border-box transparent; */
-      }
-
-      .intro .internship {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 30px 0;
-        font-size: 1em;
-        /*cursor: pointer;*/
-        font-weight: bold;
-      }
-
-      .intro .internship:hover {
-        color: #df4244;
-      }
-
-      .intro .space {
-        height: 40px;
       }
 
       .column {
@@ -354,7 +238,6 @@
       }
 
       .intro .title {
-        /* margin: 160px auto 0 auto; */
         padding: 10px 0;
         text-align: center;
         width: 100%;
@@ -376,7 +259,7 @@
         display: inline-block;
         margin-top: 10px;
         font-size: 1.6em;
-        font-family: "Open Sans Condensed", sans-serif !important !;
+        font-family: "Open Sans Condensed", sans-serif !important;
       }
 
       /*
@@ -420,44 +303,32 @@
         margin-top: 3px;
       }
 
-      .education table,
-      .work table,
-      .languages table {
+      .work table {
         margin-top: 5px;
         width: 100%;
       }
 
-      .education table h4,
-      .work table h4,
-      .languages table h4 {
+      .work table h4 {
         color: #df4244;
       }
 
-      .education .italic,
-      .work .italic,
-      .languages .italic {
+      .work .italic {
         font-style: italic;
         font-size: 0.9em;
         color: #656565;
         margin-top: 5px;
       }
 
-      .education td:first-child,
-      .work td:first-child,
-      .languages td:first-child {
+      .work td:first-child {
         width: 80%;
         padding-bottom: 30px;
       }
 
-      .education tr:last-of-type td:first-child,
-      .work tr:last-of-type td:first-child,
-      .languages tr:last-of-type td:first-child {
+      .work tr:last-of-type td:first-child {
         padding-bottom: 0;
       }
 
-      .education td:last-of-type,
-      .work td:last-of-type,
-      .languages td:last-of-type {
+      .work td:last-of-type {
         font-size: 0.9em;
       }
 
@@ -509,120 +380,9 @@
  * 
 */
 
-      /*
- * 
- *	PROJECTS
- * 
-*/
-
-      .projects {
-        background-color: #161616;
-        color: white;
-        padding: 40px 0;
-      }
-
-      .projects h2 {
-        color: #bbb;
-        width: 100%;
-        float: none;
-      }
-
-      .project {
-        display: block;
-        padding: 10px 10px 20px 10px;
-        width: calc(100% - 352px);
-        margin: 0 auto;
-        cursor: pointer;
-        transition: all 1s;
-        -webkit-transition: all 1s;
-        -moz-transition: all 1s;
-        -o-transition: all 1s;
-      }
-
-      .project:focus {
-        outline: none;
-        padding: 30px 10px;
-        background-color: transparent !important;
-      }
-
-      .project:focus h3 {
-        color: #df4244 !important;
-      }
-
-      .project:hover {
-        background-color: #0087cb;
-        padding: 30px 10px;
-      }
-
-      .project:hover h3 {
-        color: white;
-      }
-
-      .project h3 {
-        text-align: center;
-        color: #df4244;
-        margin-bottom: 20px;
-        font-size: 0.9em;
-        transition: all 1s;
-        -webkit-transition: all 1s;
-        -moz-transition: all 1s;
-        -o-transition: all 1s;
-      }
-
-      .project h4 {
-        text-align: center;
-        font-style: italic;
-        font-size: 0.8em;
-      }
-
-      .project .abstract {
-        max-height: 0px;
-        transition: max-height 1s;
-        -webkit-transition: max-height 1s;
-        -moz-transition: max-height 1s;
-        -o-transition: max-height 1s;
-        overflow: hidden;
-      }
-
-      .project:focus .abstract {
-        max-height: 500px;
-      }
-
-      .project p {
-        text-align: justify;
-        color: #ccc;
-        width: 100%;
-      }
-
-      .project p:first-child {
-        margin-top: 30px;
-      }
-
-      /*
- * 
- *	END PROJECTS
- * 
-*/
-
       .resume {
         margin-top: 0px;
       }
-
-      /*
- * 
- *	EDUCATION
- * 
-*/
-
-      .education {
-        padding-top: 0px;
-      }
-
-      /*
- * 
- *	END EDUCATION
- * 
-*/
 
       /*
  * 
@@ -637,9 +397,6 @@
       .skills .qtable span {
         color: #df4244;
         transition: all 0.6s;
-        -moz-transition: all 0.6s;
-        -o-transition: all 0.6s;
-        -webkit-transition: all 0.6s;
       }
 
       .skills .qtable td:hover span {
@@ -690,23 +447,16 @@
       .qtable h4 {
         margin-bottom: 16px;
         transition: all 0.6s;
-        -moz-transition: all 0.6s;
-        -o-transition: all 0.6s;
-        -webkit-transition: all 0.6s;
       }
 
       .qtable td:hover h4 {
         color: #df4244;
       }
 
-      .qtable p,
-      .qtable li {
+      .qtable p {
         padding: 0;
         margin: 0;
         width: auto;
-        transition: all 1s;
-        -moz-transition: all 1s;
-        -o-transition: all 1s;
         transition: all 1s;
         line-height: 1.5em;
         text-align: left;
@@ -716,112 +466,18 @@
         position: relative;
       }
 
-      .qtable td:hover p,
-      .qtable td:hover li {
+      .qtable td:hover p {
         color: white;
       }
 
-      .qtable li {
-        margin-left: 10px;
-      }
-
-      .qtable td:hover li:before {
-        background-color: #df4244;
-      }
-
-      .qtable li:before {
-        content: " ";
-        position: absolute;
-        top: 7px;
-        left: -10px;
-        width: 4px;
-        height: 4px;
-        border-radius: 2px;
-        background-color: #656565;
-        transition: all 1s;
-        -moz-transition: all 1s;
-        -o-transition: all 1s;
-        -webkit-transition: all 1s;
-      }
-
       /*
- * 
+ *
  *	END WHY
- * 
+ *
 */
 
       /*
- * 
- *	GRADES
- * 
-*/
-
-      .grades {
-      }
-
-      .grades table {
-        margin-top: 10px;
-        width: calc(100% - 166px);
-      }
-
-      .grades table h4 {
-        font-size: 0.9em;
-        color: #df4244;
-        padding: 0 0 0 10px;
-      }
-
-      .grades td:first-child {
-        width: 90%;
-        text-align: left;
-        padding-bottom: 0;
-      }
-
-      .grades td:first-child p {
-        width: auto;
-        padding: 5px 60px 10px 10px;
-        line-height: 1.5em;
-        text-align: justify;
-        font-size: 0.8em;
-      }
-
-      .grades td:last-of-type {
-        width: 10%;
-        text-align: left;
-        vertical-align: middle;
-        font-weight: bold;
-        color: #333;
-        padding-bottom: 0;
-      }
-
-      .grades tr:last-of-type td p {
-        padding-bottom: 0;
-        margin-bottom: 0;
-      }
-
-      /*
- * 
- *	END WHY
- * 
-*/
-
-      /*
- * 
- *	INTERESTS
- * 
-*/
-
-      .interests {
-        padding-bottom: 20px;
-      }
-
-      /*
- * 
- *	END WHY
- * 
-*/
-
-      /*
- * 
+ *
  *	CONTACT
  * 
 */
@@ -867,94 +523,6 @@
         padding: 11px 13px 4px;
       }
 
-      /*
- * 
- *	FOOTER
- * 
-*/
-
-      footer {
-        background-color: #111;
-        font-size: 0.9em;
-        height: 48px;
-      }
-
-      footer .wrap {
-        max-width: 600px;
-        overflow: visible;
-        height: 48px;
-      }
-
-      footer a {
-        color: white;
-      }
-
-      footer a:hover {
-        color: #df4244;
-      }
-
-      footer .left,
-      footer .right {
-        float: left;
-        width: 50%;
-      }
-
-      footer .left {
-        padding-top: 20px;
-      }
-
-      footer .right {
-        overflow: visible;
-      }
-
-      footer .icon {
-        float: right;
-        width: 48px;
-        height: 48px;
-        cursor: pointer;
-        position: relative;
-      }
-
-      footer .facebook {
-        background-image: url("https://web.archive.org/web/20160322141911im_/http://alexkaskasoli.com/img/facebook.png");
-      }
-
-      footer .facebook:hover {
-        background-image: url("https://web.archive.org/web/20160322141911im_/http://alexkaskasoli.com/img/facebook_hover.png");
-      }
-
-      footer .linkedin {
-        margin-right: 20px;
-        background-image: url("https://web.archive.org/web/20160322141911im_/http://alexkaskasoli.com/img/linkedin.png");
-      }
-
-      footer .linkedin:hover {
-        background-image: url("https://web.archive.org/web/20160322141911im_/http://alexkaskasoli.com/img/linkedin_hover.png");
-      }
-
-      footer .icon .tooltip {
-        position: absolute;
-        top: -36px;
-        left: calc(100% + 2px);
-        display: none;
-        background-color: #111;
-        border: 1px solid #393636;
-        padding: 11px 10px;
-        height: 34px;
-        letter-spacing: 1px;
-        border-radius: 20px 20px 20px 0px;
-        font-size: 0.8em;
-      }
-
-      footer .icon:hover .tooltip {
-        display: block;
-      }
-
-      /*
- * 
- *	END FOOTER
- * 
-*/
     </style>
   </head>
 
@@ -999,7 +567,6 @@
             hard SciFi and, increasingly, sobering tech books.
           </p>
         </div>
-        <div class="right"></div>
       </div>
     </section>
     <section class="languages resume">
@@ -1156,23 +723,6 @@
         </div>
       </div>
     </section>
-    <!-- <section class="education resume">
-      <div class="wrap">
-        <h2>education</h2>
-        <div class="content">
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <h4>BSc Ethical Hacking and Countermeasures</h4>
-                  <div class="italic">University of Abertay, Dundee, UK</div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section> -->
     <section class="contact resume">
       <div class="wrap">
         <h2>contact</h2>
