@@ -22,6 +22,6 @@ ignores this `_resume/` directory (leading underscore), so only the PDF is serve
 - The build installs the bundled fonts into `~/Library/Fonts` if missing —
   wkhtmltopdf's macOS engine resolves fonts by family name via CoreText and has
   no `--fontdir` option.
-- The Google Fonts `<link>`s in `resume.html` are for viewing the file in a
-  browser; `build.sh` strips them for the PDF (the old WebKit can't fetch them,
-  and a failed load would shadow the local fonts).
+- `resume.html` is PDF source only, not a standalone web page — it references
+  the bundled fonts directly by their installed family name (no Google Fonts,
+  no build-time transform).

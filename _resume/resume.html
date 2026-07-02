@@ -3,29 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>alxk's CV</title>
-    <!-- pdf-build:strip -->
-    <!--
-      wkhtmltopdf's bundled WebKit can't complete a TLS handshake with
-      fonts.googleapis.com, so these are unused (and would shadow the
-      locally-installed fonts) when rendering the PDF. build.sh strips
-      everything between the pdf-build:strip markers before rendering.
-      Browsers still load these normally.
-    -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Monda:400,700"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- /pdf-build:strip -->
     <style>
-      /*
- * WKHTMLTOPDF Formatting
- */
+      /* wkhtmltopdf page-break controls */
       .keep-together {
         page-break-inside: avoid;
       }
@@ -38,16 +17,7 @@
         page-break-after: always;
       }
 
-      /*
- * Old alexkaskasoli.com CV CSS
- */
-
-      /*
- * RED: #DF4244
- * GRAY: #323232
- * BLUE: #0087CB
-*/
-
+      /* CSS reset */
       html,
       body,
       div,
@@ -206,11 +176,7 @@
         width: calc(100% - 166px);
       }
 
-      /*
- *
- *	INTRO
- *
-*/
+      /* Intro / name banner */
 
       .intro {
         position: relative;
@@ -223,7 +189,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         border-top: 1px solid transparent;
         margin: 0 auto;
-        font-family: "Open Sans Condensed", sans-serif;
+        font-family: "Open Sans Condensed Light", sans-serif;
         color: white;
         text-align: center;
       }
@@ -249,7 +215,7 @@
         font-size: 3em;
         margin-bottom: 0px;
         font-weight: 400;
-        font-family: "Open Sans Condensed", sans-serif !important;
+        font-family: "Open Sans Condensed Light", sans-serif !important;
       }
 
       .intro .subtitle {
@@ -259,20 +225,10 @@
         display: inline-block;
         margin-top: 10px;
         font-size: 1.6em;
-        font-family: "Open Sans Condensed", sans-serif !important;
+        font-family: "Open Sans Condensed Light", sans-serif !important;
       }
 
-      /*
- * 
- *	END INTRO
- * 
-*/
-
-      /*
- * 
- *	SECTION
- * 
-*/
+      /* Shared section layout (h2 label + content column) */
 
       section h2 {
         display: block;
@@ -303,6 +259,8 @@
         margin-top: 3px;
       }
 
+      /* Work experience table */
+
       .work table {
         margin-top: 5px;
         width: 100%;
@@ -332,33 +290,11 @@
         font-size: 0.9em;
       }
 
-      /*
- * 
- *	END SECTION
- * 
-*/
-
-      /*
- * 
- *	WORK
- * 
-*/
-
       .work table td:last-of-type {
         text-align: right;
       }
 
-      /*
- * 
- *	END WORK
- * 
-*/
-
-      /*
- * 
- *	ABOUT
- * 
-*/
+      /* About (readme) */
 
       .about {
         background-color: #323232;
@@ -374,21 +310,11 @@
         color: white;
       }
 
-      /*
- * 
- *	END ABOUT
- * 
-*/
-
       .resume {
         margin-top: 0px;
       }
 
-      /*
- * 
- *	SKILLS
- * 
-*/
+      /* Skills grid */
 
       .skills .qtable td {
         height: 180px;
@@ -403,18 +329,6 @@
         color: #df4244;
       }
 
-      /*
- * 
- *	END SKILLS
- * 
-*/
-
-      /*
- * 
- *	WHY
- * 
-*/
-
       .qtable td {
         width: 33.3%;
         height: 232px;
@@ -422,10 +336,6 @@
         color: white;
         padding: 30px 20px;
         cursor: default;
-      }
-
-      .qtable p {
-        width: 100%;
       }
 
       .qtable tr:nth-of-type(odd) td:nth-of-type(odd) {
@@ -470,26 +380,11 @@
         color: white;
       }
 
-      /*
- *
- *	END WHY
- *
-*/
-
-      /*
- *
- *	CONTACT
- * 
-*/
+      /* Contact */
 
       .contact {
         background-color: #161616;
         color: white;
-        /* padding: 20px 0px; */
-        /* margin-top: 1px; */
-        /* font-size: .9em;
-	padding: 40px 0;
-	overflow: auto; */
       }
 
       .contact h2 {
@@ -508,12 +403,6 @@
       .contact .content p {
         color: white;
       }
-
-      /*
- * 
- *	END CONTACT
- * 
-*/
 
       .certificates h2 {
         padding: 12px 16px 4px;

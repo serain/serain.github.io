@@ -10,7 +10,6 @@
 #   - wkhtmltopdf 0.12.6 (macos-cocoa). Found via, in order:
 #       $WKHTMLTOPDF  ->  PATH  ->  ~/.local/bin/wkhtmltopdf
 #     Get it from https://github.com/wkhtmltopdf/packaging/releases
-#   - python3 (ships with macOS) for the HTML transform.
 #
 set -euo pipefail
 
@@ -44,28 +43,7 @@ for f in "$FONTDIR"/*.ttf; do
   [[ -f "$dest" ]] || cp "$f" "$dest"
 done
 
-# 3. Transform the source for the PDF pass and render it.
-#    - Drop the block marked <!-- pdf-build:strip --> ... <!-- /pdf-build:strip -->
-#      in resume.html (the Google Fonts <link>s): the old WebKit can't fetch
-#      them and a failed load shadows the locally-installed fonts, forcing
-#      Helvetica. Browsers still load them fine; only this PDF pass skips them.
-#    - Reference Open Sans Condensed by its installed family name.
-TMPDIR_BUILD="$(mktemp -d)"
-trap 'rm -rf "$TMPDIR_BUILD"' EXIT
-TMP="$TMPDIR_BUILD/resume.html"
-python3 - "$SRC" "$TMP" <<'PY'
-import re, sys
-src, dst = sys.argv[1], sys.argv[2]
-html = open(src).read()
-html = re.sub(
-    r'<!-- pdf-build:strip -->.*?<!-- /pdf-build:strip -->',
-    '', html, flags=re.S,
-)
-html = html.replace('"Open Sans Condensed"', '"Open Sans Condensed Light"')
-open(dst, 'w').write(html)
-PY
-
-# Zero margins so the full-bleed black bars reach the page edges (A4).
-"$WK" -T 0 -B 0 -L 0 -R 0 "$TMP" "$OUT"
+# 3. Render. Zero margins so the full-bleed black bars reach the page edges (A4).
+"$WK" -T 0 -B 0 -L 0 -R 0 "$SRC" "$OUT"
 
 echo "wrote $OUT"
