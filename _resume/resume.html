@@ -307,10 +307,6 @@
 
     /* Skills grid */
 
-    .skills .qtable td {
-      height: 180px;
-    }
-
     .skills .qtable span {
       color: #df4244;
       transition: all 0.6s;
@@ -320,13 +316,16 @@
       color: #df4244;
     }
 
+    .qtable {
+      width: 100%;
+      table-layout: fixed;
+    }
+
     .qtable td {
-      width: 33.3%;
-      height: 232px;
-      float: left;
       color: white;
       padding: 30px 20px;
       cursor: default;
+      vertical-align: top;
     }
 
     .qtable tr:nth-of-type(odd) td:nth-of-type(odd) {
@@ -421,22 +420,20 @@
       <div class="content">
         <p>
           Security engineer with an offensive security background. My last role was at Google DeepMind, where among
-          other things I threat modelled the production deployment of ML solutions and built the initial framework for
-          cybersecurity safety evaluations in an isolated environment.
+          other things I threat modelled the production deployment of ML solutions and lead the initial framework for
+          cybersecurity safety evaluations, including running agents and vulnerable-by-design systems in isolated
+          k8s environments, navigating Google's strict security policies.
         </p>
         <p>
           In my previous roles as a Security Engineer and Head of Security and DevOps, I drove the design of AWS
-          organizations from scratch, hardened k8s clusters and cloud environments, evangelized GitOps practices across
+          organizations from scratch, hardened k8s clusters and cloud environments, pushed GitOps practices across
           the engineering pool, and set up logging and monitoring stacks. I also worked alongside ISO 27001
           consultants, translating compliance requirements into infrastructure-as-code policies.
         </p>
         <p>
           Back in my pentesting days, I conducted security assessments on a range of tech stacks and participated in
-          "red team" engagements against large organizations. My signature was leveraging CI/CD pipelines and DevOps
-          tooling for lateral movement and privilege escalation before it was cool.
-        </p>
-        <p>
-          In my downtime I mountain climb and read history and sci-fi.
+          "red team" engagements against large organizations, often exploiting then-nascent CI/CD and
+          DevOps tooling for lateral movement and privilege escalation.
         </p>
       </div>
     </div>
@@ -463,53 +460,51 @@
           <tbody>
             <tr>
               <td>
-                <h4>Cloud</h4>
+                <h4>Cloud &amp; IAM</h4>
                 <p>
-                  Experienced with <span>AWS</span> and some
-                  <span>Azure</span>. Designed multi-account architecture with
-                  security in mind. Implemented centralized logging for a
-                  large AWS org.
-                </p>
-              </td>
-              <td>
-                <h4>Coding</h4>
-                <p>
-                  Affinity with <span>Python</span>, some projects in
-                  <span>Golang</span> and <span>Node.js</span>. Dabbled around
-                  <span>C</span> and <span>Assembly</span> when working on
-                  basic memory corruption vulnerabilities.
+                  Designed multi-account <span>AWS</span> orgs from scratch, including org-wide
+                  CloudTrail/S3/CloudWatch log centralization with <span>SCP</span> guardrails. Built bespoke
+                  <span>IAM</span> tooling to balance security and developer velocity.
                 </p>
               </td>
               <td>
                 <h4>CI/CD</h4>
                 <p>
-                  <span>GitOps</span> evangelist. Spoke about
-                  <span>CI/CD</span> pipelines and security at a couple of
-                  local conferences and meetups.
+                  Built <span>GitOops</span>, a tool that briefly trended on GitHub, for attacking and defending
+                  CI/CD pipelines. Early <span>GitOps</span> adopter for infra-as-code, wrote and spoke on CI/CD
+                  security and pipeline hardening.
+                </p>
+              </td>
+              <td>
+                <h4>Kubernetes</h4>
+                <p>
+                  Researched and published <span>k8s</span> privilege-escalation paths (including a CVE
+                  for RCE/VM escape in minikube). Ran and hardened production clusters, and wrote custom k8s controllers
+                  for bespoke needs.
                 </p>
               </td>
             </tr>
             <tr>
               <td>
-                <h4>Kubernetes</h4>
+                <h4>Email &amp; Comms Security</h4>
                 <p>
-                  Experience running and securing <span>k8s</span>. Wrote a
-                  <span>custom controller</span> and support tooling for
-                  AWS-backed secrets management.
+                  Built <span>Mailspoof</span>, an open-source SPF/DMARC scanner for email spoofing exposure, and wrote
+                  on the topic. Practical experience hardening collaboration and comms security (emails, Slack).
                 </p>
               </td>
               <td>
-                <h4>DevOps</h4>
+                <h4>Coding</h4>
                 <p>
-                  Automating infrastructure and operations with
-                  <span>Terraform</span> and <span>Ansible</span>.
+                  Ship production tooling in <span>Python</span> and <span>Go</span>. Comfortable in
+                  <span>JavaScript</span>, some <span>C</span> and <span>Assembly</span> for offensive tooling and basic
+                  memory corruption research.
                 </p>
               </td>
               <td>
-                <h4>Security</h4>
+                <h4>ML / AI Security</h4>
                 <p>
-                  Years of experience <span>security testing</span> a wide
-                  range of application stacks and infrastructure.
+                  Threat modelled ML deployments and watermarking robustness at Google DeepMind. A Statistics &amp; Data
+                  Science MicroMasters from MIT allows me to speak comfortably with researchers.
                 </p>
               </td>
             </tr>
