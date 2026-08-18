@@ -174,7 +174,7 @@
 
     p {
       margin: 0 0 10px 0;
-      font: 13px/23px "Monda", "Open Sans", "HelveticaNeue", "Helvetica Neue",
+      font: 13px/21px "Monda", "Open Sans", "HelveticaNeue", "Helvetica Neue",
         Helvetica, Arial, sans-serif;
       color: #656565;
       width: calc(100% - 166px);
@@ -227,7 +227,7 @@
     section h2 {
       display: block;
       float: left;
-      padding: 16px;
+      padding: 13px 16px;
       width: 170px;
       text-transform: uppercase;
       font: 13px/29px Arial, sans-serif;
@@ -240,7 +240,7 @@
       font-size: 0.9em;
       line-height: 1.2em;
       float: left;
-      padding: 11px 13px;
+      padding: 8px 13px;
       text-align: justify;
       width: 730px;
     }
@@ -273,7 +273,7 @@
 
     .work td:first-child {
       width: 80%;
-      padding-bottom: 16px;
+      padding-bottom: 13px;
     }
 
     .work tr:last-of-type td:first-child {
@@ -326,7 +326,7 @@
 
     .qtable td {
       color: white;
-      padding: 18px 20px;
+      padding: 14px 20px;
       cursor: default;
       vertical-align: top;
     }
@@ -425,20 +425,22 @@
       <h2>readme</h2>
       <div class="content">
         <p>
-          Ten years in security engineering, from red teaming to founding the cybersecurity safety evaluation
-          programme at Google DeepMind, where I threat modelled production ML deployments and ran agents and
-          vulnerable-by-design systems in sandboxed k8s environments.
+          Ten years across security and platform engineering, much of it building what didn't exist yet. At Google
+          DeepMind I threat modelled production ML deployments, then founded the cybersecurity safety evaluation
+          programme, running agents against vulnerable-by-design systems in sandboxed k8s environments. The framework
+          I built went on to run most of DeepMind's safety evaluations, not just cyber.
         </p>
         <p>
-          As Head of DevOps and Security and as a Tech Lead Security Engineer, I owned application and cloud security
-          end to end: SAST/DAST and dependency scanning built into CI/CD, AWS organisations designed from scratch, k8s
-          hardening, and security guardrails engineers adopted rather than routed around. I've translated regulatory
-          requirements into infrastructure-as-code policy, and managed external security vendors and pentest
-          engagements.
+          As Head of DevOps and Security and as a Tech Lead Security Engineer, I owned infrastructure and security end
+          to end across AWS and GCP: CI/CD pipelines with SAST/DAST and dependency scanning, cloud organisations
+          designed from scratch, k8s hardening, Prometheus and Grafana observability, and guardrails engineers adopted
+          rather than routed around.
         </p>
         <p>
           Before that, four years of red team and application security consulting against large finance and
-          critical-infrastructure clients, often exploiting CI/CD and DevOps tooling for lateral movement.
+          critical-infrastructure clients, often exploiting CI/CD and DevOps tooling for lateral movement. Four years
+          of learning to follow a thread across application, infrastructure and pipeline until I found where it
+          actually broke.
         </p>
       </div>
     </div>
@@ -463,19 +465,44 @@
           <tbody>
             <tr>
               <td>
+                <h4>AI &amp; ML Security</h4>
+                <p>
+                  Threat modelled production <span>ML</span> deployments at Google DeepMind and built its first
+                  cybersecurity <span>safety evals</span>. Credited on DeepMind's
+                  <span>dangerous capability evaluations</span> and SynthID papers.
+                </p>
+              </td>
+              <td>
                 <h4>Cloud &amp; IAM</h4>
                 <p>
-                  Designed multi-account <span>AWS</span> orgs from scratch, including org-wide log centralization and
-                  security guardrails. Built bespoke <span>IAM</span> tooling when necessary to balance security and
-                  developer velocity.
+                  Production experience across <span>AWS</span> and <span>GCP</span>. Designed multi-account
+                  <span>AWS</span> orgs from scratch, with org-wide log centralisation and security guardrails, and
+                  built bespoke <span>IAM</span> tooling to balance security and developer velocity.
                 </p>
               </td>
               <td>
                 <h4>CI/CD &amp; AppSec</h4>
                 <p>
-                  Built and maintain <span>GitOops</span>, an open-source tool for attacking and defending CI/CD
+                  Built and maintain <span>GitOops</span> (640 stars), an open-source tool for attacking and defending CI/CD
                   pipelines; spoke on CI/CD security at <span>BSides London</span>. Wired <span>SAST</span>,
                   <span>DAST</span> and dependency scanning into pipelines. Early <span>Terraform</span> adopter.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <h4>Coding</h4>
+                <p>
+                  Ship production tooling in <span>Go</span> and <span>Python</span>; comfortable in
+                  <span>JavaScript</span>. Now building daily with <span>Claude Code</span>.
+                </p>
+              </td>
+              <td>
+                <h4>Observability &amp; Ops</h4>
+                <p>
+                  Set up and ran <span>Prometheus</span> and <span>Grafana</span> in production, and worked with
+                  <span>Datadog</span>. Comfortable in <span>Postgres</span> and other datastores. Have remediated
+                  production incidents and run the postmortems.
                 </p>
               </td>
               <td>
@@ -484,31 +511,6 @@
                   Researched and wrote about <span>k8s</span> privilege-escalation paths (including a <span>CVE</span>
                   for RCE/VM escape in <span>minikube</span>). Ran and hardened production clusters, and wrote custom
                   k8s controllers for bespoke needs.
-                </p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <h4>Email &amp; Comms Security</h4>
-                <p>
-                  Practical experience hardening collaboration and comms security (email, <span>Slack</span>). Built
-                  tooling to scan for email protocol misconfigurations, and blogged on the topic.
-                </p>
-              </td>
-              <td>
-                <h4>Coding</h4>
-                <p>
-                  Ship production tooling in <span>Python</span> and <span>Go</span>. Comfortable in
-                  <span>JavaScript</span>, some C and Assembly for offensive tooling and
-                  memory corruption research.
-                </p>
-              </td>
-              <td>
-                <h4>ML / AI Security</h4>
-                <p>
-                  Threat modelled production <span>ML</span> deployments at Google DeepMind and built its first
-                  cybersecurity <span>safety evals</span>, running <span>agents</span> against vulnerable-by-design
-                  targets.
                 </p>
               </td>
             </tr>
@@ -527,10 +529,10 @@
               <td>
                 <h4>Google DeepMind</h4>
                 <div class="italic">
-                  Security SWE in a cross-team function: threat modelled production ML deployments, translating
-                  findings into remediations and driving them to resolution with engineering teams. Built the
-                  initial framework for cybersecurity safety evaluations and ran the external vendor engagements behind
-                  it; adversarially tested image/text watermarks.
+                  Security SWE in a cross-team function. Owned cybersecurity safety evaluations, building the initial
+                  framework and running the external vendor engagements behind it. Threat modelled production ML
+                  deployments, driving remediations to resolution across engineering teams; adversarially tested
+                  image/text watermarks.
                 </div>
               </td>
               <td>
@@ -542,9 +544,9 @@
               <td>
                 <h4>Kaluza / OVO Energy</h4>
                 <div class="italic">
-                  Tech Lead Security Engineer securing a large (100+ account) cloud organisation, automating security
-                  controls, identifying attack paths and driving remediations. Wrote the secure development guidelines
-                  and trained engineers against them.
+                  Tech Lead Security Engineer securing a large (100+ account) cloud organisation across AWS and GCP.
+                  Set security standards for 20+ engineering teams and ran org-wide remediation and uplift programmes,
+                  automating controls and fixing vulnerabilities with the teams that owned them.
                 </div>
               </td>
               <td>
@@ -556,9 +558,10 @@
               <td>
                 <h4>TrueLayer</h4>
                 <div class="italic">
-                  Security Engineer promoted to Head of DevOps and Security. Led a team of 3 to scale
+                  Security Engineer promoted to Head of DevOps and Security, leading a team of three to scale
                   infrastructure, mature DevOps practices, mitigate security risks and meet regulatory compliance.
-                  Ran external security vendor and pentest engagements end to end.
+                  Set up and ran the Prometheus and Grafana observability stack. Owned external security vendor and
+                  pentest engagements end to end.
                 </div>
               </td>
               <td>
