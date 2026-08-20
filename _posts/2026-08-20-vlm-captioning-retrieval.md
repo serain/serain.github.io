@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Evaluating frontier vs 8B VLM for captioning images for retrieval"
+title: "Captioning images for retrieval: frontier vs 8B"
 date: 2026-08-20T11:00:00+00:00
 author: alxk
 sitemap: false
@@ -8,7 +8,7 @@ keywords: "ai rag vlm embeddings retrieval"
 description: "Is a frontier multimodal model worth it over a small VLM for captioning photos in a RAG pipeline? Benchmarking Opus 5, Qwen3-VL-8B and Ministral on MS COCO retrieval."
 ---
 
-# Evaluating frontier vs 8B VLM for captioning images for retrieval
+# Captioning images for retrieval: frontier vs 8B
 
 TL;DR I wanted to know if there was any substantial difference between a frontier model and a small VLM for simple captioning of photos in a RAG pipeline. The answer is no, confirming priors.
 

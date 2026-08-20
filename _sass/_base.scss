@@ -80,6 +80,52 @@ figcaption {
 }
 
 /**
+ * Tables
+ */
+table {
+    width: 100%;
+    margin-bottom: $spacing-unit / 2;
+    border-collapse: collapse;
+    font-size: $base-font-size * 0.8;
+    line-height: 1.5;
+
+    th, td {
+        padding: 7px 12px;
+        text-align: left;
+        white-space: nowrap;
+        border-bottom: 1px solid $grey-color-light;
+    }
+
+    th {
+        color: $dark-color-aap;
+        font-weight: bold;
+        border-bottom: 2px solid $grey-color;
+    }
+
+    // keep the table's text flush with the body copy
+    th:first-child, td:first-child {
+        padding-left: 0;
+    }
+
+    th:last-child, td:last-child {
+        padding-right: 0;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #F1F1F1;
+    }
+
+    tbody tr:hover {
+        background-color: #EAEAEA;
+    }
+
+    @include media-query($on-palm) {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/**
  * Lists
  */
 ul, ol {
