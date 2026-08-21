@@ -22,7 +22,7 @@ Specifically I wanted to figure out if frontier multimodal models (expensive) of
 
 ## Approach
 
-We took the MS COCO dataset and used a fixed 1000 images of the `val` split. Big warning: all models have likely seen COCO in training, and the task is easy.
+We took the MS COCO dataset and used a fixed 1000 images of the `val` split. Big warning: all models have likely seen COCO in training, so this will need validation on our own dataset.
 
 MS COCO images come with 5 human-written captions per image. We reserved the first human-written caption of each image to embed and put in the index, to serve as a human baseline for captioning.
 
