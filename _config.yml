@@ -7,7 +7,7 @@ email: alex@kaskaso.li
 author: alxk
 baseurl: ""
 keywords: "hacking, security, devops, devsecops, kubernetes"
-description: "alxk is a security and platform engineer with a decade in the field. He built the original cybersecurity safety evaluations framework at Google DeepMind, where he also threat modelled AI deployments and worked on adversarial testing of image and text watermarking for generative models. He previously led the platform and security team at TrueLayer."
+description: "alxk is a security and platform engineer with a decade in the field. He built the cybersecurity evaluation harness at Google DeepMind, which grew to run most of its dangerous capability evaluations. He also threat modelled AI deployments and worked on adversarial testing of image and text watermarking for generative models. He previously led the platform and security team at TrueLayer."
 social_username: serain
 github_username: serain
 twitter_username: alxk7i

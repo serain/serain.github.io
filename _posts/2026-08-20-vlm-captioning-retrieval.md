@@ -60,7 +60,7 @@ For recall@1, no significant difference between Opus 5 and Qwen3-VL-8B on `PROMP
 
 Ministral 8B and 3B perform roughly the same, and Qwen3-VL-8B beats Ministral 8B in the 8B category.
 
-| Model | Prompt | tokens | R@1 | R@3 | MRR | $ / 1k images |
+| Model | Prompt | mean tokens | recall@1 | recall@3 | MRR | $ / 1k images |
 |---|---|---|---|---|---|---|
 | Opus 5 | bare | 38.4 | 0.573 ±0.021 | 0.764 ±0.017 | 0.688 ±0.017 | $3.535 |
 | Qwen3-VL-8B | prompt-0 | 39.7 | 0.561 ±0.022 | 0.752 ±0.018 | 0.678 ±0.017 | $0.055 |
