@@ -122,7 +122,9 @@
         clear: both;
     }
     position: relative;
-    margin-bottom: 15px;
+    // Space below a section is owned by `.section`, so the list only sets the
+    // small gap between a heading and its own links.
+    margin-bottom: 0;
     margin-top: 8px;
 }
 
@@ -286,16 +288,33 @@
 .dummy {
     font-size: 17px;
     letter-spacing: -1px;
-    margin-bottom: 3px;
+    // The post list below is a float that clears this one, so this margin is
+    // what sets the gap under the "Posts." heading. Tuned to match the gap
+    // every other heading has above its own list.
+    margin-bottom: 15px;
     float: left;
     color: #505050;
     &,
     &:visited {
         color: #505050;
     }
-    .blogpost {
-        text-align: left;
-    }
+}
+
+/**
+ * Index sections: one rhythm for the whole column. The intro and every
+ * heading block are separated by a single gap, and each heading hugs its
+ * own list of links.
+ */
+.bio {
+    margin-bottom: 0;
+}
+
+.section {
+    margin-top: $spacing-unit + 10;
+}
+
+.section-title {
+    margin-bottom: 0;
 }
 
 .home {
