@@ -50,12 +50,13 @@ This does however open the door to some attacks and alignment issues. For exampl
 
 With the permissions above, a successful prompt injection could lead to:
 
-| Attack | Why? |
+| A successful prompt injection could lead to | Why? |
 |---|---|
 | Scaling every service in the namespace to zero replicas | The role covers every deployment in the namespace, not just the impacted one |
 | Scaling the impacted service to zero replicas | RBAC authorises the verb, not the value |
 | Reading every service's logs, not just the impacted one | `get`/`list` on pods and logs is namespace-wide |
 | Rewriting the pod spec to enable code execution | `patch` on a deployment rewrites the pod template |
+| Inheriting a more privileged ServiceAccount in the namespace | The pod template includes `serviceAccountName`, so the agent can run the workload as any SA in the namespace |
 | Reading the agent's credentials off the container filesystem | The token is mounted inside the agent's container |
 
 The diagram below illustrates the setup and the attack flow:
@@ -80,6 +81,7 @@ At this point our SRE agent can no longer scale all production services to zero 
 | Scaling the impacted service to zero replicas | ❌ |
 | Reading every service's logs, not just the impacted one | ❌ |
 | Rewriting the pod spec to enable code execution | ❌ |
+| Inheriting a more privileged ServiceAccount in the namespace | ❌ |
 | Reading the agent's credentials off the container filesystem | ⚠️ |
 
 ⚠️ The agent can still access the credentials but they are now short lived.
@@ -106,6 +108,7 @@ At this point we've made substantial progress in locking down our agent:
 | Scaling the impacted service to zero replicas | ❌ | ✅ |
 | Reading every service's logs, not just the impacted one | ❌ | ✅ |
 | Rewriting the pod spec to enable code execution | ❌ | ✅ |
+| Inheriting a more privileged ServiceAccount in the namespace | ❌ | ✅ |
 | Reading the agent's credentials off the container filesystem | ⚠️ | ✅ |
 
 ## How production differs
