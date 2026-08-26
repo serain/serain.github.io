@@ -92,7 +92,9 @@ table {
     th, td {
         padding: 7px 9px;
         text-align: left;
-        white-space: nowrap;
+        vertical-align: top;
+        // prose wraps rather than pushing the table wider than the page
+        overflow-wrap: break-word;
         border-bottom: 1px solid $grey-color-light;
     }
 
@@ -119,9 +121,24 @@ table {
         background-color: #EAEAEA;
     }
 
-    @include media-query($on-palm) {
+    // opt in from markdown with `{: .scroll}` on the line after the table:
+    // short, column-heavy data scrolls sideways instead of being squeezed
+    &.scroll {
         display: block;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        th, td {
+            white-space: nowrap;
+        }
+    }
+
+    @include media-query($on-palm) {
+        font-size: $base-font-size * 0.75;
+
+        th, td {
+            padding: 6px 5px;
+        }
     }
 }
 

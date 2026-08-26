@@ -72,6 +72,7 @@ Ministral 8B and 3B perform roughly the same, and Qwen3-VL-8B beats Ministral 8B
 | Ministral 8B | bare | 26.7 | 0.502 ±0.021 | 0.704 ±0.019 | 0.629 ±0.017 | $0.064 |
 | human caption #1 | — | 12.0 | 0.429 ±0.021 | 0.625 ±0.022 | 0.559 ±0.018 | — |
 | shuffled control | — | 12.0 | 0.000 ±0.000 | 0.001 ±0.001 | 0.006 ±0.001 | — |
+{: .scroll}
 
 ± is half a 95% bootstrap confidence interval.
 
