@@ -14,7 +14,7 @@ Identity and access management for agents is still evolving and the industry has
 
 In this post I work through one angle by demonstrating how to tightly scope an agent's privileges at runtime, using an "SRE agent" running on Kubernetes as an example. We'll discuss credential brokering, policy engines and enforcement points.
 
-This simplified example is for educational purposes only. It's a demonstration of principles and what's possible; as always, security controls should be proportionate.
+This simplified example is for educational purposes only. It's a demonstration of principles and what's possible; as always, security controls should be proportionate. For more production reading ideas and tools take a look at [Uber](https://www.uber.com/us/en/blog/solving-the-agent-identity-crisis/) and [agentgateway](https://github.com/agentgateway/agentgateway).
 
 ## Introduction
 
