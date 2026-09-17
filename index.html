@@ -165,7 +165,7 @@ layout: default
         </div>
       </div>
       <ul class="post-list">
-        {% for post in paginator.posts %}
+        {% for post in site.posts %}
         <li class="titlepost">
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}"
             >{{ post.title }}</a
@@ -177,13 +177,6 @@ layout: default
         {% endfor %}
       </ul>
     </div>
-    <!-- </div>{% if paginator.previous_page %}
-  <a href="{{ paginator.previous_page_path }}">
-    <b><span class="big">Balik Lagi</span></b>
-  </a>{% else %}{% endif %}{% if paginator.next_page %}
-  <a href="{{ paginator.next_page_path }}">
-    <b><span class="big">Lanjut</span></b>
-  </a>{% else %}{% endif %} -->
     {% include nav.html %}
   </div>
 </div>
