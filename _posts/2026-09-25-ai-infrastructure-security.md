@@ -10,9 +10,7 @@ description: "How to contain actively hostile AI agents in cyber evaluations on 
 
 # AI cybersecurity evaluations: infrastructure security
 
-_This post is a draft, WIP_
-
-When I founded the AI cybersecurity safety evaluations at Google DeepMind, we had to ask ourselves how to secure a workload that is actively hostile and, even in 2023, looked set to exceed human expert capabilities. The framework we built for cyber eventually grew to run most of our frontier safety evaluations.
+When we started building AI cybersecurity safety evaluations at Google DeepMind, we had to ask ourselves how to secure a workload that is actively hostile and, even in 2023, looked set to exceed human expert capabilities. The framework we built for cyber eventually grew to run most of our frontier safety evaluations.
 
 What I describe here is not what we built on Google's internal infra, but rather a reflection of the principles applied to public cloud infra.
 
@@ -64,10 +62,6 @@ Canary tokens and canary cloud resources; agents can't help themselves but try e
 Move Cloud audit logs, DNS logs, k8s audit logs and k8s runtime security logs to a dedicated logging account.
 
 You expect a bunch of suspicious behaviour on the untrusted nodes in the hostile cluster, but you do _not_ expect suspicious behaviour on the restricted nodes hosting your package registry or other support tooling! Set up your detection rules accordingly.
-
-## CI/CD & admission control
-
-_TODO_
 
 ## Test it
 
