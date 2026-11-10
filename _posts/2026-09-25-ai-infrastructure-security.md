@@ -16,28 +16,28 @@ What I describe here is not what we built on Google's internal infra, but rather
 
 Not much has changed in the recommendations I would give to anyone else trying to contain these workloads in 2026 despite the huge jump in AI capabilities and the widely publicised "rogue AI" breaches of this year. I still believe basic defense-in-depth and least-privilege principles _applied systematically_ can greatly restrict the range of actions of AI agents.
 
-To escape their sandboxes, we can force AI agents to find and exploit 0-days in much more contrived scenarios than what we've seen so far in the public breaches, and with some basic detection and response, we can likely catch them before they succeed.
+To escape their sandboxes, we can force AI agents to find and exploit 0-days in much more contrived scenarios than what we've seen so far in the public breaches, and with some basic detection and response, we can likely catch them before they succeed. Cloud 0-days are residual risk we accept; we can't patch them so we reduce the blast radius and compensate with detection.
 
 Note that I focus only on the infrastructure security aspects here; I won't cover researcher UX and workload orchestration.
 
 <figure>
-  <a href="{{ site.url }}/images/posts/ai-infrastructure-security/agent.svg"><img src="{{ site.url }}/images/posts/ai-infrastructure-security/agent.svg" alt="Architecture: a trusted account and a hostile account joined by a one-way private link, both shipping logs to a dedicated logging account"></a></figure>
+  <a href="{{ site.url }}/images/posts/ai-infrastructure-security/agent.svg"><img src="{{ site.url }}/images/posts/ai-infrastructure-security/agent.svg" alt="Architecture: a semi-trusted account and a hostile account joined by a one-way private link, both shipping logs to a dedicated logging account"></a></figure>
 
-## Trusted and Hostile: account level segmentation
+## Semi-trusted and Hostile: account level segmentation
 
-We distinguish between workloads that are trusted and those that should be considered actively hostile.
+We distinguish between workloads that are semi-trusted and those that should be considered actively hostile.
 
-An agent harness loop _is trusted_; it runs inference against an LLM server, does some deterministic manipulation based on the output and extracts an untrusted command to run.
+An agent harness loop is _semi-trusted_; it runs inference against an LLM server, does some deterministic manipulation based on the output and extracts an untrusted command to run. It isn't hostile, but it parses hostile output.
 
 The execution environment and the target hacking challenge, where untrusted commands are run, are considered _actively hostile_. For the latter, the assumption is that you have some of the best hackers in the world sitting there, actively ignoring the scope of their exercise and trying to take over the whole environment instead.
 
-In this example we run a Kubernetes cluster in each account. Importantly, the clusters are not federated. The only link between the two clusters is a unidirectional L4 network link from trusted to hostile, with an L7 relay/router using it.
+In this example we run a Kubernetes cluster in each account. Importantly, the clusters are not federated. The only link between the two clusters is a unidirectional L4 network link from semi-trusted to hostile, with an L7 relay/router using it.
 
 Note that there is an attack path on that L4 network link; hostile agents can manipulate the responses from the execution environment to try to exploit parser vulnerabilities or other vulns in any system interacting with environment outputs. That's a trust boundary; treat env output as you would any untrusted input and use battle-tested parsers.
 
 ## Sandboxed container runtimes
 
-Use gVisor on your trusted cluster where it will work, and on your restricted workloads in the hostile cluster.
+Use gVisor on your semi-trusted cluster where it will work, and on your restricted workloads in the hostile cluster.
 
 For cybersecurity execution environments, you will likely want the agent to interact with a realistic kernel and gVisor's syscall stubbing/missing syscalls won't cut it. Go for Kata containers or an equivalent solution: Kata containers are micro VMs and give you a "natural" execution environment, and the hypervisor adds a layer of security forcing your agent to chain at least one additional hypervisor vulnerability to escape.
 
